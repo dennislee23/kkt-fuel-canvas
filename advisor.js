@@ -23,9 +23,9 @@
   // pill and a fallback token block so it themes correctly on any host page.
   var CSS = `
   .kkt-advisor-trigger{display:inline-flex;align-items:center;gap:8px;vertical-align:middle;white-space:nowrap;
-    background:var(--text-primary);border:1px solid var(--text-primary);border-radius:3px;padding:8px 14px;margin-left:18px;
-    font-family:var(--font-body);font-size:13px;font-weight:600;letter-spacing:.01em;color:#fff;cursor:pointer;
-    box-shadow:0 2px 10px rgba(30,24,16,.18);transition:opacity .15s ease}
+    background:#4A3620;border:1px solid #4A3620;border-radius:3px;padding:8px 14px;margin-left:18px;
+    font-family:var(--font-body);font-size:13px;font-weight:400;letter-spacing:.01em;color:#fff;cursor:pointer;
+    box-shadow:0 2px 10px rgba(74,54,32,.20);transition:opacity .15s ease}
   .kkt-advisor-trigger:hover{opacity:.85}
   .kkt-advisor-trigger .kc{display:inline-flex;gap:2px}
   .kkt-advisor-trigger kbd{font-family:var(--font-mono);font-size:10px;background:rgba(255,255,255,.18);border:none;border-radius:2px;padding:1px 4px;color:#fff;line-height:1}
