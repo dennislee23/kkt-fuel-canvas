@@ -118,6 +118,57 @@
     }
   }
 
+  // ── Live canvas context ────────────────────────────────────────────────
+  // The advisor sends the model "what the user is currently looking at" so it
+  // can focus (Card mode) instead of answering in generalities (Home mode).
+  // We read the canvas's own data globals (window.FUEL_*, loaded by the canvas
+  // and untouched by re-export) and detect the open card drawer by matching an
+  // on-screen <h2> to a known card title — the drawer renders the card title
+  // as <h2>, tiles use <span>, so a matching <h2> means the drawer is open.
+  // No dependency on canvas class names → survives a canvas swap.
+  function lvl(stage) {
+    var s = (window.FUEL_STAGES || []).find(function (x) { return x.id === stage; });
+    return s ? s.name : null;
+  }
+  function isVisible(node) {
+    if (!node || node.offsetParent === null) return false;
+    var r = node.getBoundingClientRect();
+    return r.width > 0 && r.height > 0;
+  }
+  function cardContext(card) {
+    var blocks = window.FUEL_BLOCKS || [], problems = window.FUEL_PROBLEMS || [];
+    var drawer = (window.FUEL_DRAWER_CONTENT || {})[card.id] || {};
+    var block = blocks.find(function (b) { return b.id === card.blockId; });
+    var prob = problems.find(function (p) { return p.id === card.problemId; });
+    return {
+      mode: 'card',
+      card: {
+        id: card.id,
+        title: card.title,
+        level: lvl(card.stage),
+        block: block ? block.code + ' — ' + block.title : null,
+        problem: prob ? prob.code + ' · ' + prob.title : null,
+        lock: card.lock || null,
+        businessPressure: drawer.businessPressure || null,
+        whatWePutInPlace: drawer.whatWePutInPlace || null,
+        whatImproves: drawer.whatImproves || null,
+        dataAiBehind: drawer.dataAiBehind || null
+      }
+    };
+  }
+  function readCanvasContext() {
+    var cards = window.FUEL_CARDS;
+    if (!Array.isArray(cards)) return { mode: 'home' };
+    var h2s = document.querySelectorAll('h2');
+    for (var i = 0; i < h2s.length; i++) {
+      var t = (h2s[i].textContent || '').trim();
+      if (!t) continue;
+      var card = cards.find(function (c) { return (c.title || '').trim() === t; });
+      if (card && isVisible(h2s[i])) return cardContext(card);
+    }
+    return { mode: 'home' };
+  }
+
   function init() {
     var style = el('style'); style.textContent = CSS; document.head.appendChild(style);
 
@@ -232,7 +283,8 @@
 
     function stream(message, bubble) {
       var acc = '', content = null;
-      fetch(ENDPOINT, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ message: message, context: {} }) })
+      var context = readCanvasContext();
+      fetch(ENDPOINT, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ message: message, context: context }) })
         .then(function (res) {
           if (!res.ok || !res.body) { return fail(bubble); }
           var reader = res.body.getReader(), dec = new TextDecoder(), buf = '';

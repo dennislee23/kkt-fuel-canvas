@@ -106,13 +106,27 @@ if (mb_strlen($message) > FUEL_ADVISOR_MAX_MESSAGE_LENGTH) {
         'Message must be ' . FUEL_ADVISOR_MAX_MESSAGE_LENGTH . ' characters or fewer.');
 }
 
-$rawCtx = is_array($body['context'] ?? null) ? $body['context'] : [];
+// Canvas context: what the user is currently looking at, sent by advisor.js.
+// mode = 'home' (whole-map overview) or 'card' (a card drawer is open). In
+// card mode we also get the focused card's block, проблематика, level, lock
+// and drawer prose so the model can stay on that card (Card mode behaviour in
+// the system prompt) instead of answering generically.
+$rawCtx  = is_array($body['context'] ?? null) ? $body['context'] : [];
+$rawCard = is_array($rawCtx['card'] ?? null) ? $rawCtx['card'] : [];
+$str = static fn($v): ?string => (is_string($v) && trim($v) !== '') ? trim($v) : null;
 $context = [
-    'pressures' => is_array($rawCtx['pressures'] ?? null)
-        ? array_values(array_filter($rawCtx['pressures'], 'is_string'))
-        : [],
-    'domain'    => is_string($rawCtx['domain'] ?? null) ? $rawCtx['domain'] : null,
-    'play'      => is_string($rawCtx['play']   ?? null) ? $rawCtx['play']   : null,
+    'mode' => (($rawCtx['mode'] ?? '') === 'card') ? 'card' : 'home',
+    'card' => [
+        'title'            => $str($rawCard['title']            ?? null),
+        'level'            => $str($rawCard['level']            ?? null),
+        'block'            => $str($rawCard['block']            ?? null),
+        'problem'          => $str($rawCard['problem']          ?? null),
+        'lock'             => $str($rawCard['lock']             ?? null),
+        'businessPressure' => $str($rawCard['businessPressure'] ?? null),
+        'whatWePutInPlace' => $str($rawCard['whatWePutInPlace'] ?? null),
+        'whatImproves'     => $str($rawCard['whatImproves']     ?? null),
+        'dataAiBehind'     => $str($rawCard['dataAiBehind']     ?? null),
+    ],
 ];
 
 // ─── Switch into SSE streaming mode ──────────────────────────────────────────
@@ -358,22 +372,34 @@ function load_system_prompt(): string
 }
 
 /**
- * Embed canvas context in the user message so the model can ground its picks.
+ * Embed the live canvas context in the user message so the model knows what
+ * the user is looking at and can apply the right mode (Home vs Card) from the
+ * system prompt. RU labels — the advisor speaks the user's language and the
+ * catalog names are Russian.
  */
 function build_user_message(string $message, array $context): string
 {
     $lines = [];
-    if (!empty($context['pressures'])) {
-        $lines[] = 'Selected pressures: ' . implode(', ', $context['pressures']);
+    $card  = $context['card'] ?? [];
+
+    if (($context['mode'] ?? 'home') === 'card' && !empty($card['title'])) {
+        $lines[] = 'Режим: открыта карточка (Card mode) — отвечай по этой карточке, не уходи в соседние темы кроме предусловий и явных зависимостей.';
+        if (!empty($card['block']))   $lines[] = "Направление: {$card['block']}";
+        if (!empty($card['problem'])) $lines[] = "Проблематика: {$card['problem']}";
+        $cardLine = "Карточка: {$card['title']}";
+        if (!empty($card['level']))   $cardLine .= " (уровень: {$card['level']})";
+        $lines[] = $cardLine;
+        if (!empty($card['lock']))             $lines[] = "Предусловие: {$card['lock']}";
+        if (!empty($card['businessPressure'])) $lines[] = "Проблематика карточки: {$card['businessPressure']}";
+        if (!empty($card['whatWePutInPlace'])) $lines[] = "Что делаем: {$card['whatWePutInPlace']}";
+        if (!empty($card['whatImproves']))     $lines[] = "Что это даёт: {$card['whatImproves']}";
+        if (!empty($card['dataAiBehind']))     $lines[] = "За счёт чего работает: {$card['dataAiBehind']}";
+    } else {
+        $lines[] = 'Режим: обзор всей карты (Home mode) — карточка не открыта. Помогай сориентироваться по направлениям и быстрым эффектам.';
     }
-    if (!empty($context['domain'])) {
-        $lines[] = "Currently viewing domain: {$context['domain']}";
-    }
-    if (!empty($context['play'])) {
-        $lines[] = "Currently viewing service: {$context['play']}";
-    }
-    $contextBlock = $lines ? "Canvas context:\n- " . implode("\n- ", $lines) . "\n\n" : '';
-    return $contextBlock . 'Question: ' . trim($message);
+
+    $contextBlock = "Контекст карты (что сейчас видит пользователь):\n- " . implode("\n- ", $lines) . "\n\n";
+    return $contextBlock . 'Вопрос: ' . trim($message);
 }
 
 /**
