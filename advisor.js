@@ -23,13 +23,13 @@
   // pill and a fallback token block so it themes correctly on any host page.
   var CSS = `
   .kkt-advisor-trigger{display:inline-flex;align-items:center;gap:8px;vertical-align:middle;white-space:nowrap;
-    background:transparent;border:1px solid var(--border);border-radius:3px;padding:7px 12px;margin-left:18px;
-    font-family:var(--font-body);font-size:12px;color:var(--text-secondary);cursor:pointer;
-    transition:border-color .15s ease,color .15s ease}
-  .kkt-advisor-trigger:hover{border-color:var(--accent);color:var(--text-primary)}
+    background:var(--text-primary);border:1px solid var(--text-primary);border-radius:3px;padding:8px 14px;margin-left:18px;
+    font-family:var(--font-body);font-size:13px;font-weight:600;letter-spacing:.01em;color:#fff;cursor:pointer;
+    box-shadow:0 2px 10px rgba(30,24,16,.18);transition:opacity .15s ease}
+  .kkt-advisor-trigger:hover{opacity:.85}
   .kkt-advisor-trigger .kc{display:inline-flex;gap:2px}
-  .kkt-advisor-trigger kbd{font-family:var(--font-mono);font-size:10px;background:var(--surface-alt);border:1px solid var(--border);border-radius:2px;padding:1px 4px;color:var(--text-secondary);line-height:1}
-  .kkt-advisor-trigger.is-fixed{position:fixed;top:16px;right:18px;z-index:2147483000;background:var(--bg);margin:0}
+  .kkt-advisor-trigger kbd{font-family:var(--font-mono);font-size:10px;background:rgba(255,255,255,.18);border:none;border-radius:2px;padding:1px 4px;color:#fff;line-height:1}
+  .kkt-advisor-trigger.is-fixed{position:fixed;top:14px;right:18px;z-index:2147483000;margin:0}
 
   .kkt-advisor-backdrop{position:fixed;inset:0;background:rgba(26,20,16,.45);z-index:2147483001;animation:kkt-advisor-fade .18s ease both}
   .kkt-advisor-panel{position:fixed;top:0;right:0;bottom:0;width:min(520px,100vw);background:var(--bg);
