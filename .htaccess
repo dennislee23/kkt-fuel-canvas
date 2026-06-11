@@ -24,7 +24,7 @@ RedirectMatch 403 ^/\.git(/|$)
         Header set Cache-Control "public, max-age=300, must-revalidate"
     </FilesMatch>
     # advisor.js + canvas data change between versions — keep them fresh.
-    <FilesMatch "^(advisor|kktechnologies-profile-data|roadmap-data)\.js$">
+    <FilesMatch "^(advisor|device-hint|kktechnologies-profile-data|roadmap-data)\.js$">
         Header set Cache-Control "no-cache, must-revalidate"
     </FilesMatch>
 </IfModule>
