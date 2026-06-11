@@ -123,7 +123,7 @@
 
     var trigger = el('button', 'kkt-advisor-trigger');
     trigger.type = 'button';
-    trigger.innerHTML = 'Спросить советника <span class="kc"><kbd>⌘</kbd><kbd>K</kbd></span>';
+    trigger.innerHTML = 'Спросить AI Советника <span class="kc"><kbd>⌘</kbd><kbd>K</kbd></span>';
     trigger.setAttribute('aria-label', 'Открыть советника (Cmd+K)');
 
     var backdrop = el('div', 'kkt-advisor-backdrop'); backdrop.style.display = 'none';
