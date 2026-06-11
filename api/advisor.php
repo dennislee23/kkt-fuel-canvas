@@ -35,7 +35,7 @@ declare(strict_types=1);
 
 // ─── Config ──────────────────────────────────────────────────────────────────
 const FUEL_ADVISOR_DEFAULT_MODEL      = 'claude-sonnet-4-5';
-const FUEL_ADVISOR_MAX_TOKENS         = 800;   // 120-word answer + ~200 tokens of meta JSON ≈ 350 tokens, 800 is generous
+const FUEL_ADVISOR_MAX_TOKENS         = 1024;  // 5-8 bullet RU answers need headroom
 const FUEL_ADVISOR_TIMEOUT_SECONDS    = 60;    // streaming can take longer than non-stream
 const FUEL_ADVISOR_MAX_MESSAGE_LENGTH = 2000;
 const FUEL_ADVISOR_RATE_LIMIT         = 10;

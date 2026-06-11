@@ -13,10 +13,10 @@
 
   var ENDPOINT = '/api/advisor.php';
   var SUGGESTED = [
-    'Where do we start if margin is read after the fact?',
-    'How does Optimus fit the network economy?',
-    "We have the data but it's not connected — what first?",
-    'What does a two-week diagnostic look like?'
+    'С чего начать AI-трансформацию сети АЗС?',
+    'Какие инициативы могут дать быстрый эффект без большой перестройки?',
+    'Если данные есть, но они не связаны — что делать сначала?',
+    'Как может выглядеть двухнедельная диагностика?'
   ];
 
   // Panel CSS lifted verbatim from the main-site advisor, plus a launcher
@@ -98,8 +98,8 @@
 
     var trigger = el('button', 'kkt-advisor-trigger');
     trigger.type = 'button';
-    trigger.innerHTML = 'Ask the advisor <span class="kc"><kbd>⌘</kbd><kbd>K</kbd></span>';
-    trigger.setAttribute('aria-label', 'Open advisor (Cmd+K)');
+    trigger.innerHTML = 'Спросить советника <span class="kc"><kbd>⌘</kbd><kbd>K</kbd></span>';
+    trigger.setAttribute('aria-label', 'Открыть советника (Cmd+K)');
 
     var backdrop = el('div', 'kkt-advisor-backdrop'); backdrop.style.display = 'none';
 
@@ -107,15 +107,15 @@
     panel.setAttribute('role', 'dialog'); panel.setAttribute('aria-label', 'KKT advisor');
     panel.innerHTML =
       '<header class="kkt-advisor-header"><div class="kkt-advisor-title">' +
-        '<span class="kkt-advisor-eyebrow">Advisor</span>' +
-        '<span class="kkt-advisor-status"><span class="kkt-advisor-dot"></span> Ask anything</span>' +
-      '</div><button type="button" class="kkt-advisor-close" aria-label="Close advisor">&times;</button></header>' +
+        '<span class="kkt-advisor-eyebrow">Советник</span>' +
+        '<span class="kkt-advisor-status"><span class="kkt-advisor-dot"></span> спросите о карте</span>' +
+      '</div><button type="button" class="kkt-advisor-close" aria-label="Закрыть">&times;</button></header>' +
       '<div class="kkt-advisor-body"></div>' +
       '<form class="kkt-advisor-form">' +
-        '<textarea class="kkt-advisor-input" rows="2" placeholder="Type a question. Enter to send." aria-label="Question to the advisor"></textarea>' +
-        '<button type="submit" class="kkt-advisor-send" disabled>Send</button>' +
+        '<textarea class="kkt-advisor-input" rows="2" placeholder="Задайте вопрос. Enter — отправить." aria-label="Вопрос советнику"></textarea>' +
+        '<button type="submit" class="kkt-advisor-send" disabled>Отправить</button>' +
       '</form>' +
-      '<footer class="kkt-advisor-foot"><span class="kkt-advisor-shortcut"><kbd>Esc</kbd> closes &middot; <kbd>⌘</kbd>+<kbd>K</kbd> toggles</span></footer>';
+      '<footer class="kkt-advisor-foot"><span class="kkt-advisor-shortcut"><kbd>Esc</kbd> — закрыть &middot; <kbd>⌘</kbd>+<kbd>K</kbd> — открыть</span></footer>';
 
     document.body.appendChild(backdrop);
     document.body.appendChild(panel);
@@ -152,7 +152,7 @@
     function renderEmpty() {
       body.innerHTML = '';
       var e = el('div', 'kkt-advisor-empty');
-      e.innerHTML = "<h2>What's on your mind?</h2><p>Ask about your fuel network — procurement and margin, logistics, stations, customers, finance, or the data foundation. Plain business answers, not jargon.</p>";
+      e.innerHTML = '<h2>С чего начнём?</h2><p>Помогаю сориентироваться в карте AI-трансформации для топливного ритейла: какие инициативы применимы к разным бизнес-задачам, где возможен быстрый эффект, что требует фундамента и с чего реалистично начать обсуждение.</p>';
       var ul = el('ul', 'kkt-advisor-suggestions');
       SUGGESTED.forEach(function (s) {
         var li = el('li'); var b = el('button', 'kkt-advisor-suggest', s);
@@ -167,7 +167,7 @@
     function addMsg(role, text) {
       ensureList();
       var li = el('li', 'kkt-advisor-msg role-' + role);
-      li.innerHTML = '<div class="kkt-advisor-msg-role">' + (role === 'user' ? 'You' : 'KKT') + '</div>';
+      li.innerHTML = '<div class="kkt-advisor-msg-role">' + (role === 'user' ? 'Вы' : 'Советник') + '</div>';
       var c = el('div', 'kkt-advisor-msg-content'); li.appendChild(c);
       setContent(c, text);
       msgList.appendChild(li); body.scrollTop = body.scrollHeight;
@@ -240,7 +240,7 @@
         }).catch(function () { fail(bubble); });
 
       function done() { thinking = false; sendBtn.disabled = !input.value.trim(); if (!acc.trim()) fail(bubble); }
-      function fail(b) { thinking = false; sendBtn.disabled = !input.value.trim(); var c = b.querySelector('.kkt-advisor-msg-content'); c.className = 'kkt-advisor-msg-content'; c.innerHTML = '<p>The advisor is unavailable right now. Try again, or write hello@kittykat.tech.</p>'; }
+      function fail(b) { thinking = false; sendBtn.disabled = !input.value.trim(); var c = b.querySelector('.kkt-advisor-msg-content'); c.className = 'kkt-advisor-msg-content'; c.innerHTML = '<p>Советник сейчас недоступен. Попробуйте ещё раз или напишите hello@kittykat.tech.</p>'; }
     }
   }
 
