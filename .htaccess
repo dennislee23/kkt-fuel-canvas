@@ -1,0 +1,30 @@
+# fuelretail.kittykat.tech — Apache config
+
+DirectoryIndex index.html
+
+# Block direct access to environment files (DEPLOY_KEY, ANTHROPIC_API_KEY).
+<FilesMatch "^\.env">
+    Require all denied
+</FilesMatch>
+
+# The .git directory must never be web-accessible.
+RedirectMatch 403 ^/\.git(/|$)
+
+# update.html is for operators only — keep it out of search results.
+<Files "update.html">
+    Header always set X-Robots-Tag "noindex, nofollow"
+</Files>
+
+# Cache static assets for an hour; revalidate HTML quickly so a deploy shows up.
+<IfModule mod_headers.c>
+    <FilesMatch "\.(js|css|woff2?|png|jpg|jpeg|svg|gif)$">
+        Header set Cache-Control "public, max-age=3600"
+    </FilesMatch>
+    <FilesMatch "\.html$">
+        Header set Cache-Control "public, max-age=300, must-revalidate"
+    </FilesMatch>
+</IfModule>
+
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/html text/css application/javascript application/json
+</IfModule>
