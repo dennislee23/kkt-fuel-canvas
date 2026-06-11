@@ -408,6 +408,7 @@ window.KKTECH_PROFILE = {
           { name: 'Pavel Gabaidullin',    line: '19+ лет в корпоративных закупках и международных цепочках поставок', chips: ['SIBUR', 'Rosatom / NovaWind', 'United Wagon Company', 'Bombardier JV'],                 initials: 'PG' },
           { name: 'Levan Buachidze',      line: '5+ лет в цифровой логистике, цепочках поставок и категорийном менеджменте', chips: ['Deutsche Bahn', 'Daily Group'],                                                          initials: 'LB' },
           { name: 'George Shevardenidze', line: '15+ лет в техническом консалтинге и операционной трансформации',  chips: ['Lukoil', 'DNV', 'TUV Rheinland'],                                                       initials: 'GS' },
+          { name: 'Dennis Nepomniashy',   line: 'Data-driven маркетинг и управление интеграционными проектами, на основе данных', chips: ['HP', 'Business IT', 'MCSI'],                                                            initials: 'DN', photo: 'team/dennis-nepomniashy.jpg' },
         ],
       },
       {
