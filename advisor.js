@@ -22,20 +22,21 @@
   // Panel CSS lifted verbatim from the main-site advisor, plus a launcher
   // pill and a fallback token block so it themes correctly on any host page.
   var CSS = `
-  .kkt-advisor-launch{position:fixed;right:20px;bottom:20px;z-index:2147483000;display:inline-flex;align-items:center;gap:9px;
-    padding:12px 18px;border:none;border-radius:999px;background:var(--text-primary);color:#fff;
-    font-family:var(--font-body);font-size:14px;font-weight:600;letter-spacing:.01em;cursor:pointer;
-    box-shadow:0 6px 24px rgba(30,24,16,.22);transition:transform .15s ease,opacity .15s ease}
-  .kkt-advisor-launch:hover{transform:translateY(-1px)}
-  .kkt-advisor-launch .ld{width:7px;height:7px;border-radius:50%;background:var(--accent)}
-  .kkt-advisor-launch kbd{font-family:var(--font-mono);font-size:10px;background:rgba(255,255,255,.16);border-radius:3px;padding:1px 5px;margin-left:2px}
+  .kkt-advisor-trigger{display:inline-flex;align-items:center;gap:8px;vertical-align:middle;white-space:nowrap;
+    background:transparent;border:1px solid var(--border);border-radius:3px;padding:7px 12px;margin-left:18px;
+    font-family:var(--font-body);font-size:12px;color:var(--text-secondary);cursor:pointer;
+    transition:border-color .15s ease,color .15s ease}
+  .kkt-advisor-trigger:hover{border-color:var(--accent);color:var(--text-primary)}
+  .kkt-advisor-trigger .kc{display:inline-flex;gap:2px}
+  .kkt-advisor-trigger kbd{font-family:var(--font-mono);font-size:10px;background:var(--surface-alt);border:1px solid var(--border);border-radius:2px;padding:1px 4px;color:var(--text-secondary);line-height:1}
+  .kkt-advisor-trigger.is-fixed{position:fixed;top:16px;right:18px;z-index:2147483000;background:var(--bg);margin:0}
 
   .kkt-advisor-backdrop{position:fixed;inset:0;background:rgba(26,20,16,.45);z-index:2147483001;animation:kkt-advisor-fade .18s ease both}
   .kkt-advisor-panel{position:fixed;top:0;right:0;bottom:0;width:min(520px,100vw);background:var(--bg);
     border-left:1px solid var(--border);box-shadow:-16px 0 48px rgba(0,0,0,.08);z-index:2147483002;display:flex;flex-direction:column;
     transform:translateX(100%);transition:transform .26s cubic-bezier(.32,.72,.32,1);visibility:hidden}
   .kkt-advisor-panel.is-open{transform:translateX(0);visibility:visible}
-  .kkt-advisor-launch,.kkt-advisor-backdrop,.kkt-advisor-panel{
+  .kkt-advisor-trigger,.kkt-advisor-backdrop,.kkt-advisor-panel{
     --bg:#F5F3EF;--surface:#FFFFFF;--surface-alt:#F0EDE8;--card:#FAFAF8;
     --border:rgba(30,24,16,.10);--border-hover:rgba(30,24,16,.20);
     --text-primary:#1A1410;--text-secondary:#5C5045;--text-muted:#756658;
@@ -95,9 +96,10 @@
   function init() {
     var style = el('style'); style.textContent = CSS; document.head.appendChild(style);
 
-    var launch = el('button', 'kkt-advisor-launch');
-    launch.innerHTML = '<span class="ld"></span> Ask the advisor <kbd>⌘K</kbd>';
-    launch.setAttribute('aria-label', 'Open the advisor');
+    var trigger = el('button', 'kkt-advisor-trigger');
+    trigger.type = 'button';
+    trigger.innerHTML = 'Ask the advisor <span class="kc"><kbd>⌘</kbd><kbd>K</kbd></span>';
+    trigger.setAttribute('aria-label', 'Open advisor (Cmd+K)');
 
     var backdrop = el('div', 'kkt-advisor-backdrop'); backdrop.style.display = 'none';
 
@@ -115,9 +117,29 @@
       '</form>' +
       '<footer class="kkt-advisor-foot"><span class="kkt-advisor-shortcut"><kbd>Esc</kbd> closes &middot; <kbd>⌘</kbd>+<kbd>K</kbd> toggles</span></footer>';
 
-    document.body.appendChild(launch);
     document.body.appendChild(backdrop);
     document.body.appendChild(panel);
+
+    // Place the trigger into the canvas header nav (next to its links), like
+    // the kittykat.tech header. The canvas is React-rendered, so poll for it;
+    // fall back to a fixed top-right pill if the nav never appears.
+    function findNav() {
+      var nodes = document.querySelectorAll('nav a, nav button, header a, a, button, span');
+      for (var i = 0; i < nodes.length; i++) {
+        var t = (nodes[i].textContent || '').trim();
+        if (t === 'Контакты' || t === 'Contacts') return nodes[i].parentNode;
+      }
+      return null;
+    }
+    (function mountTrigger() {
+      var tries = 0;
+      (function place() {
+        var nav = findNav();
+        if (nav) { nav.appendChild(trigger); return; }
+        if (++tries > 40) { trigger.classList.add('is-fixed'); document.body.appendChild(trigger); return; }
+        setTimeout(place, 120);
+      })();
+    })();
 
     var body = panel.querySelector('.kkt-advisor-body');
     var form = panel.querySelector('.kkt-advisor-form');
@@ -166,9 +188,9 @@
       return li;
     }
 
-    function openPanel() { open = true; panel.classList.add('is-open'); backdrop.style.display = ''; launch.style.display = 'none'; document.body.style.overflow = 'hidden'; if (!hasMsgs) renderEmpty(); setTimeout(function () { input.focus(); }, 80); }
-    function closePanel() { open = false; panel.classList.remove('is-open'); backdrop.style.display = 'none'; launch.style.display = ''; document.body.style.overflow = ''; }
-    launch.onclick = openPanel; closeBtn.onclick = closePanel; backdrop.onclick = closePanel;
+    function openPanel() { open = true; panel.classList.add('is-open'); backdrop.style.display = ''; document.body.style.overflow = 'hidden'; if (!hasMsgs) renderEmpty(); setTimeout(function () { input.focus(); }, 80); }
+    function closePanel() { open = false; panel.classList.remove('is-open'); backdrop.style.display = 'none'; document.body.style.overflow = ''; }
+    trigger.onclick = openPanel; closeBtn.onclick = closePanel; backdrop.onclick = closePanel;
 
     document.addEventListener('keydown', function (e) {
       if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') { e.preventDefault(); open ? closePanel() : openPanel(); }
