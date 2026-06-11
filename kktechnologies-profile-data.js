@@ -2,7 +2,7 @@ window.KKTECH_PROFILE = {
   brand: {
     officialName: 'Kitty Kat Technologies',
     shortName: 'KKTechnologies',
-    canvasIdentity: 'Retail AI Canvas by KKTechnologies',
+    canvasIdentity: 'Fuel AI Transformation Map by KKTechnologies',
   },
 
   nav: [
@@ -29,7 +29,7 @@ window.KKTECH_PROFILE = {
     ],
     trackRecord: {
       title: 'Избранные проекты',
-      lead: 'Избранные работы в ритейле, логистике, клиентской аналитике, промышленных операциях и AI-поддержке управленческих решений.',
+      lead: 'Избранные работы в топливном ритейле, логистике, клиентской аналитике, промышленных операциях и AI-поддержке управленческих решений.',
       items: [
         {
           id: 'fuel-transformation',
