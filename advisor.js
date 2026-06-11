@@ -65,6 +65,12 @@
   .kkt-advisor-msg-content p{font-size:15px;color:var(--text-primary);line-height:1.65;margin:0 0 10px;max-width:56ch}
   .kkt-advisor-msg-content p:last-child{margin-bottom:0}
   .kkt-advisor-msg.role-user .kkt-advisor-msg-content p{color:var(--text-secondary)}
+  .kkt-advisor-msg-content .kkt-md-h{font-weight:600;color:var(--text-primary);font-size:15px;margin:12px 0 6px;line-height:1.3}
+  .kkt-advisor-msg-content .kkt-md-h:first-child{margin-top:0}
+  .kkt-advisor-msg-content .kkt-md-ul{margin:0 0 10px;padding-left:18px;display:flex;flex-direction:column;gap:4px}
+  .kkt-advisor-msg-content .kkt-md-ul li{font-size:15px;color:var(--text-primary);line-height:1.55;max-width:54ch}
+  .kkt-advisor-msg-content strong{font-weight:600;color:var(--text-primary)}
+  .kkt-advisor-msg.role-user .kkt-md-h,.kkt-advisor-msg.role-user .kkt-md-ul li,.kkt-advisor-msg.role-user .kkt-advisor-msg-content strong{color:var(--text-secondary)}
   .kkt-advisor-msg-content.thinking{display:inline-flex;align-items:center;gap:4px;padding:6px 0}
   .kkt-advisor-msg-content.thinking .dot{width:6px;height:6px;border-radius:50%;background:var(--text-muted);animation:kkt-advisor-blink 1.2s ease-in-out infinite}
   .kkt-advisor-msg-content.thinking .dot:nth-child(2){animation-delay:.2s}
@@ -90,7 +96,26 @@
     return e;
   }
   function clean(t) {
-    return (t || '').split('<<<META>>>')[0].replace(/\*\*(.+?)\*\*/g, '$1');
+    return (t || '').split('<<<META>>>')[0];
+  }
+  function inlineMd(s) {
+    var e = s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+    return e.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+  }
+  // Minimal markdown: ##/# headings, - / * / 1. bullets, **bold**, paragraphs.
+  function renderMd(text, c) {
+    c.innerHTML = '';
+    var lines = clean(text).split('\n');
+    var ul = null;
+    for (var i = 0; i < lines.length; i++) {
+      var t = lines[i].trim();
+      if (t === '') { ul = null; continue; }
+      var h = t.match(/^#{1,4}\s+(.*)$/);
+      var b = t.match(/^([-*]|\d+\.)\s+(.*)$/);
+      if (h) { ul = null; var hd = document.createElement('div'); hd.className = 'kkt-md-h'; hd.innerHTML = inlineMd(h[1]); c.appendChild(hd); }
+      else if (b) { if (!ul) { ul = document.createElement('ul'); ul.className = 'kkt-md-ul'; c.appendChild(ul); } var li = document.createElement('li'); li.innerHTML = inlineMd(b[2]); ul.appendChild(li); }
+      else { ul = null; var p = document.createElement('p'); p.innerHTML = inlineMd(t); c.appendChild(p); }
+    }
   }
 
   function init() {
@@ -173,13 +198,7 @@
       msgList.appendChild(li); body.scrollTop = body.scrollHeight;
       return c;
     }
-    function setContent(c, text) {
-      c.innerHTML = '';
-      clean(text).split('\n\n').forEach(function (para) {
-        if (para.trim() === '') return;
-        var p = document.createElement('p'); p.textContent = para; c.appendChild(p);
-      });
-    }
+    function setContent(c, text) { renderMd(text, c); }
     function thinkingBubble() {
       ensureList();
       var li = el('li', 'kkt-advisor-msg role-assistant');
