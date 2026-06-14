@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html lang="ru">
-<head>
+<html lang="en"><head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Карта AI-трансформации топливного ритейла</title>
@@ -9,31 +8,7 @@
 <script src="existing/vendor/react.development.js"></script>
 <script src="existing/vendor/react-dom.development.js"></script>
 <script src="vendor/babel.min.js"></script>
-<template id="__bundler_thumbnail" data-bg-color="#F5F2EC">
-  <svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
-    <rect width="1200" height="800" fill="#F5F2EC"/>
-    <rect x="0" y="0" width="1200" height="52" fill="#fff"/>
-    <rect x="36" y="18" width="140" height="9" rx="4" fill="#1A1410" opacity=".5"/>
-    <rect x="36" y="31" width="90" height="6" rx="3" fill="#B8832A" opacity=".8"/>
-    <rect x="900" y="20" width="60" height="12" rx="6" fill="#B8832A" opacity=".5"/>
-    <rect x="0" y="68" width="1200" height="110" fill="#fff" stroke="#E5E0D8" stroke-width="1"/>
-    <rect x="240" y="68" width="1" height="110" fill="rgba(30,24,16,0.08)"/>
-    <rect x="530" y="68" width="1" height="110" fill="rgba(30,24,16,0.08)"/>
-    <rect x="820" y="68" width="1" height="110" fill="rgba(30,24,16,0.08)"/>
-    <rect x="540" y="90" width="80" height="20" rx="4" fill="#2D6A4F" opacity=".7"/>
-    <rect x="830" y="90" width="80" height="20" rx="4" fill="#1E4976" opacity=".7"/>
-    <rect x="1110" y="90" width="70" height="20" rx="4" fill="#7A2E4A" opacity=".7"/>
-    <rect x="0" y="178" width="240" height="622" fill="#2E2016"/>
-    <rect x="36" y="210" width="120" height="13" rx="4" fill="#1A1410" opacity=".4"/>
-    <rect x="36" y="230" width="80" height="7" rx="3" fill="#B8832A" opacity=".6"/>
-    <rect x="255" y="198" width="270" height="120" rx="7" fill="#fff" stroke="rgba(30,24,16,0.09)" stroke-width="1"/>
-    <rect x="255" y="198" width="270" height="2" rx="1" fill="#2D6A4F" opacity=".5"/>
-    <rect x="545" y="198" width="270" height="120" rx="7" fill="#fff" stroke="rgba(30,24,16,0.09)" stroke-width="1"/>
-    <rect x="545" y="198" width="270" height="2" rx="1" fill="#1E4976" opacity=".5"/>
-    <rect x="835" y="198" width="270" height="120" rx="7" fill="#fff" stroke="rgba(30,24,16,0.09)" stroke-width="1"/>
-    <rect x="835" y="198" width="270" height="2" rx="1" fill="#7A2E4A" opacity=".5"/>
-  </svg>
-</template>
+
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -68,7 +43,7 @@ ol, ul { list-style-position: outside; }
   transform: translateY(-2px);
 }
 .prob-btn { appearance: none; -webkit-appearance: none; }
-.prob-btn:focus-visible { outline: 2px solid #B8832A; outline-offset: 2px; }
+.prob-btn:focus-visible { outline: 2px solid #D45518; outline-offset: 2px; }
 @media print {
   html, body { min-width: 0 !important; overflow-x: hidden !important; }
   @page { size: A4 landscape; margin: 1cm; }
@@ -79,11 +54,41 @@ ol, ul { list-style-position: outside; }
 </head>
 <body>
 <div id="root"></div>
-<script src="kktechnologies-profile-data.js?v=5"></script>
-<script src="existing/roadmap-data.js?v=2"></script>
+<script src="kktechnologies-profile-data.js?v=6"></script>
+<script src="existing/roadmap-data.js?v=3"></script>
 <script type="text/babel">
 const { useState, useEffect, useMemo, useCallback } = React;
 
+const getRuData = () => ({
+  BLOCKS:         window.FUEL_BLOCKS,
+  SUBBLOCKS:      window.FUEL_SUBBLOCKS || [],
+  PROBLEMS:       window.FUEL_PROBLEMS,
+  STAGES:         window.FUEL_STAGES,
+  CARDS:          window.FUEL_CARDS,
+  DRAWER_CONTENT: window.FUEL_DRAWER_CONTENT || {},
+});
+const getEnData = () => ({
+  BLOCKS:         window.FUEL_BLOCKS_EN || window.FUEL_BLOCKS,
+  SUBBLOCKS:      window.FUEL_SUBBLOCKS_EN || window.FUEL_SUBBLOCKS || [],
+  PROBLEMS:       window.FUEL_PROBLEMS_EN || window.FUEL_PROBLEMS,
+  STAGES:         window.FUEL_STAGES_EN  || window.FUEL_STAGES,
+  CARDS:          window.FUEL_CARDS_EN   || window.FUEL_CARDS,
+  DRAWER_CONTENT: window.FUEL_DRAWER_CONTENT_EN || window.FUEL_DRAWER_CONTENT || {},
+});
+const getData = (lang) => {
+  const base = lang === 'EN' ? getEnData() : getRuData();
+  return {
+    ...base,
+    BLOCK_BY_ID:    Object.fromEntries(base.BLOCKS.map(b   => [b.id, b])),
+    PROBLEM_BY_ID:  Object.fromEntries(base.PROBLEMS.map(p => [p.id, p])),
+    CARD_BY_ID:     Object.fromEntries(base.CARDS.map(c   => [c.id, c])),
+    STAGE_BY_ID:    Object.fromEntries(base.STAGES.map(s  => [s.id, s])),
+    SUBBLOCK_BY_ID: Object.fromEntries(base.SUBBLOCKS.map(s=> [s.id, s])),
+  };
+};
+const DataCtx = React.createContext(null);
+
+// Static fallback for non-reactive lookups outside App
 const BLOCKS         = window.FUEL_BLOCKS;
 const SUBBLOCKS      = window.FUEL_SUBBLOCKS || [];
 const PROBLEMS       = window.FUEL_PROBLEMS;
@@ -102,16 +107,16 @@ const C = {
   bg:         '#F5F3EF',
   surface:    '#FFFFFF',
   surfaceHov: '#F8F6F2',
-  rail:       '#2E2016',
-  border:     'rgba(30,24,16,0.09)',
-  borderMid:  'rgba(30,24,16,0.14)',
-  borderHov:  'rgba(30,24,16,0.22)',
-  text:       '#1A1410',
-  textSec:    '#5C5045',
-  textMuted:  '#9C8E82',
-  accent:     '#B8832A',
-  accentDim:  'rgba(184,131,42,0.14)',
-  accentText: '#9A6818',
+  rail:       '#1E1612',
+  border:     'rgba(20,14,8,0.09)',
+  borderMid:  'rgba(20,14,8,0.14)',
+  borderHov:  'rgba(20,14,8,0.22)',
+  text:       '#161210',
+  textSec:    '#524844',
+  textMuted:  '#948880',
+  accent:     '#D45518',
+  accentDim:  'rgba(212,85,24,0.14)',
+  accentText: '#B84010',
 };
 
 const HEADER_H    = 60;
@@ -155,10 +160,10 @@ const Pill = ({ label, fg, bg, size='sm' }) => (
   }}>{label}</span>
 );
 
-const Wordmark = () => (
+const Wordmark = ({ lang }) => (
   <div style={{ display:'flex', flexDirection:'column', gap:'3px' }}>
     <span style={{ fontSize:'11px', fontWeight:700, letterSpacing:'.20em', textTransform:'uppercase', color:C.text, lineHeight:1 }}>
-      Карта AI-трансформации
+      {lang === 'EN' ? 'Fuel AI Transformation Map' : 'Карта AI-трансформации'}
     </span>
     <span style={{ fontSize:'9px', fontWeight:600, letterSpacing:'.22em', textTransform:'uppercase', color:C.accent, lineHeight:1 }}>
       by KKTechnologies
@@ -189,6 +194,7 @@ const TagRow = ({ card }) => {
 
 /* ── CARD TILE ── */
 const CardTile = ({ card, onClick }) => {
+  const dct = React.useContext(DataCtx);
   const sp = STAGE_P[card.stage];
   return (
     <div className="tile" onClick={onClick} data-card-id={card.id}
@@ -227,7 +233,7 @@ const CardTile = ({ card, onClick }) => {
         )}
         {card.crossRef && !card.lock && (
           <div style={{ marginTop:'7px' }}>
-            <span style={{ fontSize:'10.5px', color:C.textMuted, fontWeight:400 }}>→ см. дом: {card.crossRef.targetLabel}</span>
+            <span style={{ fontSize:'10.5px', color:C.textMuted, fontWeight:400 }}>{dct?.lang==='EN' ? '→ see domain: ' : '→ см. дом: '}{card.crossRef.targetLabel}</span>
           </div>
         )}
       </div>
@@ -261,7 +267,10 @@ const StageHeader = ({ stage }) => {
 };
 
 /* ── TASKS HEADER ── */
-const TasksHeader = () => (
+const TasksHeader = () => {
+  const ctx = React.useContext(DataCtx);
+  const isEn = ctx?.lang === 'EN';
+  return (
   <div style={{
     padding:'20px 20px 22px',
     background:C.bg, height:'100%',
@@ -272,12 +281,12 @@ const TasksHeader = () => (
       fontFamily:'Playfair Display, serif',
       fontSize:'15px', fontWeight:500, color:C.text,
       lineHeight:1.28, letterSpacing:'-.005em', textWrap:'pretty',
-    }}>Типовые задачи,<br/>с которыми мы работаем</h3>
+    }}>{isEn ? 'Key challenges' : 'Типовые задачи,'}<br/>{isEn ? 'we work on' : 'с которыми мы работаем'}</h3>
     <p style={{ fontSize:'10.5px', color:C.textMuted, lineHeight:1.5, fontWeight:400 }}>
-      Нажмите задачу → раскрыть решения
+      {isEn ? 'Click a challenge → expand solutions' : 'Нажмите задачу → раскрыть решения'}
     </p>
   </div>
-);
+);};
 
 /* ── PROBLEM RECT ── */
 const ProblemRect = ({ problem, isOpen, onToggle }) => {
@@ -348,6 +357,7 @@ const SubblockDivider = () => (
 
 /* ── BLOCK RAIL ── */
 const BlockRail = ({ block, allOpen, onToggleAll }) => {
+  const dc2 = React.useContext(DataCtx);
   const paras = splitSpine(block.spine);
   return (
     <aside style={{
@@ -392,7 +402,7 @@ const BlockRail = ({ block, allOpen, onToggleAll }) => {
             transition:'background .15s, border-color .15s',
           }}
         >
-          <span style={{ color:'rgba(245,240,232,0.80)' }}>{allOpen ? 'Свернуть всё' : 'Показать всё'}</span>
+          <span style={{ color:'rgba(245,240,232,0.80)' }}>{allOpen ? (dc2?.lang==='EN' ? 'Collapse all' : 'Свернуть всё') : (dc2?.lang==='EN' ? 'Expand all' : 'Показать всё')}</span>
           <span style={{ fontSize:'8px', opacity:.6, color:'rgba(245,240,232,0.80)' }}>{allOpen ? '▲' : '▼'}</span>
         </button>
       </div>
@@ -410,13 +420,18 @@ const Drawer = ({ card, onClose, onJump }) => {
 
   if (!card) return null;
 
-  const block    = BLOCK_BY_ID[card.blockId];
+  const dc = React.useContext(DataCtx);
+  const block    = (dc ? dc.BLOCK_BY_ID : BLOCK_BY_ID)[card.blockId];
   const imp      = IMPACT_P[card.impact]  || { fg:C.textSec, bg:'rgba(30,24,16,0.07)' };
   const scl      = SCALE_P[card.scale]    || { fg:C.textSec, bg:'rgba(30,24,16,0.07)' };
-  const d        = DRAWER_CONTENT[card.id];
-  const opens    = (card.flowsTo || []).map(id => CARD_BY_ID[id]).filter(Boolean);
-  const requires = CARDS.filter(c => (c.flowsTo || []).includes(card.id));
-  const crossTarget = card.crossRef?.targetId ? CARD_BY_ID[card.crossRef.targetId] : null;
+  const dcDrawer   = dc ? dc.DRAWER_CONTENT : DRAWER_CONTENT;
+  const dcCards    = dc ? dc.CARDS          : CARDS;
+  const dcCardById = dc ? dc.CARD_BY_ID     : CARD_BY_ID;
+  const dcStageById= dc ? dc.STAGE_BY_ID    : STAGE_BY_ID;
+  const d_ctx    = dcDrawer[card.id];
+  const opens    = (card.flowsTo || []).map(id => dcCardById[id]).filter(Boolean);
+  const requires = dcCards.filter(c => (c.flowsTo || []).includes(card.id));
+  const crossTarget = card.crossRef?.targetId ? (dcCardById[card.crossRef.targetId] || CARD_BY_ID[card.crossRef.targetId]) : null;
 
   const DField = ({ label, children }) => (
     <div style={{ marginBottom:'30px' }}>
@@ -434,7 +449,7 @@ const Drawer = ({ card, onClose, onJump }) => {
   const JumpBtn = ({ c }) => {
     const [hov, setHov] = useState(false);
     const csp    = STAGE_P[c.stage];
-    const cStage = STAGE_BY_ID[c.stage];
+  const cStage = (dc ? dc.STAGE_BY_ID : STAGE_BY_ID)[c.stage];
     return (
       <button onClick={() => onJump(c.id)}
         onMouseEnter={() => setHov(true)} onMouseLeave={() => setHov(false)}
@@ -506,13 +521,13 @@ const Drawer = ({ card, onClose, onJump }) => {
           <div style={{
             marginBottom:'20px', display:'flex', gap:'10px', alignItems:'flex-start',
             padding:'13px 16px',
-            background:'rgba(184,131,42,0.08)',
-            border:`1px solid rgba(184,131,42,0.24)`,
+            background:'rgba(212,85,24,0.08)',
+            border:`1px solid rgba(212,85,24,0.24)`,
             borderRadius:'8px',
           }}>
             <span style={{ fontSize:'13px', flexShrink:0, marginTop:'1px' }}>🔒</span>
             <div>
-              <div style={{ fontSize:'9px', color:C.accentText, fontWeight:700, letterSpacing:'.16em', textTransform:'uppercase', marginBottom:'4px' }}>Предусловие</div>
+              <div style={{ fontSize:'9px', color:C.accentText, fontWeight:700, letterSpacing:'.16em', textTransform:'uppercase', marginBottom:'4px' }}>{dc?.lang==='EN' ? 'Prerequisite' : 'Предусловие'}</div>
               <div style={{ fontSize:'12.5px', color:C.textSec, lineHeight:1.65, fontWeight:400 }}>{card.lock}</div>
             </div>
           </div>
@@ -524,33 +539,33 @@ const Drawer = ({ card, onClose, onJump }) => {
             background:'rgba(30,24,16,0.03)', borderRadius:'8px',
             border:`1px solid ${C.border}`,
           }}>
-            <div style={{ fontSize:'9px', color:C.textMuted, fontWeight:700, letterSpacing:'.16em', textTransform:'uppercase', marginBottom:'6px' }}>Сквозная карточка</div>
+            <div style={{ fontSize:'9px', color:C.textMuted, fontWeight:700, letterSpacing:'.16em', textTransform:'uppercase', marginBottom:'6px' }}>{dc?.lang==='EN' ? 'Cross-cutting card' : 'Сквозная карточка'}</div>
             {crossTarget ? (
               <button onClick={() => onJump(crossTarget.id)}
                 style={{ background:'none', border:0, padding:0, color:C.accent, fontSize:'13px', fontWeight:600, cursor:'pointer', textAlign:'left' }}>
-                → см. дом: {card.crossRef.targetLabel}
+                {dc?.lang==='EN' ? '→ see domain: ' : '→ см. дом: '}{card.crossRef.targetLabel}
               </button>
             ) : (
-              <span style={{ color:C.accent, fontSize:'13px', fontWeight:600 }}>→ см. дом: {card.crossRef.targetLabel}</span>
+              <span style={{ color:C.accent, fontSize:'13px', fontWeight:600 }}>{dc?.lang==='EN' ? '→ see domain: ' : '→ см. дом: '}{card.crossRef.targetLabel}</span>
             )}
           </div>
         )}
 
         <div style={{ height:'1px', background:C.border, marginBottom:'30px' }} />
 
-        {d && (
+        {d_ctx && (
           <>
-            <DField label="Проблематика">{d.businessPressure}</DField>
-            <DField label="Что делаем">{d.whatWePutInPlace}</DField>
-            <DField label="Что это даёт">{d.whatImproves}</DField>
-            <DField label="За счёт чего работает">{d.dataAiBehind}</DField>
-            {Array.isArray(d.conversationQuestions) && d.conversationQuestions.length > 0 && (
+            <DField label={dc?.lang==='EN' ? 'Challenge' : 'Проблематика'}>{d_ctx.businessPressure}</DField>
+            <DField label={dc?.lang==='EN' ? 'What we do' : 'Что делаем'}>{d_ctx.whatWePutInPlace}</DField>
+            <DField label={dc?.lang==='EN' ? 'What it gives' : 'Что это даёт'}>{d_ctx.whatImproves}</DField>
+            <DField label={dc?.lang==='EN' ? 'How it works' : 'За счёт чего работает'}>{d_ctx.dataAiBehind}</DField>
+            {Array.isArray(d_ctx.conversationQuestions) && d_ctx.conversationQuestions.length > 0 && (
               <div style={{ marginBottom:'24px' }}>
                 <div style={{ fontSize:'11px', color:C.accentText, fontWeight:700, letterSpacing:'.14em', textTransform:'uppercase', marginBottom:'16px' }}>
-                  Задайте себе вопрос
+                  {dc?.lang==='EN' ? 'Ask yourself' : 'Задайте себе вопрос'}
                 </div>
                 <ol style={{ paddingLeft:'18px', display:'flex', flexDirection:'column', gap:'14px' }}>
-                  {d.conversationQuestions.map((q, i) => (
+                {d_ctx.conversationQuestions.map((q, i) => (
                     <li key={i} style={{ fontSize:'15px', color:'#3A3028', lineHeight:1.80, fontWeight:400 }}>{q}</li>
                   ))}
                 </ol>
@@ -563,7 +578,7 @@ const Drawer = ({ card, onClose, onJump }) => {
           <div style={{ marginTop:'8px', paddingTop:'26px', borderTop:`1px solid ${C.border}` }}>
             {requires.length > 0 && (
               <div style={{ marginBottom:'18px' }}>
-                <div style={{ fontSize:'11px', color:C.accentText, fontWeight:700, letterSpacing:'.14em', textTransform:'uppercase', marginBottom:'11px' }}>Предусловие</div>
+                <div style={{ fontSize:'11px', color:C.accentText, fontWeight:700, letterSpacing:'.14em', textTransform:'uppercase', marginBottom:'11px' }}>{dc?.lang==='EN' ? 'Requires first' : 'Предусловие'}</div>
                 <div style={{ display:'flex', flexDirection:'column', gap:'6px' }}>
                   {requires.map(c => <JumpBtn key={c.id} c={c} />)}
                 </div>
@@ -571,7 +586,7 @@ const Drawer = ({ card, onClose, onJump }) => {
             )}
             {opens.length > 0 && (
               <div>
-                <div style={{ fontSize:'11px', color:C.accentText, fontWeight:700, letterSpacing:'.14em', textTransform:'uppercase', marginBottom:'11px' }}>Открывает</div>
+                <div style={{ fontSize:'11px', color:C.accentText, fontWeight:700, letterSpacing:'.14em', textTransform:'uppercase', marginBottom:'11px' }}>{dc?.lang==='EN' ? 'Opens / unlocks' : 'Открывает'}</div>
                 <div style={{ display:'flex', flexDirection:'column', gap:'6px' }}>
                   {opens.map(c => <JumpBtn key={c.id} c={c} />)}
                 </div>
@@ -586,14 +601,15 @@ const Drawer = ({ card, onClose, onJump }) => {
 
 /* ── BLOCK CANVAS ── */
 const BlockCanvas = ({ block, openProblems, onToggleProblem, onToggleAll, onCardClick, isLast }) => {
+  const dc2 = React.useContext(DataCtx);
   const blockProblems = useMemo(
-    () => PROBLEMS.filter(p => p.blockId === block.id).sort((a, b) => (a.sequence||0) - (b.sequence||0)),
-    [block.id]
+    () => (dc2 ? dc2.PROBLEMS : PROBLEMS).filter(p => p.blockId === block.id).sort((a, b) => (a.sequence||0) - (b.sequence||0)),
+    [block.id, dc2]
   );
   const cardsByPS = useMemo(() => {
     const out = {};
     for (const p of blockProblems) out[p.id] = { 1:[], 2:[], 3:[] };
-    for (const c of CARDS) {
+    for (const c of (dc2 ? dc2.CARDS : CARDS)) {
       if (!out[c.problemId]) continue;
       out[c.problemId][c.stage].push(c);
     }
@@ -601,7 +617,7 @@ const BlockCanvas = ({ block, openProblems, onToggleProblem, onToggleAll, onCard
       for (const s of [1,2,3])
         out[p.id][s].sort((a,b) => (a.sequence||0)-(b.sequence||0));
     return out;
-  }, [blockProblems]);
+  }, [blockProblems, dc2]);
   const allOpen = blockProblems.length > 0 && blockProblems.every(p => openProblems.has(p.id));
 
   return (
@@ -657,7 +673,7 @@ const IconRefinery = () => (
     <circle cx="15" cy="25" r="2.5" stroke="#1A1410" strokeWidth="1.4" strokeOpacity=".55"/>
     <line x1="37" y1="33" x2="48" y2="33" stroke="#1A1410" strokeWidth="1.4" strokeOpacity=".55"/>
     <circle cx="49" cy="33" r="2.5" stroke="#1A1410" strokeWidth="1.4" strokeOpacity=".55"/>
-    <path d="M30 15 C29.5 10 33 9 33.5 15" stroke="#B8832A" strokeWidth="1.6" strokeLinecap="round" fill="none"/>
+    <path d="M30 15 C29.5 10 33 9 33.5 15" stroke="#D45518" strokeWidth="1.6" strokeLinecap="round" fill="none"/>
     <line x1="22" y1="47" x2="42" y2="47" stroke="#1A1410" strokeWidth="1.4" strokeOpacity=".45"/>
     <line x1="27" y1="47" x2="27" y2="51" stroke="#1A1410" strokeWidth="1.4" strokeOpacity=".38"/>
     <line x1="37" y1="47" x2="37" y2="51" stroke="#1A1410" strokeWidth="1.4" strokeOpacity=".38"/>
@@ -679,9 +695,9 @@ const IconLogistics = () => (
     {/* Cabin/superstructure */}
     <rect x="44" y="19" width="16" height="9" rx="1.5" stroke="#1A1410" strokeWidth="1.4" strokeOpacity=".65" fill="none"/>
     {/* Funnel */}
-    <rect x="55" y="13" width="5" height="7" rx="1" stroke="#B8832A" strokeWidth="1.5" fill="none"/>
-    {/* Smoke puff */}
-    <path d="M57 13 C56 10 59 9 58 13" stroke="#B8832A" strokeWidth="1.2" strokeLinecap="round" fill="none" strokeOpacity=".6"/>
+    <rect x="55" y="13" width="5" height="7" rx="1" stroke="#D45518" strokeWidth="1.5" fill="none"/>
+    {/* Smoke puff */}}
+    <path d="M57 13 C56 10 59 9 58 13" stroke="#D45518" strokeWidth="1.2" strokeLinecap="round" fill="none" strokeOpacity=".6"/>
     {/* Waterline */}
     <path d="M34 39 Q43 37 52 39 Q61 41 70 39" stroke="#1A1410" strokeWidth="1" strokeOpacity=".22" fill="none"/>
   </svg>
@@ -692,7 +708,7 @@ const IconDepot = () => (
     <rect x="6" y="26" width="24" height="20" rx="1" stroke="#1A1410" strokeWidth="1.5" strokeOpacity=".7" fill="none"/>
     <ellipse cx="18" cy="26" rx="12" ry="4.5" stroke="#1A1410" strokeWidth="1.5" strokeOpacity=".7" fill="#F5F2EC"/>
     <rect x="36" y="32" width="20" height="14" rx="1" stroke="#1A1410" strokeWidth="1.5" strokeOpacity=".7" fill="none"/>
-    <ellipse cx="46" cy="32" rx="10" ry="3.5" stroke="#B8832A" strokeWidth="1.5" fill="#F5F2EC"/>
+    <ellipse cx="46" cy="32" rx="10" ry="3.5" stroke="#D45518" strokeWidth="1.5" fill="#F5F3EF"/>
     <line x1="30" y1="38" x2="36" y2="38" stroke="#1A1410" strokeWidth="1.4" strokeOpacity=".5"/>
     <line x1="4" y1="47" x2="58" y2="47" stroke="#1A1410" strokeWidth="1" strokeOpacity=".28"/>
   </svg>
@@ -702,7 +718,7 @@ const IconTruck = () => (
   <svg viewBox="0 0 72 48" fill="none" style={{ width: '100%', height: 'auto', display: 'block' }} xmlns="http://www.w3.org/2000/svg">
     <rect x="3" y="14" width="18" height="20" rx="2" stroke="#1A1410" strokeWidth="1.5" strokeOpacity=".7" fill="none"/>
     <rect x="5" y="16" width="14" height="9" rx="1" stroke="#1A1410" strokeWidth="1" strokeOpacity=".42" fill="none"/>
-    <rect x="21" y="16" width="46" height="16" rx="8" stroke="#B8832A" strokeWidth="1.5" fill="none"/>
+    <rect x="21" y="16" width="46" height="16" rx="8" stroke="#D45518" strokeWidth="1.5" fill="none"/>
     <line x1="21" y1="24" x2="18" y2="24" stroke="#1A1410" strokeWidth="1.4" strokeOpacity=".5"/>
     <circle cx="11" cy="36" r="4" stroke="#1A1410" strokeWidth="1.5" strokeOpacity=".7"/>
     <circle cx="35" cy="36" r="4" stroke="#1A1410" strokeWidth="1.5" strokeOpacity=".7"/>
@@ -712,7 +728,7 @@ const IconTruck = () => (
 
 const IconStation = () => (
   <svg viewBox="0 0 64 64" fill="none" style={{ width: '100%', height: 'auto', display: 'block' }} xmlns="http://www.w3.org/2000/svg">
-    <rect x="5" y="18" width="44" height="6" rx="1.5" stroke="#B8832A" strokeWidth="1.5" fill="rgba(184,131,42,0.12)"/>
+    <rect x="5" y="18" width="44" height="6" rx="1.5" stroke="#D45518" strokeWidth="1.5" fill="rgba(212,85,24,0.10)"/>
     <line x1="13" y1="24" x2="13" y2="44" stroke="#1A1410" strokeWidth="1.5" strokeOpacity=".6"/>
     <line x1="41" y1="24" x2="41" y2="44" stroke="#1A1410" strokeWidth="1.5" strokeOpacity=".6"/>
     <rect x="21" y="28" width="12" height="16" rx="2" stroke="#1A1410" strokeWidth="1.5" strokeOpacity=".7" fill="none"/>
@@ -730,15 +746,23 @@ const IconCustomer = () => (
     <path d="M19 28 L22 20 L38 20 L41 28" stroke="#1A1410" strokeWidth="1" strokeOpacity=".38" strokeLinejoin="round" fill="none"/>
     <circle cx="16" cy="43" r="4" stroke="#1A1410" strokeWidth="1.5" strokeOpacity=".7"/>
     <circle cx="38" cy="43" r="4" stroke="#1A1410" strokeWidth="1.5" strokeOpacity=".7"/>
-    <rect x="50" y="16" width="12" height="8" rx="1.5" stroke="#B8832A" strokeWidth="1.5" fill="none"/>
-    <line x1="51" y1="19.5" x2="61" y2="19.5" stroke="#B8832A" strokeWidth="1" strokeOpacity=".6"/>
-    <line x1="51" y1="22" x2="57" y2="22" stroke="#B8832A" strokeWidth="1" strokeOpacity=".6"/>
+    <rect x="50" y="16" width="12" height="8" rx="1.5" stroke="#D45518" strokeWidth="1.5" fill="none"/>
+    <line x1="51" y1="19.5" x2="61" y2="19.5" stroke="#D45518" strokeWidth="1" strokeOpacity=".6"/>
+    <line x1="51" y1="22" x2="57" y2="22" stroke="#D45518" strokeWidth="1" strokeOpacity=".6"/>
   </svg>
 );
 
 /* ── HERO SCREEN ── */
-const HeroScreen = ({ onScrollToCatalog, onScrollToBlock }) => {
-  const VALUE_CHAIN = [
+const HeroScreen = ({ onScrollToCatalog, onScrollToBlock, lang }) => {
+  const isEn = lang === 'EN';
+  const VALUE_CHAIN = isEn ? [
+    { id: 'suppliers',     label: 'Suppliers',           blockCode: 'A', Icon: IconRefinery  },
+    { id: 'ext-logistics', label: 'External\nlogistics', blockCode: 'B', Icon: IconLogistics },
+    { id: 'depot',         label: 'Fuel\nterminal',      blockCode: 'B', Icon: IconDepot     },
+    { id: 'delivery',      label: 'Delivery\nto station',blockCode: 'B', Icon: IconTruck     },
+    { id: 'station',       label: 'Station &\nshop',     blockCode: 'C', Icon: IconStation   },
+    { id: 'customer',      label: 'Customer\n/ B2B',     blockCode: 'D', Icon: IconCustomer  },
+  ] : [
     { id: 'suppliers',     label: 'Поставщики',        blockCode: 'A', Icon: IconRefinery  },
     { id: 'ext-logistics', label: 'Внешняя\nлогистика', blockCode: 'B', Icon: IconLogistics },
     { id: 'depot',         label: 'Нефтебаза',          blockCode: 'B', Icon: IconDepot     },
@@ -746,16 +770,25 @@ const HeroScreen = ({ onScrollToCatalog, onScrollToBlock }) => {
     { id: 'station',       label: 'АЗС и\nмагазин',     blockCode: 'C', Icon: IconStation   },
     { id: 'customer',      label: 'Клиент\n/ B2B',      blockCode: 'D', Icon: IconCustomer  },
   ];
-  const MGMT_LAYERS = [
+  const MGMT_LAYERS = isEn ? [
+    { blockCode: 'E', label: 'Finance, cash & control',    desc: 'Margin, payment control, reconciliations, receivables, financial monitoring' },
+    { blockCode: 'F', label: 'Supporting functions',        desc: 'Document flow, HR, procurement, legal and administrative processes' },
+    { blockCode: 'G', label: 'Data & processes',            desc: 'Data quality, process reengineering, AI and agentic solutions' },
+  ] : [
     { blockCode: 'E', label: 'Финансы, деньги и контроль',  desc: 'Маржа, платёжный контроль, сверки, дебиторка, финансовый мониторинг' },
     { blockCode: 'F', label: 'Поддерживающие функции',      desc: 'Документооборот, HR, закупки, юридические и административные процессы' },
     { blockCode: 'G', label: 'Данные и процессы',            desc: 'Качество данных, реинжиниринг процессов, AI и агентские решения' },
   ];
-  const VALUE_PROPS = [
-    { title: 'Знаем мировой опыт, но адаптируем решения под региональную специфику', desc: 'Учитываем зрелость данных, доступность систем, операционные ограничения и локальную практику топливного ритейла' },
-    { title: 'Идём от быстрых улучшений к системной трансформации',               desc: 'Начинаем с понятных use cases и постепенно выстраиваем данные, процессы, модели и агентские решения' },
-    { title: 'Связываем ИИ с экономикой бизнеса, а не с модой на технологии',      desc: 'Каждая инициатива привязана к марже, потерям, оборотному капиталу, выручке, сервису или эффективности команды' },
-    { title: 'Помогаем пройти путь от идеи до внедрения',                          desc: 'Определяем приоритеты, данные, зависимости, пилоты и следующий реалистичный шаг для вашей сети' },
+  const VALUE_PROPS = isEn ? [
+    { title: 'AI tied to business economics',    desc: 'Every initiative is tied to margin, losses, working capital, revenue, service, or team efficiency — not the fashion of technology.' },
+    { title: 'Quick wins, then the system',        desc: 'We start from clear use cases and build the data, processes, models, and agents up from there.' },
+    { title: 'World experience, your context',    desc: 'We bring international practice but account for data maturity, system availability, operating constraints, and local reality.' },
+    { title: 'From idea to implementation',       desc: 'We define the priorities, the data, the dependencies, the pilots, and the next realistic step for your business.' },
+  ] : [
+    { title: '\u0417\u043d\u0430\u0435\u043c \u043c\u0438\u0440\u043e\u0432\u043e\u0439 \u043e\u043f\u044b\u0442, \u043d\u043e \u0430\u0434\u0430\u043f\u0442\u0438\u0440\u0443\u0435\u043c \u0440\u0435\u0448\u0435\u043d\u0438\u044f \u043f\u043e\u0434 \u0440\u0435\u0433\u0438\u043e\u043d\u0430\u043b\u044c\u043d\u0443\u044e \u0441\u043f\u0435\u0446\u0438\u0444\u0438\u043a\u0443', desc: '\u0423\u0447\u0438\u0442\u044b\u0432\u0430\u0435\u043c \u0437\u0440\u0435\u043b\u043e\u0441\u0442\u044c \u0434\u0430\u043d\u043d\u044b\u0445, \u0434\u043e\u0441\u0442\u0443\u043f\u043d\u043e\u0441\u0442\u044c \u0441\u0438\u0441\u0442\u0435\u043c, \u043e\u043f\u0435\u0440\u0430\u0446\u0438\u043e\u043d\u043d\u044b\u0435 \u043e\u0433\u0440\u0430\u043d\u0438\u0447\u0435\u043d\u0438\u044f \u0438 \u043b\u043e\u043a\u0430\u043b\u044c\u043d\u0443\u044e \u043f\u0440\u0430\u043a\u0442\u0438\u043a\u0443 \u0442\u043e\u043f\u043b\u0438\u0432\u043d\u043e\u0433\u043e \u0440\u0438\u0442\u0435\u0439\u043b\u0430' },
+    { title: '\u0418\u0434\u0451\u043c \u043e\u0442 \u0431\u044b\u0441\u0442\u0440\u044b\u0445 \u0443\u043b\u0443\u0447\u0448\u0435\u043d\u0438\u0439 \u043a \u0441\u0438\u0441\u0442\u0435\u043c\u043d\u043e\u0439 \u0442\u0440\u0430\u043d\u0441\u0444\u043e\u0440\u043c\u0430\u0446\u0438\u0438',               desc: '\u041d\u0430\u0447\u0438\u043d\u0430\u0435\u043c \u0441 \u043f\u043e\u043d\u044f\u0442\u043d\u044b\u0445 use cases \u0438 \u043f\u043e\u0441\u0442\u0435\u043f\u0435\u043d\u043d\u043e \u0432\u044b\u0441\u0442\u0440\u0430\u0438\u0432\u0430\u0435\u043c \u0434\u0430\u043d\u043d\u044b\u0435, \u043f\u0440\u043e\u0446\u0435\u0441\u0441\u044b, \u043c\u043e\u0434\u0435\u043b\u0438 \u0438 \u0430\u0433\u0435\u043d\u0442\u0441\u043a\u0438\u0435 \u0440\u0435\u0448\u0435\u043d\u0438\u044f' },
+    { title: '\u0421\u0432\u044f\u0437\u044b\u0432\u0430\u0435\u043c \u0418\u0418 \u0441 \u044d\u043a\u043e\u043d\u043e\u043c\u0438\u043a\u043e\u0439 \u0431\u0438\u0437\u043d\u0435\u0441\u0430, \u0430 \u043d\u0435 \u0441 \u043c\u043e\u0434\u043e\u0439 \u043d\u0430 \u0442\u0435\u0445\u043d\u043e\u043b\u043e\u0433\u0438\u0438',      desc: '\u041a\u0430\u0436\u0434\u0430\u044f \u0438\u043d\u0438\u0446\u0438\u0430\u0442\u0438\u0432\u0430 \u043f\u0440\u0438\u0432\u044f\u0437\u0430\u043d\u0430 \u043a \u043c\u0430\u0440\u0436\u0435, \u043f\u043e\u0442\u0435\u0440\u044f\u043c, \u043e\u0431\u043e\u0440\u043e\u0442\u043d\u043e\u043c\u0443 \u043a\u0430\u043f\u0438\u0442\u0430\u043b\u0443, \u0432\u044b\u0440\u0443\u0447\u043a\u0435, \u0441\u0435\u0440\u0432\u0438\u0441\u0443 \u0438\u043b\u0438 \u044d\u0444\u0444\u0435\u043a\u0442\u0438\u0432\u043d\u043e\u0441\u0442\u0438 \u043a\u043e\u043c\u0430\u043d\u0434\u044b' },
+    { title: '\u041f\u043e\u043c\u043e\u0433\u0430\u0435\u043c \u043f\u0440\u043e\u0439\u0442\u0438 \u043f\u0443\u0442\u044c \u043e\u0442 \u0438\u0434\u0435\u0438 \u0434\u043e \u0432\u043d\u0435\u0434\u0440\u0435\u043d\u0438\u044f',                          desc: '\u041e\u043f\u0440\u0435\u0434\u0435\u043b\u044f\u0435\u043c \u043f\u0440\u0438\u043e\u0440\u0438\u0442\u0435\u0442\u044b, \u0434\u0430\u043d\u043d\u044b\u0435, \u0437\u0430\u0432\u0438\u0441\u0438\u043c\u043e\u0441\u0442\u0438, \u043f\u0438\u043b\u043e\u0442\u044b \u0438 \u0441\u043b\u0435\u0434\u0443\u044e\u0449\u0438\u0439 \u0440\u0435\u0430\u043b\u0438\u0441\u0442\u0438\u0447\u043d\u044b\u0439 \u0448\u0430\u0433 \u0434\u043b\u044f \u0432\u0430\u0448\u0435\u0439 \u0441\u0435\u0442\u0438' },
   ];
 
   const ChainNode = ({ node }) => {
@@ -791,8 +824,8 @@ const HeroScreen = ({ onScrollToCatalog, onScrollToBlock }) => {
   const ChainArrow = () => (
     <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', paddingBottom: 'clamp(26px,2.8vw,36px)' }}>
       <svg viewBox="0 0 32 12" fill="none" style={{ width: 'clamp(20px,2vw,32px)', height: 'auto', display: 'block' }} xmlns="http://www.w3.org/2000/svg">
-        <line x1="1" y1="6" x2="24" y2="6" stroke="rgba(184,131,42,0.50)" strokeWidth="1.5" strokeLinecap="round"/>
-        <path d="M19 1.5L25.5 6L19 10.5" stroke="rgba(184,131,42,0.50)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+        <line x1="1" y1="6" x2="24" y2="6" stroke="rgba(212,85,24,0.50)" strokeWidth="1.5" strokeLinecap="round"/>
+        <path d="M19 1.5L25.5 6L19 10.5" stroke="rgba(212,85,24,0.50)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
       </svg>
     </div>
   );
@@ -843,9 +876,9 @@ const HeroScreen = ({ onScrollToCatalog, onScrollToBlock }) => {
           textWrap: 'pretty', marginBottom: '12px',
           textAlign: 'center',
         }}>
-          Мы знаем, где решения на данных и ИИ<br/>
-          дают эффект в топливном ритейле<br/>
-          <em style={{ color: C.accentText, fontStyle: 'italic', fontWeight: 400 }}>и умеем доводить их до бизнес-результата</em>
+          {isEn ? 'We know where data and AI deliver results in fuel retail' : 'Мы знаем, где решения на данных и ИИ'}<br/>
+          {!isEn && 'дают эффект в топливном ритейле'}{!isEn && <br/>}
+          <em style={{ color: C.accentText, fontStyle: 'italic', fontWeight: 400 }}>{isEn ? 'and we know how to deliver measurable results' : 'и умеем доводить их до бизнес-результата'}</em>
         </h1>
         <div style={{ width: '36px', height: '2px', background: C.accent, opacity: .55, margin: '0 auto' }} />
       </div>
@@ -860,7 +893,7 @@ const HeroScreen = ({ onScrollToCatalog, onScrollToBlock }) => {
       }}>
         {/* Chain label */}
         <div style={{ padding: '11px 20px 0', fontSize: '9px', color: C.textMuted, fontWeight: 700, letterSpacing: '.18em', textTransform: 'uppercase' }}>
-          Цепочка создания ценности
+          {isEn ? 'Value chain' : 'Цепочка создания ценности'}
         </div>
         {/* Chain nodes — full width */}
         <div style={{ display: 'grid', gridTemplateColumns: 'minmax(0,1fr) 28px minmax(0,1fr) 28px minmax(0,1fr) 28px minmax(0,1fr) 28px minmax(0,1fr) 28px minmax(0,1fr)', alignItems: 'end', padding: '14px 20px 18px' }}>
@@ -873,7 +906,7 @@ const HeroScreen = ({ onScrollToCatalog, onScrollToBlock }) => {
         </div>
         {/* Cross-cutting layers — compact pills */}
         <div style={{ borderTop: `1px solid rgba(30,24,16,0.07)`, padding: '8px 14px 10px' }}>
-          <div style={{ fontSize: '8.5px', color: C.textMuted, fontWeight: 700, letterSpacing: '.16em', textTransform: 'uppercase', marginBottom: '7px', opacity: 0.75 }}>+ сквозные контуры</div>
+          <div style={{ fontSize: '8.5px', color: C.textMuted, fontWeight: 700, letterSpacing: '.16em', textTransform: 'uppercase', marginBottom: '7px', opacity: 0.75 }}>{isEn ? '+ cross-cutting layers' : '+ сквозные контуры'}</div>
           <div style={{ display: 'flex', alignItems: 'stretch', gap: '0' }}>
             <MgmtPill layer={MGMT_LAYERS[0]} />
             <div style={{ width: '1px', background: 'rgba(30,24,16,0.10)', margin: '4px 0', flexShrink: 0 }} />
@@ -886,13 +919,13 @@ const HeroScreen = ({ onScrollToCatalog, onScrollToBlock }) => {
 
       {/* 2×2 value props */}
       <div style={{ flex: '1 1 auto', minHeight: 0 }}>
-        <div style={{ fontSize: '9px', color: C.textMuted, fontWeight: 700, letterSpacing: '.18em', textTransform: 'uppercase', marginBottom: '8px', opacity: 0.6 }}>Почему это работает для бизнеса</div>
+        <div style={{ fontSize: '9px', color: C.textMuted, fontWeight: 700, letterSpacing: '.18em', textTransform: 'uppercase', marginBottom: '8px', opacity: 0.6 }}>{isEn ? 'Why this works for your business' : 'Почему это работает для бизнеса'}</div>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, minmax(0,1fr))', gap: '8px' }}>
           {VALUE_PROPS.map((vp, i) => (
             <div key={i} style={{
               background: 'transparent',
               border: 'none',
-              borderLeft: `2px solid rgba(184,131,42,0.28)`,
+              borderLeft: `2px solid rgba(212,85,24,0.28)`,
               padding: '2px 0 4px 12px',
               display: 'flex', flexDirection: 'column', gap: '3px',
             }}>
@@ -925,17 +958,17 @@ const HeroScreen = ({ onScrollToCatalog, onScrollToBlock }) => {
             padding: '11px 24px', borderRadius: '8px',
             fontSize: '13px', fontWeight: 600, letterSpacing: '.02em',
             cursor: 'pointer',
-            boxShadow: '0 2px 10px rgba(184,131,42,0.28)',
+            boxShadow: '0 2px 10px rgba(212,85,24,0.28)',
             transition: 'background .15s, box-shadow .15s',
           }}
-          onMouseEnter={e => { e.currentTarget.style.background='#A0711F'; e.currentTarget.style.boxShadow='0 4px 16px rgba(184,131,42,0.34)'; }}
-          onMouseLeave={e => { e.currentTarget.style.background=C.accent; e.currentTarget.style.boxShadow='0 2px 10px rgba(184,131,42,0.28)'; }}
+          onMouseEnter={e => { e.currentTarget.style.background='#B83C0E'; e.currentTarget.style.boxShadow='0 4px 16px rgba(212,85,24,0.34)'; }}
+          onMouseLeave={e => { e.currentTarget.style.background=C.accent; e.currentTarget.style.boxShadow='0 2px 10px rgba(212,85,24,0.28)'; }}
         >
-          Смотреть каталог решений
+          {isEn ? 'Explore the catalog' : 'Смотреть каталог решений'}
           <span style={{ fontSize: '15px', lineHeight: 1 }}>↓</span>
         </button>
         <span style={{ fontSize: '11.5px', color: C.textMuted, fontStyle: 'italic' }}>
-          {CARDS.length} инициатив · {BLOCKS.length} направлений
+          {CARDS.length} {isEn ? 'initiatives' : 'инициатив'} · {BLOCKS.length} {isEn ? 'domains' : 'направлений'}
         </span>
       </div>
 
@@ -952,8 +985,9 @@ const ProfileChip = ({ label }) => (
 );
 
 /* ── KKTECH PROFILE SCREEN ── */
-const KKProfileScreen = ({ section, onBack, onNav }) => {
-  const P = window.KKTECH_PROFILE || {};
+const KKProfileScreen = ({ section, onBack, onNav, lang }) => {
+  const isEn = lang === 'EN';
+  const P = (isEn ? window.KKTECH_PROFILE_EN : window.KKTECH_PROFILE) || {};
   const company = P.company || {};
   const how = P.howWeWork || {};
   const team = P.team || {};
@@ -975,7 +1009,7 @@ const KKProfileScreen = ({ section, onBack, onNav }) => {
       <div style={{ display:'grid', gridTemplateColumns:'repeat(2, 1fr)', gap:'14px 28px', marginBottom:'22px' }}>
         {(company.body || []).map((t, i) => (
           <div key={i} style={{
-            borderLeft: '2px solid rgba(184,131,42,0.28)',
+            borderLeft: '2px solid rgba(212,85,24,0.28)',
             padding: '2px 0 4px 12px',
             display: 'flex', flexDirection: 'column', gap: '3px',
           }}>
@@ -998,10 +1032,10 @@ const KKProfileScreen = ({ section, onBack, onNav }) => {
                 <h3 style={{ fontSize:'16px', color:C.text, fontWeight:600, lineHeight:1.28, margin:0 }}>{item.focus}</h3>
                 <p style={{ fontSize:'13px', color:C.textSec, lineHeight:1.55, fontWeight:300, display:'-webkit-box', WebkitLineClamp:4, WebkitBoxOrient:'vertical', overflow:'hidden' }}>{item.whatWeDid}</p>
                 <div style={{ borderTop:`1px solid ${C.border}`, paddingTop:'9px', marginTop:'auto' }}>
-                  <SectionLabelP>Бизнес-результат</SectionLabelP>
+                  <SectionLabelP>{isEn ? 'Business outcome' : 'Бизнес-результат'}</SectionLabelP>
                   <p style={{ fontSize:'12px', color:C.textSec, lineHeight:1.5 }}>{item.result}</p>
                 </div>
-                <div style={{ fontSize:'12px', color:C.accentText, fontWeight:500 }}>Подробнее →</div>
+                <div style={{ fontSize:'12px', color:C.accentText, fontWeight:500 }}>{isEn ? 'Read more →' : 'Подробнее →'}</div>
               </button>
             ))}
           </div>
@@ -1023,7 +1057,7 @@ const KKProfileScreen = ({ section, onBack, onNav }) => {
             <div style={{ fontSize:'11px', color:C.accentText, fontWeight:700, letterSpacing:'.09em', textTransform:'uppercase' }}>{i+1}. {step.title}</div>
             <p style={{ fontSize:'13px', color:C.textSec, lineHeight:1.62, fontWeight:300 }}>{step.summary}</p>
             <div style={{ borderTop:`1px solid ${C.border}`, paddingTop:'11px', marginTop:'8px' }}>
-              <SectionLabelP>На выходе</SectionLabelP>
+              <SectionLabelP>{isEn ? 'Outputs' : 'На выходе'}</SectionLabelP>
               <ul style={{ margin:'6px 0 0 0', padding:'0 0 0 16px', display:'grid', gap:'5px' }}>
                 {(step.outputs || []).map(o => <li key={o} style={{ fontSize:'12px', color:C.textSec, lineHeight:1.5 }}>{o}</li>)}
               </ul>
@@ -1038,7 +1072,7 @@ const KKProfileScreen = ({ section, onBack, onNav }) => {
     <div>
       <div style={{ maxWidth:'820px', marginBottom:'28px' }}>
         <p style={{ fontSize:'11px', color:C.textMuted, textTransform:'uppercase', letterSpacing:'.1em', fontWeight:500, marginBottom:'10px' }}>{team.title}</p>
-        <h2 style={{ fontFamily:'Playfair Display, serif', fontSize:'clamp(28px,3.5vw,44px)', fontWeight:400, color:C.text, marginBottom:'14px', lineHeight:1.14 }}>Отраслевая экспертиза и техническая поставка — в одной команде</h2>
+        <h2 style={{ fontFamily:'Playfair Display, serif', fontSize:'clamp(28px,3.5vw,44px)', fontWeight:400, color:C.text, marginBottom:'14px', lineHeight:1.14 }}>{isEn ? "We sit on the owner's side of the table." : '\u041e\u0442\u0440\u0430\u0441\u043b\u0435\u0432\u0430\u044f \u044d\u043a\u0441\u043f\u0435\u0440\u0442\u0438\u0437\u0430 \u0438 \u0442\u0435\u0445\u043d\u0438\u0447\u0435\u0441\u043a\u0430\u044f \u043f\u043e\u0441\u0442\u0430\u0432\u043a\u0430 \u2014 \u0432 \u043e\u0434\u043d\u043e\u0439 \u043a\u043e\u043c\u0430\u043d\u0434\u0435'}</h2>
         <p style={{ fontSize:'16px', color:C.textSec, lineHeight:1.72, fontWeight:300, marginBottom:'8px' }}>{team.lead}</p>
         {team.sublead && <p style={{ fontSize:'14px', color:C.textMuted, lineHeight:1.65, fontWeight:300 }}>{team.sublead}</p>}
       </div>
@@ -1050,7 +1084,7 @@ const KKProfileScreen = ({ section, onBack, onNav }) => {
               {(group.members || []).map(member => (
                 <div key={member.name} style={{ padding:'16px', background:C.surface, border:`1px solid ${C.border}`, borderRadius:'8px', display:'grid', gap:'10px' }}>
                   <div style={{ display:'flex', gap:'12px', alignItems:'flex-start' }}>
-                    <div style={{ width:'40px', height:'40px', borderRadius:'50%', background:C.bg, border:`1px solid ${C.border}`, color:C.accentText, display:'flex', alignItems:'center', justifyContent:'center', fontSize:'12px', fontWeight:700, flexShrink:0 }}>{member.photo ? <img src={member.photo} alt="" style={{ width:"100%", height:"100%", borderRadius:"50%", objectFit:"cover" }}/> : member.initials}</div>
+                    <div style={{ width:'40px', height:'40px', borderRadius:'50%', overflow:'hidden', background:C.bg, border:`1px solid ${C.border}`, color:C.accentText, display:'flex', alignItems:'center', justifyContent:'center', fontSize:'12px', fontWeight:700, flexShrink:0 }}>{member.photo ? <img src={member.photo} alt={member.name} style={{ width:'100%', height:'100%', objectFit:'cover' }} /> : member.initials}</div>
                     <div>
                       <h3 style={{ fontSize:'15px', color:C.text, fontWeight:600, marginBottom:'4px', lineHeight:1.25 }}>{member.name}</h3>
                       <p style={{ fontSize:'12px', color:C.textSec, lineHeight:1.5, fontWeight:300 }}>{member.line}</p>
@@ -1065,7 +1099,7 @@ const KKProfileScreen = ({ section, onBack, onNav }) => {
           </section>
         ))}
       </div>
-      {team.benchNote && <div style={{ marginTop:'20px', padding:'15px 18px', background:C.bg, border:`1px solid ${C.border}`, borderRadius:'8px' }}><p style={{ fontSize:'13px', color:C.textSec, lineHeight:1.6 }}>Дополнительно привлекаем специалистов по запросу: data scientists, ML-инженеры, дата-инженеры, аналитики, отраслевые эксперты.</p></div>}
+      {team.benchNote && <div style={{ marginTop:'20px', padding:'15px 18px', background:C.bg, border:`1px solid ${C.border}`, borderRadius:'8px' }}><p style={{ fontSize:'13px', color:C.textSec, lineHeight:1.6 }}>{team.benchNote}</p></div>}
     </div>
   );
 
@@ -1075,8 +1109,8 @@ const KKProfileScreen = ({ section, onBack, onNav }) => {
       <h2 style={{ fontFamily:'Playfair Display, serif', fontSize:'clamp(22px,2.4vw,38px)', fontWeight:400, color:C.text, marginBottom:'28px', lineHeight:1.22, textWrap:'pretty' }}>{contact.lead}</h2>
       <div style={{ padding:'22px', background:C.surface, border:`1px solid ${C.border}`, borderRadius:'8px', display:'grid', gap:'16px' }}>
         <div><SectionLabelP>Email</SectionLabelP><a href={`mailto:${contact.email}`} style={{ color:C.text, fontSize:'16px', textDecoration:'none' }}>{contact.email}</a></div>
-        <div><SectionLabelP>Сайт</SectionLabelP><a href={`https://${contact.website}`} style={{ color:C.text, fontSize:'16px', textDecoration:'none' }}>{contact.website}</a></div>
-        <div><SectionLabelP>Компания</SectionLabelP><p style={{ color:C.textSec, fontSize:'14px', lineHeight:1.6, margin:0 }}>{contact.company}<br/>{contact.location}</p></div>
+        <div><SectionLabelP>{isEn ? 'Website' : 'Сайт'}</SectionLabelP><a href={`https://${contact.website}`} style={{ color:C.text, fontSize:'16px', textDecoration:'none' }}>{contact.website}</a></div>
+        <div><SectionLabelP>{isEn ? 'Company' : 'Компания'}</SectionLabelP><p style={{ color:C.textSec, fontSize:'14px', lineHeight:1.6, margin:0 }}>{contact.company}<br/>{contact.location}</p></div>
       </div>
     </div>
   );
@@ -1101,10 +1135,10 @@ const KKProfileScreen = ({ section, onBack, onNav }) => {
               <button onClick={() => setActiveCase(null)} style={{ background:'none', border:`1px solid ${C.border}`, width:'30px', height:'30px', borderRadius:'50%', cursor:'pointer', color:C.textSec, flexShrink:0 }}>×</button>
             </div>
             <div style={{ padding:'22px 20px', display:'grid', gap:'16px' }}>
-              {activeCase.detail?.context && <div><SectionLabelP>Бизнес-контекст</SectionLabelP><p style={{ fontSize:'14px', color:C.textSec, lineHeight:1.65, fontWeight:300, marginTop:'6px' }}>{activeCase.detail.context}</p></div>}
-              {activeCase.detail?.role && <div><SectionLabelP>Наша роль</SectionLabelP><p style={{ fontSize:'14px', color:C.textSec, lineHeight:1.65, fontWeight:300, marginTop:'6px' }}>{activeCase.detail.role}</p></div>}
-              {!!(activeCase.detail?.scope?.length) && <div><SectionLabelP>Что делали</SectionLabelP><ul style={{ margin:'6px 0 0 0', padding:'0 0 0 18px', display:'grid', gap:'6px' }}>{activeCase.detail.scope.map(p => <li key={p} style={{ fontSize:'13px', color:C.textSec, lineHeight:1.55 }}>{p}</li>)}</ul></div>}
-              {!!(activeCase.detail?.outcome?.length) && <div><SectionLabelP>Бизнес-результат</SectionLabelP><ul style={{ margin:'6px 0 0 0', padding:'0 0 0 18px', display:'grid', gap:'6px' }}>{activeCase.detail.outcome.map(p => <li key={p} style={{ fontSize:'13px', color:C.textSec, lineHeight:1.55 }}>{p}</li>)}</ul></div>}
+              {activeCase.detail?.context && <div><SectionLabelP>{isEn ? 'Business context' : 'Бизнес-контекст'}</SectionLabelP><p style={{ fontSize:'14px', color:C.textSec, lineHeight:1.65, fontWeight:300, marginTop:'6px' }}>{activeCase.detail.context}</p></div>}
+              {activeCase.detail?.role && <div><SectionLabelP>{isEn ? 'Our role' : 'Наша роль'}</SectionLabelP><p style={{ fontSize:'14px', color:C.textSec, lineHeight:1.65, fontWeight:300, marginTop:'6px' }}>{activeCase.detail.role}</p></div>}
+              {!!(activeCase.detail?.scope?.length) && <div><SectionLabelP>{isEn ? 'What we did' : 'Что делали'}</SectionLabelP><ul style={{ margin:'6px 0 0 0', padding:'0 0 0 18px', display:'grid', gap:'6px' }}>{activeCase.detail.scope.map(p => <li key={p} style={{ fontSize:'13px', color:C.textSec, lineHeight:1.55 }}>{p}</li>)}</ul></div>}
+              {!!(activeCase.detail?.outcome?.length) && <div><SectionLabelP>{isEn ? 'Business outcome' : 'Бизнес-результат'}</SectionLabelP><ul style={{ margin:'6px 0 0 0', padding:'0 0 0 18px', display:'grid', gap:'6px' }}>{activeCase.detail.outcome.map(p => <li key={p} style={{ fontSize:'13px', color:C.textSec, lineHeight:1.55 }}>{p}</li>)}</ul></div>}
             </div>
           </div>
         </div>
@@ -1118,6 +1152,84 @@ const App = () => {
   const [screen, setScreen] = useState('home');
   const [profileSection, setProfileSection] = useState('company');
   const [activeCardId, setActiveCardId] = useState(null);
+
+  /* ── Language switcher ── */
+  const [lang, setLang] = useState('EN');
+  const d = useMemo(() => getData(lang), [lang]);
+  const [langToast, setLangToast] = useState(null);
+  const [langOpen, setLangOpen] = useState(false);
+  const LANGS = [
+    { code:'EN', available:true  },
+    { code:'RU', available:true  },
+    { code:'ES', available:false },
+    { code:'DE', available:false },
+    { code:'FR', available:false },
+  ];
+  const handleLang = (l) => {
+    if (l.available) { setLang(l.code); }
+    else { setLangToast(l.code); setTimeout(() => setLangToast(null), 2800); }
+  };
+  const LangSwitcher = () => (
+    <div style={{ position:'relative' }}>
+      <button onClick={() => setLangOpen(o => !o)} style={{
+        display:'flex', alignItems:'center', gap:'5px',
+        background:'none', border:`1px solid ${C.border}`, borderRadius:'7px',
+        padding:'5px 10px', cursor:'pointer', fontSize:'12px', fontWeight:600,
+        color:C.textSec, transition:'border-color .13s',
+      }}
+      onMouseEnter={e=>e.currentTarget.style.borderColor=C.borderHov}
+      onMouseLeave={e=>e.currentTarget.style.borderColor=C.border}
+      >
+        {lang}
+        <svg width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1l4 4 4-4" stroke={C.textMuted} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
+      </button>
+      {langOpen && (
+        <>
+          <div onClick={() => setLangOpen(false)} style={{ position:'fixed', inset:0, zIndex:998 }} />
+          <div style={{
+            position:'absolute', top:'calc(100% + 6px)', right:0,
+            background:C.surface, border:`1px solid ${C.border}`,
+            borderRadius:'9px', boxShadow:'0 4px 20px rgba(0,0,0,0.10)',
+            padding:'4px', zIndex:999, minWidth:'130px',
+          }}>
+            {LANGS.map(l => (
+              <button key={l.code} onClick={() => { handleLang(l); setLangOpen(false); }} style={{
+                display:'flex', alignItems:'center', justifyContent:'space-between',
+                width:'100%', padding:'7px 12px', border:'none', borderRadius:'6px',
+                background: lang===l.code ? C.bg : 'transparent',
+                cursor:'pointer', fontSize:'12.5px', fontWeight: lang===l.code ? 600 : 400,
+                color: l.available ? C.text : C.textMuted,
+                textAlign:'left',
+              }}>
+                <span>{l.code}</span>
+                {!l.available && <span style={{ fontSize:'9px', color:C.textMuted, fontStyle:'italic' }}>{lang==='EN' ? 'soon' : 'скоро'}</span>}
+                {lang===l.code && <span style={{ color:C.accent, fontSize:'11px' }}>✓</span>}
+              </button>
+            ))}
+          </div>
+        </>
+      )}
+    </div>
+  );
+  const AdvisorBtn = () => (
+    <button style={{
+      display:'flex', alignItems:'center', gap:'8px',
+      background:'#2C2018', color:'#F5F0E8',
+      border:'none', borderRadius:'10px',
+      padding:'7px 14px 7px 16px',
+      fontSize:'13px', fontWeight:600, cursor:'pointer',
+      letterSpacing:'-.01em', transition:'background .15s',
+    }}
+    onMouseEnter={e=>e.currentTarget.style.background='#3D2E1E'}
+    onMouseLeave={e=>e.currentTarget.style.background='#2C2018'}
+    >
+      {lang === 'EN' ? 'Ask AI Advisor' : 'Спросить AI Советника'}
+      <span style={{ display:'flex', alignItems:'center', gap:'3px', opacity:0.5, fontSize:'11px' }}>
+        <span>⌘</span>
+        <span style={{ background:'rgba(255,255,255,0.15)', borderRadius:'3px', padding:'1px 5px' }}>K</span>
+      </span>
+    </button>
+  );
   const [openProblems, setOpenProblems] = useState(() => new Set());
 
   const goProfile = useCallback((sec='company') => { setProfileSection(sec); setScreen('profile'); window.scrollTo({ top:0, behavior:'smooth' }); }, []);
@@ -1128,7 +1240,7 @@ const App = () => {
   const openCard   = useCallback(card => setActiveCardId(card.id), []);
   const closeCard  = useCallback(() => setActiveCardId(null), []);
   const jumpToCard = useCallback(id => setActiveCardId(id), []);
-  const activeCard = activeCardId ? CARD_BY_ID[activeCardId] : null;
+  const activeCard = activeCardId ? (d.CARD_BY_ID[activeCardId] || null) : null;
 
   const scrollToBlock = useCallback((code) => {
     const el = document.querySelector(`[data-block-code="${code}"]`);
@@ -1147,6 +1259,7 @@ const App = () => {
   }, []);
 
   return (
+    <DataCtx.Provider value={{...d, lang}}>
     <div style={{ minHeight:'100vh', display:'flex', flexDirection:'column', background:C.bg }}>
 
       <header style={{
@@ -1156,12 +1269,12 @@ const App = () => {
         boxShadow:'0 1px 10px rgba(30,24,16,0.06)',
         flexShrink:0, position:'sticky', top:0, zIndex:40,
       }}>
-        <Wordmark />
+        <Wordmark lang={lang} />
         <nav style={{ display:'flex', alignItems:'center', gap:'4px' }}>
           {screen === 'profile' && (
-            <button onClick={goHome} style={{ background:'none', border:'none', cursor:'pointer', color:C.textSec, fontSize:'12px', padding:'6px 10px', display:'flex', alignItems:'center', gap:'4px', borderRadius:'6px' }}>← Каталог</button>
+            <button onClick={goHome} style={{ background:'none', border:'none', cursor:'pointer', color:C.textSec, fontSize:'12px', padding:'6px 10px', display:'flex', alignItems:'center', gap:'4px', borderRadius:'6px' }}>{lang==='EN' ? '← Catalog' : '← Каталог'}</button>
           )}
-          {[{id:'company',label:'О нас'},{id:'how-we-work',label:'Как работаем'},{id:'team',label:'Команда'},{id:'contact',label:'Контакты'}].map(item => (
+          {[{id:'company',label: lang==='EN'?'About':'О нас'},{id:'how-we-work',label:lang==='EN'?'How we work':'Как работаем'},{id:'team',label:lang==='EN'?'Team':'Команда'},{id:'contact',label:lang==='EN'?'Contact':'Контакты'}].map(item => (
             <button key={item.id} onClick={() => goProfile(item.id)}
               style={{
                 background: screen==='profile' && profileSection===item.id ? C.bg : 'none',
@@ -1177,12 +1290,28 @@ const App = () => {
             >{item.label}</button>
           ))}
         </nav>
+        <div style={{ display:'flex', alignItems:'center', gap:'10px' }}>
+          <LangSwitcher />
+          <AdvisorBtn />
+        </div>
       </header>
+      {langToast && (
+        <div style={{
+          position:'fixed', bottom:'28px', left:'50%', transform:'translateX(-50%)',
+          background:'#2C2018', color:'#F5F0E8',
+          padding:'10px 20px', borderRadius:'10px',
+          fontSize:'13px', fontWeight:500, zIndex:9999,
+          boxShadow:'0 4px 20px rgba(0,0,0,0.18)',
+          pointerEvents:'none', whiteSpace:'nowrap',
+        }}>
+          {langToast} — перевод пока не добавлен
+        </div>
+      )}
 
-      {screen === 'home' && <HeroScreen onScrollToCatalog={scrollToCatalog} onScrollToBlock={scrollToBlock} />}
+      {screen === 'home' && <HeroScreen onScrollToCatalog={scrollToCatalog} onScrollToBlock={scrollToBlock} lang={lang} />}
 
       {screen === 'profile' && (
-        <KKProfileScreen section={profileSection} onBack={goHome} onNav={goProfile} />
+        <KKProfileScreen section={profileSection} onBack={goHome} onNav={goProfile} lang={lang} />
       )}
 
       <main id="catalog-main" style={{ display: screen === 'profile' ? 'none' : undefined, flex:1, padding:'clamp(20px,3vh,36px) clamp(20px,3vw,40px) 80px' }}>
@@ -1198,30 +1327,32 @@ const App = () => {
         }}>
           <div style={{ borderRight:'2px solid rgba(245,240,232,0.15)', background:C.rail }} />
           <TasksHeader />
-          {STAGES.map((s, idx) => (
-            <div key={s.id} style={{ borderRight: idx < STAGES.length-1 ? `1px solid ${C.border}` : 'none', minWidth:0 }}>
+          {d.STAGES.map((s, idx) => (
+            <div key={`${s.id}-${lang}`} style={{ borderRight: idx < d.STAGES.length-1 ? `1px solid ${C.border}` : 'none', minWidth:0 }}>
               <StageHeader stage={s} />
             </div>
           ))}
         </div>
 
-        {BLOCKS.map((block, idx) => (
-          <BlockCanvas key={block.id} block={block}
+        {d.BLOCKS.map((block, idx) => (
+          <BlockCanvas key={`${block.id}-${lang}`} block={block}
             openProblems={openProblems} onToggleProblem={toggleProblem}
             onToggleAll={toggleAllInBlock} onCardClick={openCard}
-            isLast={idx === BLOCKS.length - 1}
+            isLast={idx === d.BLOCKS.length - 1}
           />
         ))}
       </main>
 
       {activeCard && <Drawer card={activeCard} onClose={closeCard} onJump={jumpToCard} />}
     </div>
+    </DataCtx.Provider>
   );
 };
 
 ReactDOM.createRoot(document.getElementById('root')).render(<App />);
 </script>
+
+
   <script src="/device-hint.js?v=1" defer></script>
   <script src="/advisor.js?v=9" defer></script>
-</body>
-</html>
+</body></html>
