@@ -196,20 +196,47 @@
     document.body.appendChild(backdrop);
     document.body.appendChild(panel);
 
-    // Place the trigger into the canvas header nav (next to its links), like
-    // the kittykat.tech header. The canvas is React-rendered, so poll for it;
-    // fall back to a fixed top-right pill if the nav never appears.
+    // The V14 canvas ships its OWN bilingual "Ask AI Advisor" button in the
+    // header (next to the language switcher). When present, wire OUR panel to
+    // it and skip our own pill — otherwise we'd render a duplicate button that
+    // overlaps the language switcher. Older (RU-only) canvases have no such
+    // button, so we fall back to placing our trigger in the nav, then to a
+    // fixed top-right pill. The canvas is React-rendered, so poll for it.
+    var NATIVE_RE = /Ask AI Advisor|Спросить AI Советника/;
+    function nativeAdvisorBtn() {
+      var bs = document.querySelectorAll('header button, nav button, button');
+      for (var i = 0; i < bs.length; i++) {
+        var b = bs[i];
+        if (!b.classList.contains('kkt-advisor-trigger') && NATIVE_RE.test(b.textContent || '')) return b;
+      }
+      return null;
+    }
     function findNav() {
       var nodes = document.querySelectorAll('nav a, nav button, header a, a, button, span');
       for (var i = 0; i < nodes.length; i++) {
         var t = (nodes[i].textContent || '').trim();
-        if (t === 'Контакты' || t === 'Contacts') return nodes[i].parentNode;
+        if (t === 'Контакты' || t === 'Контакт' || t === 'Contacts' || t === 'Contact') return nodes[i].parentNode;
       }
       return null;
     }
     (function mountTrigger() {
-      var tries = 0;
+      var tries = 0, wired = false;
+      function wireNative() {
+        if (wired) return true;
+        if (!nativeAdvisorBtn()) return false;
+        // Delegate in the capture phase so we open our panel and stop the
+        // canvas's own (backend-less) handler before React sees the click.
+        document.addEventListener('click', function (e) {
+          var b = e.target && e.target.closest ? e.target.closest('button') : null;
+          if (b && !b.classList.contains('kkt-advisor-trigger') && NATIVE_RE.test(b.textContent || '')) {
+            e.preventDefault(); e.stopPropagation(); openPanel();
+          }
+        }, true);
+        wired = true;
+        return true;
+      }
       (function place() {
+        if (wireNative()) return;                 // V14+: reuse the header's own button
         var nav = findNav();
         if (nav) { nav.appendChild(trigger); return; }
         if (++tries > 40) { trigger.classList.add('is-fixed'); document.body.appendChild(trigger); return; }
