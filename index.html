@@ -242,7 +242,8 @@ const CardTile = ({ card, onClick }) => {
           <TagRow card={card} />
         </div>
         {card.lock && (
-          <div style={{ display:'flex', gap:'5px', alignItems:'flex-start', marginTop:'8px' }}>
+          <div title={dct?.lang==='EN' ? 'Prerequisite' : 'Предусловие'}
+            style={{ display:'flex', gap:'5px', alignItems:'flex-start', marginTop:'8px', cursor:'help' }}>
             <span style={{ fontSize:'10px', color:C.textMuted, lineHeight:1.55, flexShrink:0 }}>🔒</span>
             <span style={{ fontSize:'10.5px', color:C.textMuted, lineHeight:1.55, fontWeight:400, textWrap:'pretty' }}>{card.lock}</span>
           </div>
@@ -666,7 +667,6 @@ const BlockCanvas = ({ block, openProblems, onToggleProblem, onToggleAll, onCard
       borderTop:'none', background:C.bg,
       marginBottom: isLast ? 0 : '28px',
       borderRadius:'0 0 10px 10px',
-      overflow:'hidden',
     }}>
       <BlockRail block={block} allOpen={allOpen} onToggleAll={() => onToggleAll(blockProblems)} />
       <section style={{ flex:1, minWidth:0 }}>
