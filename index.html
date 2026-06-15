@@ -143,9 +143,9 @@ const PROB_H      = 148;
 
 // Main-site palette: single orange accent + neutrals only (no green/blue/maroon/purple).
 const STAGE_P = {
-  1: { accent:'#FF6A00', dim:'rgba(255,106,0,0.10)', line:'rgba(0,0,0,0.12)' },
+  1: { accent:'#FF6A00', dim:'rgba(255,106,0,0.05)', line:'rgba(0,0,0,0.12)' },
   2: { accent:'#FF6A00', dim:'rgba(255,106,0,0.10)', line:'rgba(0,0,0,0.12)' },
-  3: { accent:'#FF6A00', dim:'rgba(255,106,0,0.10)', line:'rgba(0,0,0,0.12)' },
+  3: { accent:'#FF6A00', dim:'rgba(255,106,0,0.16)', line:'rgba(0,0,0,0.12)' },
 };
 
 const NEUTRAL_TAG = { fg:'#515257', bg:'rgba(0,0,0,0.05)' };
@@ -233,8 +233,8 @@ const CardTile = ({ card, onClick }) => {
 
       <p style={{
         fontSize:'11.5px', color:'#86868B',
-        lineHeight:1.65, fontWeight:400,
-        fontStyle:'italic', textWrap:'pretty', flex:1,
+        lineHeight:1.6, fontWeight:400,
+        textWrap:'pretty', flex:1,
       }}>{card.shortDescription}</p>
 
       <div style={{ marginTop:'auto' }}>
