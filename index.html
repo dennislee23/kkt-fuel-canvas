@@ -870,29 +870,31 @@ const HeroScreen = ({ onScrollToCatalog, onScrollToBlock, lang }) => {
     <section className="hero-section" style={{
       minHeight: `calc(100vh - ${HEADER_H}px)`,
       background: C.bg,
-      padding: 'clamp(24px,3vh,44px) clamp(16px,1.8vw,44px) 24px',
-      display: 'flex', flexDirection: 'column', gap: 'clamp(16px,2.4vh,32px)',
-      borderBottom: `2px solid ${C.border}`,
+      padding: 'clamp(56px,9vh,120px) clamp(16px,1.8vw,44px) clamp(36px,5vh,64px)',
+      display: 'flex', flexDirection: 'column', gap: 'clamp(24px,3.4vh,48px)',
+      borderBottom: `1px solid ${C.border}`,
       overflow: 'hidden',
       boxSizing: 'border-box',
       width: '100%',
     }}>
 
-      {/* Hero headline */}
-      <div style={{ textAlign: 'center' }}>
+      {/* Hero headline — matches kittykat.tech: orange eyebrow, big DM Sans title, gradient accent */}
+      <div style={{ textAlign: 'center', display:'flex', flexDirection:'column', alignItems:'center' }}>
+        <p style={{
+          fontSize: '13px', fontWeight: 600, letterSpacing: '0.14em',
+          textTransform: 'uppercase', color: C.accentText, margin: '0 0 22px',
+        }}>{isEn ? 'Data & AI for fuel retail' : 'Данные и ИИ для топливного ритейла'}</p>
         <h1 style={{
           fontFamily: 'DM Sans, system-ui, sans-serif',
-          fontSize: 'clamp(28px,2.9vw,46px)',
+          fontSize: 'clamp(34px,5vw,64px)',
           fontWeight: 600, color: C.text,
-          lineHeight: 1.14, letterSpacing: '-.02em',
-          textWrap: 'pretty', marginBottom: '12px',
+          lineHeight: 1.05, letterSpacing: '-.035em',
+          textWrap: 'balance', maxWidth: '22ch', margin: '0 auto',
           textAlign: 'center',
         }}>
-          {isEn ? 'We know where data and AI deliver results in fuel retail' : 'Мы знаем, где решения на данных и ИИ'}<br/>
-          {!isEn && 'дают эффект в топливном ритейле'}{!isEn && <br/>}
-          <em style={{ color: C.accentText, fontStyle: 'normal', fontWeight: 600 }}>{isEn ? 'and we know how to deliver measurable results' : 'и умеем доводить их до бизнес-результата'}</em>
+          {isEn ? 'We know where data and AI deliver results in fuel retail ' : 'Мы знаем, где решения на данных и ИИ дают эффект в топливном ритейле '}
+          <span style={{ background:'linear-gradient(118deg,#FF9D2E 0%,#FF6A00 52%,#F5481F 100%)', WebkitBackgroundClip:'text', backgroundClip:'text', WebkitTextFillColor:'transparent', color:'transparent' }}>{isEn ? 'and how to deliver measurable results' : 'и умеем доводить их до бизнес-результата'}</span>
         </h1>
-        <div style={{ width: '36px', height: '2px', background: C.accent, opacity: .55, margin: '0 auto' }} />
       </div>
 
       {/* Combined: value chain + management bands */}
@@ -966,15 +968,15 @@ const HeroScreen = ({ onScrollToCatalog, onScrollToBlock, lang }) => {
           onClick={onScrollToCatalog}
           style={{
             display: 'inline-flex', alignItems: 'center', gap: '8px',
-            background: C.accent, color: '#fff', border: 'none',
-            padding: '11px 24px', borderRadius: '8px',
+            background: 'linear-gradient(118deg,#FF9D2E 0%,#FF6A00 52%,#F5481F 100%)', color: '#fff', border: 'none',
+            padding: '11px 24px', borderRadius: '980px',
             fontSize: '13px', fontWeight: 600, letterSpacing: '.02em',
             cursor: 'pointer',
-            boxShadow: '0 2px 10px rgba(212,85,24,0.28)',
-            transition: 'background .15s, box-shadow .15s',
+            boxShadow: '0 2px 10px rgba(255,106,0,0.28)',
+            transition: 'opacity .15s, box-shadow .15s',
           }}
-          onMouseEnter={e => { e.currentTarget.style.background='#C2410C'; e.currentTarget.style.boxShadow='0 4px 16px rgba(212,85,24,0.34)'; }}
-          onMouseLeave={e => { e.currentTarget.style.background=C.accent; e.currentTarget.style.boxShadow='0 2px 10px rgba(212,85,24,0.28)'; }}
+          onMouseEnter={e => { e.currentTarget.style.opacity='0.92'; e.currentTarget.style.boxShadow='0 4px 16px rgba(255,106,0,0.34)'; }}
+          onMouseLeave={e => { e.currentTarget.style.opacity='1'; e.currentTarget.style.boxShadow='0 2px 10px rgba(255,106,0,0.28)'; }}
         >
           {isEn ? 'Explore the catalog' : 'Смотреть каталог решений'}
           <span style={{ fontSize: '15px', lineHeight: 1 }}>↓</span>
@@ -1226,14 +1228,14 @@ const App = () => {
   const AdvisorBtn = () => (
     <button style={{
       display:'flex', alignItems:'center', gap:'8px',
-      background:'#1D1D1F', color:'#F5F5F7',
-      border:'none', borderRadius:'10px',
+      background:'linear-gradient(118deg,#FF9D2E 0%,#FF6A00 52%,#F5481F 100%)', color:'#fff',
+      border:'none', borderRadius:'980px',
       padding:'7px 14px 7px 16px',
       fontSize:'13px', fontWeight:600, cursor:'pointer',
-      letterSpacing:'-.01em', transition:'background .15s',
+      letterSpacing:'-.01em', transition:'opacity .15s',
     }}
-    onMouseEnter={e=>e.currentTarget.style.background='#1D1D1F'}
-    onMouseLeave={e=>e.currentTarget.style.background='#1D1D1F'}
+    onMouseEnter={e=>e.currentTarget.style.opacity='0.92'}
+    onMouseLeave={e=>e.currentTarget.style.opacity='1'}
     >
       {lang === 'EN' ? 'Ask AI Advisor' : 'Спросить AI Советника'}
       <span style={{ display:'flex', alignItems:'center', gap:'3px', opacity:0.5, fontSize:'11px' }}>
