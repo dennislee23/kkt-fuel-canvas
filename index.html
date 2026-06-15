@@ -313,12 +313,12 @@ const ProblemRect = ({ problem, isOpen, onToggle }) => {
       className="prob-btn"
       onMouseEnter={() => setHov(true)} onMouseLeave={() => setHov(false)}
       style={{
-        height:`${PROB_H}px`, width:'100%', textAlign:'left', cursor:'pointer',
+        width:'100%', textAlign:'left', cursor:'pointer',
         background: isOpen ? C.surfaceHov : hov ? 'rgba(30,24,16,0.02)' : C.surface,
         border:`1px solid ${active ? C.borderHov : C.border}`,
         borderRadius:'8px',
-        padding:'15px 38px 15px 15px',
-        display:'flex', flexDirection:'column', gap:'6px',
+        padding:'13px 38px 14px 15px',
+        display:'flex', flexDirection:'column', gap:'5px',
         position:'relative', overflow:'hidden',
         transition:'background .15s ease, border-color .15s ease',
       }}
@@ -328,10 +328,12 @@ const ProblemRect = ({ problem, isOpen, onToggle }) => {
         fontSize:'14.5px', fontWeight:600, color:C.text,
         lineHeight:1.26, letterSpacing:'-.005em', textWrap:'pretty',
       }}>{problem.title}</span>
-      <span style={{
-        fontSize:'10.5px', color:'#86868B',
-        lineHeight:1.55, fontWeight:400, fontStyle:'italic', textWrap:'pretty',
-      }}>{problem.painLine}</span>
+      {isOpen && (
+        <span style={{
+          fontSize:'11.5px', color:'#86868B',
+          lineHeight:1.5, fontWeight:400, textWrap:'pretty',
+        }}>{problem.painLine}</span>
+      )}
       <span style={{
         position:'absolute', top:'12px', right:'12px',
         width:'20px', height:'20px', borderRadius:'50%',
@@ -348,22 +350,43 @@ const ProblemRect = ({ problem, isOpen, onToggle }) => {
 };
 
 /* ── STAGE CELL ── */
-const StageCell = ({ cards, isOpen, isLastCol, onCardClick }) => (
-  <div style={{
-    padding: isOpen ? '14px 12px' : '0',
-    borderRight: isLastCol ? 'none' : `1px solid ${C.border}`,
-    display:'flex', flexDirection:'column', gap:'10px',
-    minWidth:0,
-  }}>
-    {isOpen && (
-      cards.length > 0
-        ? cards.map(c => <CardTile key={c.id} card={c} onClick={() => onCardClick(c)} />)
-        : <div style={{ minHeight:'60px', display:'flex', alignItems:'center', justifyContent:'center' }}>
-            <span style={{ fontSize:'20px', color:'rgba(30,24,16,0.08)', lineHeight:1 }}>·</span>
+const StageCell = ({ cards, isOpen, isLastCol, onCardClick, onToggleRow }) => {
+  const [hov, setHov] = useState(false);
+  if (isOpen) {
+    return (
+      <div style={{
+        padding:'14px 12px',
+        borderRight: isLastCol ? 'none' : `1px solid ${C.border}`,
+        display:'flex', flexDirection:'column', gap:'10px',
+        minWidth:0,
+      }}>
+        {cards.length > 0
+          ? cards.map(c => <CardTile key={c.id} card={c} onClick={() => onCardClick(c)} />)
+          : <div style={{ minHeight:'48px', display:'flex', alignItems:'center', justifyContent:'center' }}>
+              <span style={{ display:'inline-block', width:'14px', height:'1.5px', borderRadius:'2px', background:'rgba(0,0,0,0.10)' }} />
+            </div>}
+      </div>
+    );
+  }
+  // Collapsed: quiet dot-density map of how many solutions live in this stage.
+  return (
+    <div onClick={onToggleRow}
+      onMouseEnter={() => setHov(true)} onMouseLeave={() => setHov(false)}
+      style={{
+        padding:'0 14px', cursor:'pointer',
+        borderRight: isLastCol ? 'none' : `1px solid ${C.border}`,
+        background: hov ? 'rgba(30,24,16,0.02)' : 'transparent',
+        display:'flex', alignItems:'center',
+        transition:'background .15s ease', minWidth:0,
+      }}>
+      {cards.length > 0
+        ? <div style={{ display:'flex', gap:'5px', flexWrap:'wrap', alignItems:'center' }}>
+            {cards.map(c => <span key={c.id} style={{ width:'5px', height:'5px', borderRadius:'50%', background:'rgba(255,106,0,0.55)' }} />)}
           </div>
-    )}
-  </div>
-);
+        : <span style={{ display:'inline-block', width:'14px', height:'1.5px', borderRadius:'2px', background:'rgba(0,0,0,0.10)' }} />}
+    </div>
+  );
+};
 
 const SubblockDivider = () => (
   <div style={{ height:'1px', background:'rgba(30,24,16,0.07)', gridColumn:'1 / -1' }} />
@@ -659,14 +682,14 @@ const BlockCanvas = ({ block, openProblems, onToggleProblem, onToggleAll, onCard
               <div style={{
                 display:'grid', gridTemplateColumns:GRID_COLS,
                 borderBottom: isLastRow ? 'none' : `1px solid ${C.border}`,
-                background: isOpen ? 'rgba(30,24,16,0.015)' : 'transparent',
+                background: isOpen ? 'rgba(255,106,0,0.03)' : 'transparent',
                 transition:'background .15s ease',
               }}>
-                <div style={{ padding:'13px', borderRight:`1px solid ${C.border}`, display:'flex' }}>
+                <div style={{ padding:'13px', borderRight:`1px solid ${C.border}`, display:'flex', alignItems:'flex-start' }}>
                   <ProblemRect problem={p} isOpen={isOpen} onToggle={() => onToggleProblem(p.id)} />
                 </div>
                 {[1,2,3].map((sid, si) => (
-                  <StageCell key={sid} cards={cardsByPS[p.id][sid]} isOpen={isOpen} isLastCol={si===2} onCardClick={onCardClick} />
+                  <StageCell key={sid} cards={cardsByPS[p.id][sid]} isOpen={isOpen} isLastCol={si===2} onCardClick={onCardClick} onToggleRow={() => onToggleProblem(p.id)} />
                 ))}
               </div>
             </React.Fragment>
