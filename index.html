@@ -858,8 +858,8 @@ const HeroScreen = ({ onScrollToCatalog, onScrollToBlock, lang }) => {
           minWidth: 0,
         }}
       >
-        <span style={{ fontSize: 'clamp(10px,0.85vw,12px)', fontWeight: 600, color: hov ? C.text : C.textSec, lineHeight: 1.2, transition: 'color .15s', letterSpacing: '-.01em', whiteSpace: 'nowrap' }}>{layer.label}</span>
-        <span style={{ fontSize: 'clamp(9px,0.72vw,10.5px)', color: C.textMuted, fontStyle: 'italic', lineHeight: 1.35, textWrap: 'pretty' }}>{layer.desc}</span>
+        <span style={{ fontSize: 'clamp(13px,1.1vw,15px)', fontWeight: 600, color: hov ? C.text : C.text, lineHeight: 1.25, transition: 'color .15s', letterSpacing: '-.01em', whiteSpace: 'nowrap' }}>{layer.label}</span>
+        <span style={{ fontSize: 'clamp(11.5px,0.95vw,13px)', color: C.textSec, lineHeight: 1.45, textWrap: 'pretty' }}>{layer.desc}</span>
       </button>
     );
   };
@@ -918,8 +918,8 @@ const HeroScreen = ({ onScrollToCatalog, onScrollToBlock, lang }) => {
           ))}
         </div>
         {/* Cross-cutting layers — compact pills */}
-        <div style={{ borderTop: `1px solid rgba(30,24,16,0.07)`, padding: '8px 14px 10px' }}>
-          <div style={{ fontSize: '8.5px', color: C.textMuted, fontWeight: 700, letterSpacing: '.16em', textTransform: 'uppercase', marginBottom: '7px', opacity: 0.75 }}>{isEn ? '+ cross-cutting layers' : '+ сквозные контуры'}</div>
+        <div style={{ borderTop: `1px solid rgba(30,24,16,0.07)`, padding: '13px 14px 15px' }}>
+          <div style={{ fontSize: '10px', color: C.textMuted, fontWeight: 700, letterSpacing: '.16em', textTransform: 'uppercase', marginBottom: '10px', opacity: 0.8 }}>{isEn ? '+ cross-cutting layers' : '+ сквозные контуры'}</div>
           <div style={{ display: 'flex', alignItems: 'stretch', gap: '0' }}>
             <MgmtPill layer={MGMT_LAYERS[0]} />
             <div style={{ width: '1px', background: 'rgba(30,24,16,0.10)', margin: '4px 0', flexShrink: 0 }} />
@@ -973,26 +973,26 @@ const HeroScreen = ({ onScrollToCatalog, onScrollToBlock, lang }) => {
           </p>
         </header>
 
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '20px' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, minmax(0, 1fr))', gap: '16px' }}>
           {VALUE_PROPS.map((vp, i) => (
             <article key={i} style={{
               position: 'relative', background: C.surface,
               border: `1px solid ${C.border}`, borderRadius: '12px',
-              padding: '28px 28px 26px', overflow: 'hidden',
+              padding: '24px 22px 22px', overflow: 'hidden',
             }}>
               <span aria-hidden="true" style={{
-                display: 'block', width: '34px', height: '4px', borderRadius: '4px',
+                display: 'block', width: '32px', height: '4px', borderRadius: '4px',
                 background: 'linear-gradient(118deg,#FF9D2E 0%,#FF6A00 52%,#F5481F 100%)',
-                marginBottom: '18px',
+                marginBottom: '16px',
               }} />
               <h3 style={{
                 fontFamily: 'DM Sans, system-ui, sans-serif',
-                fontSize: 'clamp(18px,1.9vw,22px)', fontWeight: 600,
-                letterSpacing: '-.015em', color: C.text, margin: '0 0 10px', textWrap: 'pretty',
+                fontSize: 'clamp(17px,1.5vw,19px)', fontWeight: 600,
+                letterSpacing: '-.015em', color: C.text, margin: '0 0 10px', lineHeight: 1.2, textWrap: 'pretty',
               }}>{vp.title}</h3>
               <p style={{
-                fontSize: 'clamp(15px,1.4vw,16px)', lineHeight: 1.6,
-                color: C.textSec, margin: 0, maxWidth: '52ch', textWrap: 'pretty',
+                fontSize: '14px', lineHeight: 1.55,
+                color: C.textSec, margin: 0, textWrap: 'pretty',
               }}>{vp.desc}</p>
             </article>
           ))}
