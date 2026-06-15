@@ -1279,11 +1279,15 @@ const App = () => {
     <div style={{ minHeight:'100vh', display:'flex', flexDirection:'column', background:C.bg }}>
 
       <header style={{
-        padding:'0 clamp(20px,3vw,44px)', height:`${HEADER_H}px`,
-        display:'flex', alignItems:'center', justifyContent:'space-between',
+        height:`${HEADER_H}px`,
         background:C.surface, borderBottom:`1px solid ${C.border}`,
         flexShrink:0, position:'sticky', top:0, zIndex:40,
       }}>
+        <div style={{
+          maxWidth:'1120px', margin:'0 auto', width:'100%', height:'100%',
+          padding:'0 clamp(20px,4vw,48px)', boxSizing:'border-box',
+          display:'flex', alignItems:'center', justifyContent:'space-between', gap:'24px',
+        }}>
         <Wordmark lang={lang} />
         <nav style={{ display:'flex', alignItems:'center', gap:'28px' }}>
           {screen === 'profile' && (
@@ -1311,9 +1315,10 @@ const App = () => {
             );
           })}
         </nav>
-        <div style={{ display:'flex', alignItems:'center', gap:'10px' }}>
-          <LangSwitcher />
+        <div style={{ display:'flex', alignItems:'center', gap:'12px' }}>
           <AdvisorBtn />
+          <LangSwitcher />
+        </div>
         </div>
       </header>
       {langToast && (
