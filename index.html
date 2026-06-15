@@ -136,27 +136,29 @@ const TASKS_COL   = '272px';
 const GRID_COLS   = `${TASKS_COL} repeat(3, minmax(220px, 1fr))`;
 const PROB_H      = 148;
 
+// Main-site palette: single orange accent + neutrals only (no green/blue/maroon/purple).
 const STAGE_P = {
-  1: { accent:'#2D6A4F', dim:'rgba(45,106,79,0.09)',   line:'rgba(45,106,79,0.45)'   },
-  2: { accent:'#1E4976', dim:'rgba(30,73,118,0.09)',   line:'rgba(30,73,118,0.45)'   },
-  3: { accent:'#7A2E4A', dim:'rgba(122,46,74,0.09)',   line:'rgba(122,46,74,0.45)'   },
+  1: { accent:'#FF6A00', dim:'rgba(255,106,0,0.10)', line:'rgba(0,0,0,0.12)' },
+  2: { accent:'#FF6A00', dim:'rgba(255,106,0,0.10)', line:'rgba(0,0,0,0.12)' },
+  3: { accent:'#FF6A00', dim:'rgba(255,106,0,0.10)', line:'rgba(0,0,0,0.12)' },
 };
 
+const NEUTRAL_TAG = { fg:'#515257', bg:'rgba(0,0,0,0.05)' };
 const IMPACT_P = {
-  'Рост выручки':                 { fg:'#1E8A68', bg:'rgba(36,181,138,0.10)' },
-  'Сокращение затрат':            { fg:'#A04A00', bg:'rgba(192,90,0,0.10)'   },
-  'Скорость и качество решений':  { fg:'#5A58C0', bg:'rgba(90,88,192,0.10)'  },
-  'Повышение производительности': { fg:'#7A4EA0', bg:'rgba(122,78,160,0.10)' },
+  'Рост выручки':                 NEUTRAL_TAG,
+  'Сокращение затрат':            NEUTRAL_TAG,
+  'Скорость и качество решений':  NEUTRAL_TAG,
+  'Повышение производительности': NEUTRAL_TAG,
 };
 const SCALE_P = {
-  'Quick Win':      { fg:'#1E8A68', bg:'rgba(36,181,138,0.10)' },
-  'Быстрый эффект': { fg:'#1E8A68', bg:'rgba(36,181,138,0.10)' },
-  'Scoped Project': { fg:'#3A6DD4', bg:'rgba(58,109,212,0.10)' },
-  'Проектный запуск':{ fg:'#3A6DD4', bg:'rgba(58,109,212,0.10)' },
-  'Major Program':  { fg:'#7A4EA0', bg:'rgba(122,78,160,0.10)' },
-  'Системная программа':{ fg:'#7A4EA0', bg:'rgba(122,78,160,0.10)' },
+  'Quick Win':      NEUTRAL_TAG,
+  'Быстрый эффект': NEUTRAL_TAG,
+  'Scoped Project': NEUTRAL_TAG,
+  'Проектный запуск':NEUTRAL_TAG,
+  'Major Program':  NEUTRAL_TAG,
+  'Системная программа':NEUTRAL_TAG,
 };
-const COST_P = { fg:'#A04A00', bg:'rgba(192,90,0,0.10)' };
+const COST_P = NEUTRAL_TAG;
 
 /* ── ATOMS ── */
 const Pill = ({ label, fg, bg, size='sm' }) => (
