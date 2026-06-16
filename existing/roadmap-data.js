@@ -2130,6 +2130,72 @@ window.FUEL_CARDS = [
  conversationQuestions = Задайте себе вопрос
  ────────────────────────────────────────────────────────────────── */
 window.FUEL_DRAWER_CONTENT = {
+  "g1-1-trusted-data-foundation": {
+    "businessPressure": "В типовой сети данные разбросаны: ERP, касса, лояльность, телематика, нефтебазы, BI, Excel — и в каждом своя версия правды. Отделы приходят на совещание с разными цифрами по одной и той же марже, и время уходит на спор, чья цифра верная, а не на решение. А любой прогноз, модель или ИИ, построенный на несведённых и грязных данных, наследует их ошибки — и красиво врёт.",
+    "whatWePutInPlace": "Выстраиваем основу, на которой держится всё остальное: сводим разрозненные системы в единое место, приводим ключевые показатели к одной методике (одна правда для всех отделов) и доводим данные до качества, пригодного для решений. Это не «ещё одна система», а фундамент, на который встают прогнозы, аналитика и ИИ всех блоков. (В проработке — три аспекта: единая правда / единая основа / качество данных.)",
+    "whatImproves": "Отделы работают от одной цифры, а не спорят, чья верна; на основе можно строить прогнозы и ИИ, которым можно верить; решения опираются на данные, а не на то, чей Excel свежее.",
+    "dataAiBehind": "Сведение источников в единую основу, согласование методики показателей, контроль качества данных. Major Program — это настоящий фундамент, отсюда высшая стоимость и зависимость от него у большей части каталога. Для клиента с готовым DWH часть шага отмечена как пройденная — входит выше по этапу.",
+    "conversationQuestions": [
+      "Приходят ли отделы на совещание с разными цифрами по одному показателю?",
+      "Сколько систем хранят свою версию правды по продажам, марже, клиентам?",
+      "Можно ли доверять данным настолько, чтобы строить на них прогнозы и ИИ?"
+    ]
+  },
+  "g1-2-bi-foundation": {
+    "businessPressure": "Даже когда данные сведены, без единой отчётности каждый отдел строит свои выгрузки и Excel — и картина опять расходится, а аналитика и ИИ упираются в отсутствие надёжного слоя визуализации. Текст-to-SQL, прогнозы, аналитика любого блока опираются на этот слой; без него они работают вполсилы.",
+    "whatWePutInPlace": "Поднимаем единую систему отчётности (BI) поверх сведённой основы: дашборды и отчёты по сети, на которые опирается вся аналитика и ИИ. Один слой правды в визуализации вместо разрозненных выгрузок.",
+    "whatImproves": "Единая картина в дашбордах вместо Excel у каждого; аналитика и ИИ опираются на надёжный слой; решения из одной отчётности, а не из чьей-то выгрузки.",
+    "dataAiBehind": "BI поверх единой основы данных (G1.1). Scoped — нужен сведённый фундамент. Многие сети BI уже имеют — тогда шаг отмечен как пройденный, и каталог идёт к карточкам, которые на него опираются.",
+    "conversationQuestions": [
+      "Все отделы смотрят в одну отчётность или каждый в свою выгрузку?",
+      "Опираются ли ваши прогнозы и аналитика на надёжный слой отчётности?",
+      "Сколько Excel-выгрузок живёт параллельно официальной отчётности?"
+    ]
+  },
+  "g2-1-knowledge-search": {
+    "businessPressure": "Знания компании разбросаны по регламентам, инструкциям, договорам, прошлым решениям, перепискам — и живут в головах тех, кто давно работает. Сотрудник тратит время, чтобы найти ответ, или звонит «тому, кто помнит». Когда такой человек уходит, знание уходит с ним.",
+    "whatWePutInPlace": "Ставим поиск по знаниям компании, который находит ответ по сути вопроса, а не по точному совпадению слов: регламент, условие договора, прошлое решение, инструкцию. Сквозной инструмент — работает для юристов, операций, финансов, HR, любого подразделения.",
+    "whatImproves": "Ответ за секунды вместо поиска и звонков; знание не теряется с уходом сотрудника; единый доступ к регламентам и опыту для всех подразделений.",
+    "dataAiBehind": "Поиск по смыслу (RAG, ИИ) по утверждённым документам и базе знаний компании, с контролем доступа. Готовый инструмент — Quick Win. Это дом сквозной способности: юридический вход — из F2.3, но движок один на всю компанию.",
+    "conversationQuestions": [
+      "Сколько времени сотрудники тратят на поиск ответа в регламентах и договорах?",
+      "Что происходит со знанием, когда уходит человек, «который помнит»?",
+      "Сколько вопросов решается звонком вместо поиска?"
+    ]
+  },
+  "g2-3-team-routine": {
+    "businessPressure": "Команда — особенно небольшой головной офис — тратит много времени на механическое: записать и свести встречу, поставить и проследить задачи, разобрать переписку, согласовать календарь, собрать рутинный отчёт. Это время не идёт на решения, ради которых людей наняли.",
+    "whatWePutInPlace": "Ставим рабочие ИИ-инструменты, которые берут механическую часть на себя: транскрипт и саммари встреч с действиями, помощь с задачами и перепиской, подготовка рутинных отчётов. Сквозной набор — полезен любому подразделению. Начинаем с низкорисковой рутины и понятного контроля доступа.",
+    "whatImproves": "Меньше времени на механику, больше на работу; встречи и задачи не теряются; единый базовый набор продуктивности для всех команд.",
+    "dataAiBehind": "Готовые ИИ-инструменты продуктивности (встречи, задачи, переписка, отчёты) с контролем доступа. Quick Win — самые быстрые и понятные победы каталога, доступны с первого дня.",
+    "conversationQuestions": [
+      "Сколько времени команды уходит на механическую рутину?",
+      "Теряются ли договорённости и задачи после встреч?",
+      "Какие рутинные задачи можно снять с людей уже сейчас?"
+    ]
+  },
+  "g2-4-ask-data-words": {
+    "businessPressure": "Чтобы получить цифру, сотрудник идёт к аналитику и ждёт выгрузку. Аналитики — узкое место: простые вопросы стоят в очереди за сложными, а руководитель не может быстро проверить гипотезу по данным сам. Данные есть, но доступ к ним — через посредника.",
+    "whatWePutInPlace": "Даём каждому сотруднику возможность спросить данные на языке бизнеса и получить ответ — без аналитика-посредника. Сквозной инструмент: финансист спрашивает про маржу, операции про станции, коммерция про клиентов — один движок, разные витрины. Работает поверх надёжного фундамента и отчётности.",
+    "whatImproves": "Ответ на вопрос по данным за секунды, а не за день; аналитики разгружены от простых запросов; руководитель проверяет гипотезу сам, в любом подразделении.",
+    "dataAiBehind": "Запрос к данным на естественном языке (Text-to-SQL, ИИ) поверх единой основы и BI. Advanced — отсюда замок на G1.1–G1.2: без надёжного фундамента ассистент будет красиво врать. Дом сквозной способности: финансовый вход — из E1, но движок один на всю компанию.",
+    "conversationQuestions": [
+      "Сколько времени уходит, чтобы получить цифру через аналитика?",
+      "Может ли руководитель проверить гипотезу по данным сам?",
+      "Сколько простых запросов стоит в очереди у аналитиков?"
+    ]
+  },
+  "g2-5-system-data-agent": {
+    "businessPressure": "Огромная доля рабочего времени уходит на перенос данных между системами руками: занести клиента в CRM после звонка, обновить статус в таск-менеджере, провести документ в ERP, перебить данные из письма в форму. Это медленно, порождает ошибки и расхождения между системами, и не масштабируется с ростом компании.",
+    "whatWePutInPlace": "Ставим агента, который сам заносит и обновляет записи в CRM, ERP и таск-менеджерах — из писем, звонков, сканов, чатов. Человек задаёт правила и проверяет спорное; рутинный перенос данных система берёт на себя. Сквозной инструмент: продажи, снабжение, бэкофис, HR — везде, где данные переносят руками.",
+    "whatImproves": "Меньше ручного ввода и ошибок переноса; системы синхронны, а не расходятся; команда занимается работой, а не перебивкой данных между окнами.",
+    "dataAiBehind": "Агент поверх доступа к системам (CRM/ERP/таск-менеджеры) и обработки входящих документов, действующий по правилам и под контролем человека. Frontier — это слой автоматизации поверх данных и инструментов; спорные случаи эскалируются человеку, агент не действует вслепую.",
+    "conversationQuestions": [
+      "Сколько рабочего времени уходит на перенос данных между системами руками?",
+      "Расходятся ли данные между CRM, ERP и таск-менеджерами из-за ручного ввода?",
+      "Какие операции переноса данных можно отдать агенту, оставив контроль?"
+    ]
+  },
  "a1-stock-need-view": {
  "businessPressure": "Решение о закупке часто принимается под давлением времени и по неполной картине: остатки в одной системе, потребность в голове у снабженца, заявки станций в почте. В итоге заказы идут по привычке и прошлому периоду, а не по тому, что реально нужно сейчас — отсюда то затоваривание на одной нефтебазе, то дефицит на другой.",
  "whatWePutInPlace": "Сводим в одну картину то, что нужно для решения о закупке: текущие остатки по базам и станциям, потребность, открытые заявки. Снабженец видит ситуацию целиком в одном месте, а не собирает её вручную из трёх источников перед каждым заказом.",
@@ -5351,6 +5417,72 @@ window.FUEL_CARDS_EN = [
 ];
 
 window.FUEL_DRAWER_CONTENT_EN = {
+  "g1-1-trusted-data-foundation": {
+    "businessPressure": "In a typical network, data is scattered: ERP, POS, loyalty, telematics, terminals, BI, Excel — each with its own version of the truth. Departments arrive at a meeting with different numbers for the same margin, and time goes into arguing whose number is right instead of deciding. And any forecast, model, or AI built on unconsolidated, dirty data inherits those errors — and lies convincingly.",
+    "whatWePutInPlace": "We build the foundation everything else rests on: we bring scattered systems into one place, align key metrics to a single methodology (one truth for every department), and raise data to a quality fit for decisions. This is not 'another system' but the foundation that forecasts, analytics, and AI across all blocks stand on. (Three aspects in scope: one truth / one foundation / data quality.)",
+    "whatImproves": "Departments work from one number instead of arguing whose is right; forecasts and AI you can trust can be built on the foundation; decisions rest on data, not on whose Excel is freshest.",
+    "dataAiBehind": "Consolidating sources into a single foundation, aligning metric methodology, and controlling data quality. A Major Program — a real foundation, hence the highest cost and the dependency most of the catalog has on it. For a client with an existing DWH, part of the step is marked as done — included earlier in the stage.",
+    "conversationQuestions": [
+      "Do departments arrive at meetings with different numbers for the same metric?",
+      "How many systems hold their own version of the truth for sales, margin, and customers?",
+      "Can the data be trusted enough to build forecasts and AI on it?"
+    ]
+  },
+  "g1-2-bi-foundation": {
+    "businessPressure": "Even once data is consolidated, without unified reporting each department builds its own exports and Excel — and the picture diverges again, while analytics and AI hit the lack of a reliable visualization layer. Text-to-SQL, forecasts, and analytics in any block rely on this layer; without it they work at half strength.",
+    "whatWePutInPlace": "We stand up a unified reporting system (BI) on top of the consolidated foundation: network-wide dashboards and reports that all analytics and AI rely on. One layer of truth in visualization instead of scattered exports.",
+    "whatImproves": "A single picture in dashboards instead of everyone's own Excel; analytics and AI rest on a reliable layer; decisions come from one report, not from someone's export.",
+    "dataAiBehind": "BI on top of the single data foundation (G1.1). Scoped — it needs the consolidated foundation. Many networks already have BI — then the step is marked as done and the catalog moves on to the cards that rely on it.",
+    "conversationQuestions": [
+      "Do all departments look at one report, or each at their own export?",
+      "Do your forecasts and analytics rest on a reliable reporting layer?",
+      "How many Excel exports live alongside the official reporting?"
+    ]
+  },
+  "g2-1-knowledge-search": {
+    "businessPressure": "Company knowledge is scattered across policies, instructions, contracts, past decisions, and correspondence — and lives in the heads of long-tenured staff. An employee spends time finding an answer, or calls 'the person who remembers.' When that person leaves, the knowledge leaves with them.",
+    "whatWePutInPlace": "We set up company knowledge search that finds an answer by the meaning of the question, not by an exact word match: a policy, a contract clause, a past decision, an instruction. A cross-cutting tool — it works for legal, operations, finance, HR, any unit.",
+    "whatImproves": "An answer in seconds instead of searching and calling around; knowledge isn't lost when an employee leaves; one access point to policies and experience for every unit.",
+    "dataAiBehind": "Semantic search (RAG, AI) over approved documents and the company knowledge base, with access control. A ready tool — Quick Win. It is the home of a cross-cutting capability: the legal entry point comes from F2.3, but the engine is one for the whole company.",
+    "conversationQuestions": [
+      "How much time do staff spend searching policies and contracts for an answer?",
+      "What happens to knowledge when 'the person who remembers' leaves?",
+      "How many questions are resolved by a phone call instead of a search?"
+    ]
+  },
+  "g2-3-team-routine": {
+    "businessPressure": "The team — especially a small head office — spends a lot of time on mechanical work: writing up and summarizing meetings, setting and tracking tasks, sorting correspondence, aligning calendars, compiling routine reports. That time doesn't go to the decisions people were hired for.",
+    "whatWePutInPlace": "We put working AI tools in place that take the mechanical part on themselves: meeting transcripts and summaries with action items, help with tasks and correspondence, and preparation of routine reports. A cross-cutting set — useful to any unit. We start with low-risk routine and clear access control.",
+    "whatImproves": "Less time on mechanics and more on the actual work; meetings and tasks aren't lost; one baseline productivity set for all teams.",
+    "dataAiBehind": "Ready-made AI productivity tools (meetings, tasks, correspondence, reports) with access control. Quick Win — the fastest, clearest wins in the catalog, available from day one.",
+    "conversationQuestions": [
+      "How much team time goes to mechanical routine?",
+      "Do agreements and tasks get lost after meetings?",
+      "Which routine tasks could be taken off people right now?"
+    ]
+  },
+  "g2-4-ask-data-words": {
+    "businessPressure": "To get a number, an employee goes to an analyst and waits for an export. Analysts are the bottleneck: simple questions queue behind complex ones, and a manager can't quickly test a hypothesis against the data themselves. The data exists, but access to it runs through an intermediary.",
+    "whatWePutInPlace": "We give every employee the ability to ask the data in business language and get an answer — with no analyst as intermediary. A cross-cutting tool: finance asks about margin, operations about stations, commercial about customers — one engine, different views. It works on top of a reliable foundation and reporting.",
+    "whatImproves": "An answer to a data question in seconds rather than a day; analysts freed from simple requests; a manager tests a hypothesis themselves, in any unit.",
+    "dataAiBehind": "Natural-language querying (Text-to-SQL, AI) on top of the single foundation and BI. Advanced — hence the lock on G1.1–G1.2: without a reliable foundation the assistant would lie convincingly. The home of a cross-cutting capability: the finance entry point comes from E1, but the engine is one for the whole company.",
+    "conversationQuestions": [
+      "How long does it take to get a number through an analyst?",
+      "Can a manager test a hypothesis against the data themselves?",
+      "How many simple requests are queued with the analysts?"
+    ]
+  },
+  "g2-5-system-data-agent": {
+    "businessPressure": "A huge share of working time goes to moving data between systems by hand: entering a customer into CRM after a call, updating a status in the task manager, posting a document in ERP, retyping data from an email into a form. It's slow, creates errors and divergence between systems, and doesn't scale as the company grows.",
+    "whatWePutInPlace": "We put in place an agent that enters and updates records in CRM, ERP, and task managers itself — from emails, calls, scans, and chats. A human sets the rules and reviews the edge cases; the system takes on the routine data transfer. A cross-cutting tool: sales, procurement, back office, HR — anywhere data is moved by hand.",
+    "whatImproves": "Less manual entry and fewer transfer errors; systems stay in sync instead of diverging; the team does the work instead of retyping data between windows.",
+    "dataAiBehind": "An agent on top of system access (CRM/ERP/task managers) and incoming-document processing, acting by rules and under human control. Frontier — an automation layer on top of data and tools; edge cases escalate to a human, the agent doesn't act blindly.",
+    "conversationQuestions": [
+      "How much working time goes to moving data between systems by hand?",
+      "Does data diverge between CRM, ERP, and task managers because of manual entry?",
+      "Which data-transfer operations could be handed to an agent while keeping control?"
+    ]
+  },
   "a1-stock-need-view": {
     "businessPressure": "Procurement decisions are often made under time pressure and with an incomplete picture: inventory in one system, demand in the buyer's head, station requests in email. As a result, orders follow habit and the previous period rather than what is actually needed now, leading to excess stock at one terminal and shortages at another.",
     "whatWePutInPlace": "We bring into one view what is needed for a procurement decision: current inventory by terminal and station, demand, and open requests. The buyer sees the full situation in one place instead of manually collecting it from three sources before every order.",
