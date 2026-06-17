@@ -1,0 +1,17 @@
+# Fuel AI Transformation Map — KKT
+
+> An interactive map of where data and AI deliver measurable results across a fuel-retail network, published by Kitty Kat Technologies (KKT). It spans the whole network economy — procurement and margin, logistics, stations and shops, customers, finance and control — built bottom-up: connected data and control first, then AI where it earns its place.
+
+The Fuel AI Transformation Map is a working artifact from KKT, a data, AI, and automation delivery firm based in Tallinn, Estonia (EU). It lays out, domain by domain and stage by stage, the solutions that move the economics of an independent fuel network — from a trusted data foundation through demand forecasting, procurement, distribution, station and shop operations, customer value, and financial control. Each solution is positioned by maturity (quick win, scoped, advanced, frontier) and by what it depends on, so the sequence is honest about prerequisites rather than selling everything at once.
+
+KKT's marquee fuel deployment is Optimus — a procurement-and-margin engine in pilot at Red Petroleum, a 250-station independent fuel network in Kyrgyzstan. The map shows where Optimus sits within the broader network economy and what else becomes possible once connected data and control are in place.
+
+## Pages
+
+- [Fuel AI Transformation Map](https://fuelretail.kittykat.tech/): The interactive map — domains, stages, and solutions across a fuel-retail network.
+
+## About KKT
+
+- [Kitty Kat Technologies](https://kittykat.tech/): The firm behind the map — business-first data & AI delivery for mid-enterprise companies in asset-heavy industries.
+- [Optimus](https://kittykat.tech/solutions/optimus/): The procurement-and-margin product for fuel networks, in pilot at Red Petroleum.
+- [Fuel retail positioning](https://kittykat.tech/industries/fuel-retail/): How KKT approaches fuel — connected data first, AI on built foundations.
