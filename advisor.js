@@ -13,19 +13,19 @@
 
   var ENDPOINT = '/api/advisor.php';
   var SUGGESTED = [
-    'С чего начать AI-трансформацию сети АЗС?',
-    'Какие инициативы могут дать быстрый эффект без большой перестройки?',
-    'Если данные есть, но они не связаны — что делать сначала?',
-    'Как может выглядеть двухнедельная диагностика?'
+    'Where do I start the AI transformation of a fuel-station network?',
+    'Which initiatives can deliver a quick win without a big overhaul?',
+    "Data exists but it isn't connected — what do I do first?",
+    'What might a two-week diagnostic look like?'
   ];
 
   // Panel CSS lifted verbatim from the main-site advisor, plus a launcher
   // pill and a fallback token block so it themes correctly on any host page.
   var CSS = `
   .kkt-advisor-trigger{display:inline-flex;align-items:center;gap:8px;vertical-align:middle;white-space:nowrap;
-    background:#4A3620;border:1px solid #4A3620;border-radius:3px;padding:8px 14px;margin-left:18px;
+    background:linear-gradient(118deg,#FF9D2E 0%,#FF6A00 52%,#F5481F 100%);border:none;border-radius:3px;padding:8px 14px;margin-left:18px;
     font-family:var(--font-body);font-size:13px;font-weight:400;letter-spacing:.01em;color:#fff;cursor:pointer;
-    box-shadow:0 2px 10px rgba(74,54,32,.20);transition:opacity .15s ease}
+    box-shadow:0 2px 10px rgba(255,106,0,.28);transition:opacity .15s ease}
   .kkt-advisor-trigger:hover{opacity:.85}
   .kkt-advisor-trigger .kc{display:inline-flex;gap:2px}
   .kkt-advisor-trigger kbd{font-family:var(--font-mono);font-size:10px;background:rgba(255,255,255,.18);border:none;border-radius:2px;padding:1px 4px;color:#fff;line-height:1}
@@ -37,10 +37,10 @@
     transform:translateX(100%);transition:transform .26s cubic-bezier(.32,.72,.32,1);visibility:hidden}
   .kkt-advisor-panel.is-open{transform:translateX(0);visibility:visible}
   .kkt-advisor-trigger,.kkt-advisor-backdrop,.kkt-advisor-panel{
-    --bg:#F5F3EF;--surface:#FFFFFF;--surface-alt:#F0EDE8;--card:#FAFAF8;
-    --border:rgba(30,24,16,.10);--border-hover:rgba(30,24,16,.20);
-    --text-primary:#1A1410;--text-secondary:#5C5045;--text-muted:#756658;
-    --accent:#AD7B25;--accent-text:#8A5E18;
+    --bg:#FFFFFF;--surface:#FFFFFF;--surface-alt:#F5F5F7;--card:#FFFFFF;
+    --border:rgba(0,0,0,.11);--border-hover:rgba(0,0,0,.28);
+    --text-primary:#1D1D1F;--text-secondary:#515257;--text-muted:#86868B;
+    --accent:#FF6A00;--accent-text:#C2410C;
     --font-display:'DM Sans',system-ui,-apple-system,'Segoe UI',sans-serif;
     --font-body:'DM Sans',system-ui,-apple-system,'Segoe UI',sans-serif;
     --font-mono:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace}
@@ -174,8 +174,8 @@
 
     var trigger = el('button', 'kkt-advisor-trigger');
     trigger.type = 'button';
-    trigger.innerHTML = 'Спросить AI Советника <span class="kc"><kbd>⌘</kbd><kbd>K</kbd></span>';
-    trigger.setAttribute('aria-label', 'Открыть советника (Cmd+K)');
+    trigger.innerHTML = 'Ask AI Advisor <span class="kc"><kbd>⌘</kbd><kbd>K</kbd></span>';
+    trigger.setAttribute('aria-label', 'Open the advisor (Cmd+K)');
 
     var backdrop = el('div', 'kkt-advisor-backdrop'); backdrop.style.display = 'none';
 
@@ -183,15 +183,15 @@
     panel.setAttribute('role', 'dialog'); panel.setAttribute('aria-label', 'KKT advisor');
     panel.innerHTML =
       '<header class="kkt-advisor-header"><div class="kkt-advisor-title">' +
-        '<span class="kkt-advisor-eyebrow">Советник</span>' +
-        '<span class="kkt-advisor-status"><span class="kkt-advisor-dot"></span> спросите о карте</span>' +
-      '</div><button type="button" class="kkt-advisor-close" aria-label="Закрыть">&times;</button></header>' +
+        '<span class="kkt-advisor-eyebrow">Advisor</span>' +
+        '<span class="kkt-advisor-status"><span class="kkt-advisor-dot"></span> ask about the map</span>' +
+      '</div><button type="button" class="kkt-advisor-close" aria-label="Close">&times;</button></header>' +
       '<div class="kkt-advisor-body"></div>' +
       '<form class="kkt-advisor-form">' +
-        '<textarea class="kkt-advisor-input" rows="2" placeholder="Задайте вопрос. Enter — отправить." aria-label="Вопрос советнику"></textarea>' +
-        '<button type="submit" class="kkt-advisor-send" disabled>Отправить</button>' +
+        '<textarea class="kkt-advisor-input" rows="2" placeholder="Ask a question. Enter to send." aria-label="Question for the advisor"></textarea>' +
+        '<button type="submit" class="kkt-advisor-send" disabled>Send</button>' +
       '</form>' +
-      '<footer class="kkt-advisor-foot"><span class="kkt-advisor-shortcut"><kbd>Esc</kbd> — закрыть &middot; <kbd>⌘</kbd>+<kbd>K</kbd> — открыть</span></footer>';
+      '<footer class="kkt-advisor-foot"><span class="kkt-advisor-shortcut"><kbd>Esc</kbd> to close &middot; <kbd>⌘</kbd>+<kbd>K</kbd> to open</span></footer>';
 
     document.body.appendChild(backdrop);
     document.body.appendChild(panel);
@@ -255,7 +255,7 @@
     function renderEmpty() {
       body.innerHTML = '';
       var e = el('div', 'kkt-advisor-empty');
-      e.innerHTML = '<h2>С чего начнём?</h2><p>Помогаю сориентироваться в карте AI-трансформации для топливного ритейла: какие инициативы применимы к разным бизнес-задачам, где возможен быстрый эффект, что требует фундамента и с чего реалистично начать обсуждение.</p>';
+      e.innerHTML = '<h2>Where shall we start?</h2><p>I work through fuel-retail situations the way our consulting team does — across the AI-transformation map: which initiatives fit which business pressures, where a quick win is possible, what needs a foundation first, and where it is realistic to begin.</p>';
       var ul = el('ul', 'kkt-advisor-suggestions');
       SUGGESTED.forEach(function (s) {
         var li = el('li'); var b = el('button', 'kkt-advisor-suggest', s);
@@ -270,7 +270,7 @@
     function addMsg(role, text) {
       ensureList();
       var li = el('li', 'kkt-advisor-msg role-' + role);
-      li.innerHTML = '<div class="kkt-advisor-msg-role">' + (role === 'user' ? 'Вы' : 'Советник') + '</div>';
+      li.innerHTML = '<div class="kkt-advisor-msg-role">' + (role === 'user' ? 'You' : 'Advisor') + '</div>';
       var c = el('div', 'kkt-advisor-msg-content'); li.appendChild(c);
       setContent(c, text);
       msgList.appendChild(li); body.scrollTop = body.scrollHeight;
@@ -338,7 +338,7 @@
         }).catch(function () { fail(bubble); });
 
       function done() { thinking = false; sendBtn.disabled = !input.value.trim(); if (!acc.trim()) fail(bubble); }
-      function fail(b) { thinking = false; sendBtn.disabled = !input.value.trim(); var c = b.querySelector('.kkt-advisor-msg-content'); c.className = 'kkt-advisor-msg-content'; c.innerHTML = '<p>Советник сейчас недоступен. Попробуйте ещё раз или напишите hello@kittykat.tech.</p>'; }
+      function fail(b) { thinking = false; sendBtn.disabled = !input.value.trim(); var c = b.querySelector('.kkt-advisor-msg-content'); c.className = 'kkt-advisor-msg-content'; c.innerHTML = '<p>The advisor is unavailable right now. Please try again or email hello@kittykat.tech.</p>'; }
     }
   }
 
