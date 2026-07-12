@@ -1,14 +1,227 @@
 # Fuel AI Transformation Map — KKT
 
-> An interactive map of where data and AI deliver measurable results across a fuel-retail network, published by Kitty Kat Technologies (KKT). It spans the whole network economy — procurement and margin, logistics, stations and shops, customers, finance and control — built bottom-up: connected data and control first, then AI where it earns its place.
+> An interactive map of where data and AI deliver measurable results across a fuel-retail network, published by Kitty Kat Technologies (KKT). It spans the whole network economy — procurement and margin, logistics, stations and shops, customers, finance and control — built bottom-up: connected data and control first, then AI where it earns its place. This file mirrors the full map as text (the map itself renders client-side).
 
-The Fuel AI Transformation Map is a working artifact from KKT, a data, AI, and automation delivery firm based in Tallinn, Estonia (EU). It lays out, domain by domain and stage by stage, the solutions that move the economics of an independent fuel network — from a trusted data foundation through demand forecasting, procurement, distribution, station and shop operations, customer value, and financial control. Each solution is positioned by maturity (quick win, scoped, advanced, frontier) and by what it depends on, so the sequence is honest about prerequisites rather than selling everything at once.
+The Fuel AI Transformation Map is a working artifact from KKT, a data, AI, and automation delivery firm based in Tallinn, Estonia (EU). KKT's marquee fuel deployment is Optimus — a procurement-and-margin engine in pilot at Red Petroleum, a 250-station independent fuel network in Kyrgyzstan. The map below shows where Optimus sits within the broader network economy and what else becomes possible once connected data and control are in place.
 
-KKT's marquee fuel deployment is Optimus — a procurement-and-margin engine in pilot at Red Petroleum, a 250-station independent fuel network in Kyrgyzstan. The map shows where Optimus sits within the broader network economy and what else becomes possible once connected data and control are in place.
+## Maturity stages
 
-## Pages
+Every solution on the map is tagged by maturity:
 
-- [Fuel AI Transformation Map](https://fuelretail.kittykat.tech/): The interactive map — domains, stages, and solutions across a fuel-retail network.
+- **Essential Solutions** — Can be launched quickly on existing data. Deliver a clear effect without major process redesign.
+- **Advanced Solutions** — Require more mature data, integrations, and models. Deliver greater impact by optimizing decisions and processes.
+- **Agentic and System-Level Solutions** — End-to-end solutions and AI agents that work on top of a built foundation. A human sets the rules and controls the result.
+
+## The map — 7 domains, 41 challenges, 106 solutions
+
+### A — Fuel: Procurement, Pricing and Margin
+We help manage procurement and pricing as one commercial loop: forecast demand, choose the supplier and buying moment, account for the full landed cost of each batch, and manage pump price with market and demand in mind. The focus is fewer shortages and surpluses, lower overpayment, better margin, and faster commercial decisions.
+
+**A1 · Buy fuel in the right volume and at the right time** — Orders matched to real demand: fewer shortages and surpluses, less frozen capital.
+- See demand and inventory in one view *(Essential Solutions)* — How much is needed and how much is already available, so procurement is not done blindly.
+- Demand forecast by station and terminal *(Advanced Solutions)* — How much will be sold, taking season, weather, and events into account.
+- Procurement agent under operator control *(Agentic and System-Level Solutions)* [prerequisite] — The system prepares the request according to rules; a human approves it.
+- Smart procurement: how much, when, and at what price to buy *(Advanced Solutions)* [prerequisite] — A ready decision for the current task: buy cheaper, freeze less capital, or protect supply.
+
+**A2 · Choose the supplier and procurement terms** — Transparent comparison of price, timing, and terms; procurement at a favorable price moment.
+- Compare suppliers by price, timing, and terms *(Essential Solutions)* — Price, delivery timing, payment deferral, and reliability in one view: selection based on substance, not habit.
+- Choose the best buying moment *(Advanced Solutions)* [prerequisite] — See where the purchase price is moving and buy at the right moment.
+
+**A3 · Account for the full landed cost of a batch in procurement** — Logistics, demurrage, downtime, customs, and penalties are included in the batch economics before the buying decision, instead of surfacing after the fact
+- Know what the batch really cost *(Essential Solutions)* — Price plus logistics, demurrage, downtime, customs, and penalties in one number.
+- See in advance where a batch is becoming more expensive *(Advanced Solutions)* [prerequisite] — Risk of downtime, penalty, or delay before it lands in cost of goods.
+
+**A4 · Manage price with market and demand in mind** — Price changes based on data and on time, not after the market has already moved.
+- See your price against competitors *(Essential Solutions)* — Market prices next to your own, so you are not falling behind blindly.
+- Understand where price can be raised without losing customers *(Advanced Solutions)* [prerequisite] — Where there is price headroom, and where price is pushing the customer to a competitor.
+- Dynamic pricing *(Agentic and System-Level Solutions)* [prerequisite] — Price adjusts to demand, competitors, and time automatically, under rule-based control.
+
+### B — Logistics and Fuel Supply
+We help make fuel supply manageable end to end: see batch movement, delay risks, acceptance discrepancies, railcars and demurrage, terminal operations, delivery to stations, and trip execution. The focus is fewer losses, delays, penalties, and less manual dispatching.
+
+**B1.1 · Control supply movement and delay risks** — Arrival forecast and an early delay signal, so there is time to respond.
+- See where the batch is and when it will arrive *(Essential Solutions)* — Supply status in one view, not through phone calls.
+- Learn about delay risk in advance *(Advanced Solutions)* [prerequisite] — See a disruption before it happens.
+
+**B1.2 · Find where supply discrepancies create losses** — Ordered, shipped, accepted: where there is shortage, loss, or manipulation.
+- Catch shortage at acceptance *(Essential Solutions)* — Reconcile ordered / shipped / accepted.
+- Understand where losses are systemic *(Advanced Solutions)* [prerequisite] — Distinguish a one-off discrepancy from recurring leakage by supplier or route.
+
+**B1.3 · Control railcars and demurrage** — Railcar downtime, unloading, and turnaround: demurrage and penalties under control, not discovered through an invoice after the fact.
+- See railcar status and downtime *(Essential Solutions)* — Where the railcar is, what it costs, how much time remains before a penalty, and who must respond.
+- Reduce demurrage and railcar downtime *(Advanced Solutions)* [prerequisite] — See which railcars are approaching a penalty and where unloading is blocked before the invoice arrives.
+
+**B2.1 · Control loading/unloading and process losses** — Loading/unloading acts, actual volumes, temperature corrections, and natural loss are controlled instead of written off after the fact
+- Reconcile loading/unloading act with actual volume *(Essential Solutions)* — Discrepancies between the operation act and actual volume are visible immediately, not only at inventory count
+- Separate normal allowance from loss *(Advanced Solutions)* [prerequisite] — Where it is natural loss and temperature correction, and where it is real leakage or a violation for investigation
+
+**B2.2 · Control quality and tank utilization at the terminal** — Fuel allocation across tanks, quality control, and storage standards.
+- Keep quality under control *(Essential Solutions)* — Quality deviations before they reach the customer.
+- Use tanks properly *(Advanced Solutions)* [prerequisite] — Allocation across tanks without idle capacity or unacceptable mixing.
+
+**B3.1 · Plan fuel delivery to stations** — Which fuel product, to which stations, from which terminals, and in what volume
+- See which station needs fuel *(Essential Solutions)* — Network demand in one view: who is close to running dry.
+- Automatic station delivery plan *(Advanced Solutions)* [prerequisite] — A ready plan of what to deliver, from where, and in what volume, based on demand and forecast.
+- Dispatcher agent under control *(Agentic and System-Level Solutions)* [prerequisite] — The system builds the dispatch plan according to rules; a human approves it.
+
+**B3.2 · Routing and trip execution** — The best route, the right tanker and driver, and in-transit tracking.
+- See where vehicles are and what is in transit *(Essential Solutions)* — Track trips and delivery status instead of learning after the fact.
+- Optimal route, vehicle, and driver *(Advanced Solutions)* [prerequisite] — Less empty mileage and downtime, with vehicle assignment matched to the trip.
+
+**B3.3 · Trip accounting and control** — Trip plan-versus-actual, deviation analysis, manipulation detection, and camera-based driver safety control.
+- Trip plan-versus-actual *(Essential Solutions)* — What was executed as planned, and where deviations and losses occurred.
+- Driver safety control *(Essential Solutions)* — Speeding, harsh braking, fatigue: an early risk signal, not post-accident analysis.
+- Detect fuel diversion and manipulation in transit *(Advanced Solutions)* [prerequisite] — Unauthorized fuel draining and route deviations: direct leakage under control.
+
+### C — Stations, Stores and Cafes
+We help manage the station as a profit point, not only as an operating asset: see station underperformance, queues and lost traffic, violations at dispensers and POS, shift execution, equipment, assortment, write-offs, and conversion into the store. The focus is fewer operating losses, higher station revenue, and better customer experience.
+
+**C1.1 · Understand why a station underperforms** — Not just station numbers, but the cause: where the station is missing potential and what to do about it.
+- Compare stations and see underperformers *(Essential Solutions)* — Stations compared fairly: who is underperforming against similar stations, not against the average.
+- Understand the cause, not only the fact *(Advanced Solutions)* [prerequisite] — Why the station dropped: traffic, price, service, assortment, and what to fix.
+- Station Analysis Agent *(Agentic and System-Level Solutions)* [prerequisite] — It analyzes stations, finds causes, forms hypotheses, and highlights where to look.
+- Plan achievement control and operational response *(Essential Solutions)* — Station plan in the moment: where we are behind today, not in a report at month-end.
+
+**C1.2 · Stop losing sales to queues and traffic leakage** — How many customers leave because of a queue, and who entered but did not fuel.
+- See how many customers are being lost *(Essential Solutions)* — Who leaves because of a queue and who entered but did not fuel.
+- See the hours and points where the station overloads *(Advanced Solutions)* [prerequisite] — When and where queues build up, so flow can be redistributed or the shift reinforced.
+
+**C1.3 · Stop losses at dispensers and POS** — Virtual fuelings, underdelivery, manual receipt corrections, and collusion under automatic control.
+- Catch losses during fuel dispensing *(Essential Solutions)* — Virtual fuelings, underdelivery, receipt corrections, and collusion through data and cameras.
+
+**C1.4 · Control staff, standards, and service** — Shift plan-versus-actual, standards, and safety compliance without manual checks.
+- See how the shift works *(Essential Solutions)* — Shift plan-versus-actual and where standards are not maintained, without inspector rounds.
+- Detect standards violations on camera *(Advanced Solutions)* [prerequisite] — Shelf layout, uniform, and safety violations detected automatically, not during a walkthrough.
+
+**C1.5 · Keep station equipment running** — Prevent downtime of dispensers, refrigerators, and coffee machines instead of reacting after the fact.
+- Know what to service and when *(Essential Solutions)* — Service schedule for dispensers, refrigerators, and coffee machines based on business priority.
+- Prevent failure before downtime *(Advanced Solutions)* [prerequisite] — Catch wear in advance, before a dispenser or refrigerator fails during peak hours.
+
+**C2.1 · Convert fuel traffic into store purchases** — Higher conversion from fueling to store to coffee, and a higher non-fuel ticket.
+- Bring the customer from the pump into the store *(Essential Solutions)* — How many fueling customers reach the store, and where that transition is lost.
+- Increase the non-fuel ticket with an in-the-moment offer *(Advanced Solutions)* [prerequisite] — What to offer a fueling customer so they enter and buy more.
+
+**C2.2 · Keep the right assortment for each station** — What and how much to deliver to a specific station, based on demand rather than a template.
+- Understand what really sells at this station *(Essential Solutions)* — Which products move at a specific station, not one template for all.
+- Product demand forecast by station *(Advanced Solutions)* [prerequisite] — How much of what to deliver, including coffee and baked goods by hour.
+
+**C2.3 · Reduce write-offs and empty shelves** — Fresh and perishable products are marked down on time; shelves are neither empty nor spoiled.
+- See where write-offs and empty shelves create losses *(Essential Solutions)* — Losses from expired fresh goods and from products not being available on the shelf.
+- Mark down on time and prevent empty shelves *(Advanced Solutions)* [prerequisite] — The markdown moment for perishables and the reorder point, so losses are not taken from both ends.
+
+**C2.4 · Use station traffic for retail media** — Physical station traffic becomes the entry point for a retail media product.
+- Brand advertising on station traffic *(Agentic and System-Level Solutions)* — Physical station traffic provides an audience, contact point, and visit context: the entry point to retail media.
+
+### D — Customers, Loyalty and B2B
+We help turn the customer base and B2B portfolio into a managed source of growth: understand customer value, prevent churn, increase frequency and ticket, manage promotions, work with feedback, develop retail media, and manage corporate customer profitability. The focus is higher retention, more margin per customer, fewer wasted discounts, and a stronger loyalty program.
+
+**D1.1 · Understand the customer and their economics** — Who our customers are, how they behave, and what they are worth.
+- Who our customers are and who brings profit *(Essential Solutions)* — Not card turnover, but who actually earns money for the company.
+- Behavioral Segmentation with ML *(Advanced Solutions)* [prerequisite] — Non-obvious groups based on real behavior, more accurate than rules.
+- Basic Customer Segmentation *(Essential Solutions)* — Clear groups so customers can be managed differently, not all the same way.
+- Customer Lifetime Value Forecast (CLV) *(Advanced Solutions)* [prerequisite] — Who will become valuable, so investment happens in advance, not by looking backward.
+- Customer 360 Profile *(Essential Solutions)* — A single profile from all systems, so the customer is visible as a whole and can be managed personally.
+
+**D1.2 · Retain customers and prevent churn** — Fewer quiet departures and a higher share of stable customers.
+- Notice a leaving customer in time *(Essential Solutions)* — Catch cooling behavior while the customer can still be brought back cheaply.
+- Predict churn in advance *(Advanced Solutions)* [prerequisite] — Who is about to leave before obvious signs appear.
+- Retention on autopilot *(Agentic and System-Level Solutions)* [prerequisite] — The system catches risk and launches retention under human control.
+- Know what will retain them *(Advanced Solutions)* [prerequisite] — The action that will actually bring a specific customer back.
+
+**D1.3 · Increase frequency, ticket, and share of non-fuel purchases** — More visits, higher ticket, and fueling-to-store conversion.
+- Increase ticket through ready bundles *(Essential Solutions)* — What customers buy together, offered so they buy more per visit.
+- Personal offer for the customer *(Advanced Solutions)* [prerequisite] — What to offer so the customer enters the store and buys.
+- Best moment for an offer *(Advanced Solutions)* [prerequisite] — Catch when the customer is receptive and make the offer then.
+
+**D1.4 · Manage promotions and measure their effectiveness** — Discounts go to those whose behavior changes, not to everyone.
+- Know whether a promotion really worked *(Essential Solutions)* — Separate the real promotion effect from what the customer would have bought anyway.
+- Give discounts to those whose behavior changes *(Advanced Solutions)* [prerequisite] — Stop paying those who would fuel without a discount.
+- Promotion engine: targeted campaigns on segments *(Agentic and System-Level Solutions)* [prerequisite] — Launch personal campaigns at scale and see return immediately.
+
+**D1.5 · Work with feedback and voice of customer** — Hear the reasons for dissatisfaction and respond quickly.
+- Understand what customers complain about *(Essential Solutions)* — Real reasons for dissatisfaction from reviews, without manual reading.
+- Detect station problems early *(Advanced Solutions)* [prerequisite] — A spike in negative feedback for a site is flagged immediately.
+- AI First-Line Support *(Agentic and System-Level Solutions)* [prerequisite] — Answers typical customer questions itself and escalates complex cases to a human.
+
+**D1.7 · Monetize traffic beyond sales** — Customer flow generates direct revenue.
+- Earn from brand advertising *(Advanced Solutions)* — Sell partners access to customer segments, contact moments, and measurable campaigns.
+- Data platform for partners *(Agentic and System-Level Solutions)* [prerequisite] — Anonymized analytics and partner access in a protected environment.
+
+**D2.1 · Manage B2B portfolio profitability** — See which corporate customers earn money and which consume margin.
+- See which corporate customers are profitable *(Essential Solutions)* — Account margin after discounts and payment deferrals: which accounts are unprofitable.
+- Corporate customer value forecast *(Advanced Solutions)* [prerequisite] — Which accounts will grow, so investment can be prioritized.
+- Set terms by risk and value *(Advanced Solutions)* [prerequisite] — Discount and limit tailored to the specific customer, not "as usual".
+- Prevent non-payment *(Advanced Solutions)* — Who risks not paying under deferred terms before the debt becomes overdue.
+
+**D2.2 · Retain B2B customers and forecast non-renewal** — Fewer quiet departures of corporate customers.
+- Notice corporate customer cooling *(Essential Solutions)* — Declining account volumes while the contract is still active.
+- Predict non-renewal *(Advanced Solutions)* [prerequisite] — Which accounts are close to leaving before the contract ends.
+
+### E — Finance, Cash and Control
+We help finance see the business in a live picture and find causes of deviations faster: margin, costs, cash, receivables, payment risks, financial losses, and policy violations become visible before they turn into problems. The focus is faster management decisions, fewer leaks, better cash control, and trust in the numbers.
+
+**E1 · See the financial picture here and now** — Margin by station, region, and product: an answer to the executive's question immediately, not an export by morning.
+- Network finance in a live view *(Essential Solutions)* — Margin and cash by station, region, and product immediately, not through an export by morning.
+- Ask for figures in plain language and get an answer *(Advanced Solutions)* [prerequisite] — Ask about margin or costs as if asking a person, and get an immediate answer without an analyst as intermediary.
+
+**E2 · Understand causes of deviations, not only the fact** — Why margin fell or costs increased, and what to do about it.
+- See immediately what deviated from plan *(Essential Solutions)* — Where margin fell or costs rose against expectation, without manual reconciliation.
+- Understand why it deviated and what to do *(Advanced Solutions)* [prerequisite] — Break the deviation into causes and what can be influenced, not just "here are the numbers".
+- Financial and Operational Analyst Agent *(Agentic and System-Level Solutions)* [prerequisite] — A tireless analyst that sees the whole business in numbers: finds leakage points, suggests where to reduce costs, and highlights risks.
+
+**E3 · Forecast cash and cash gaps** — Know in advance where and when cash will be short.
+- See current balances, debts, and obligations *(Essential Solutions)* — Balances, debts, and obligations: the full cash picture.
+- Know about a cash gap in advance *(Advanced Solutions)* [prerequisite] — Where and when cash will be short, considering procurement, inventory, and receivables.
+- Understand who risks not paying *(Advanced Solutions)* [prerequisite] — Which debtors put cash at risk, so work is driven by risk, not by a list.
+
+**E5 · Detect losses and inconsistencies in finance** — Fictitious counterparties, duplicates, and policy deviations are visible instead of surfacing during audit.
+- Catch duplicate and fictitious payments *(Essential Solutions)* — Duplicate invoices, fictitious counterparties, and unnecessary payments before the money leaves.
+- Catch a policy deviation before payment *(Advanced Solutions)* [prerequisite] — A rule violation in posting or procurement while the money has not yet left.
+
+### F — Support Functions
+We help remove routine work and strengthen control in the functions that support the business: HR, legal, MRO procurement, contractors, internal control, documents, and back office. The focus is less manual work, faster processes, more transparent spending, and violations visible before audit, not after.
+
+**F1 · HR and Personnel** — Recruiting, onboarding, field staff control, and retention rely on manual work where automation could have worked long ago.
+- AI Assistant for HR Operations *(Essential Solutions)* — Answers, templates, policies, requests, and onboarding prompts without a manual HR queue.
+- Recruiting and initial screening of line staff *(Essential Solutions)* — Resumes, questionnaires, and applications turn into a candidate short-list for HR.
+- Digital loop for field staff work *(Essential Solutions)* — The employee's workday, required actions, and completion confirmations in a mobile loop.
+- Early signals of turnover and onboarding quality *(Advanced Solutions)* [prerequisite] — Where an employee drops out of the process is visible before resignation.
+
+**F2 · Legal Function** — Support for various legal tasks
+- Legal assistant for contracts and policies *(Essential Solutions)* — Answers on contracts, policies, templates, and past decisions, with a source reference.
+- Get a document draft immediately *(Essential Solutions)* — Contract, claim, letter, addendum, or opinion for the case, not from a blank page.
+- Contract obligation and risk control *(Advanced Solutions)* — Deadlines, terms, penalties, renewals, and control events are not hidden inside contracts.
+- Legal Process Agent *(Agentic and System-Level Solutions)* [prerequisite] — Document packages, deadlines, drafts, follow-up, and escalations under lawyer control.
+
+**F3 · MRO Procurement and Contractors** — Material and contractor service costs grow unnoticed, with overpayments hidden in the flow of small purchases.
+- Visibility of MRO procurement and contractor services *(Essential Solutions)* — Categories, suppliers, prices, stations, and contractors in one view.
+- Find overpayments and anomalies in MRO *(Advanced Solutions)* [prerequisite] — Prices above history, splitting, repeated contractors, and unusual deviations are flagged.
+- Supplier and contractor rating *(Advanced Solutions)* [prerequisite] — Selection not only by price, but by actual reliability and consequences.
+
+**F4 · Internal Control, Losses and Risks** — Losses, exceptions, and rule violations are scattered across systems, with no unified risk picture.
+- Loss and exception control panel *(Essential Solutions)* — Where money, fuel, process discipline, and control are being lost is visible in one picture.
+- Anomaly and rule-deviation detection *(Advanced Solutions)* [prerequisite] — Signals across operations, standards, and policies surface before manual checks.
+- Internal Control Chain Agent *(Agentic and System-Level Solutions)* [prerequisite] — Connects signals, prepares the evidence pack, and suggests the next best action; the decision stays with a human.
+- Risk-based audits and investigations *(Advanced Solutions)* [prerequisite] — Checks, cases, evidence, owners, and results in a managed loop.
+- Control abuse in loyalty and fuel cards *(Advanced Solutions)* [prerequisite] — Anomalies in bonus accruals and card/voucher transactions are visible before audit, not after.
+
+**F5 · Documents and Back Office** — Waybills, acts, invoices, and transport documents are entered manually, so primary document errors surface late.
+- Document and primary paperwork processing *(Essential Solutions)* — Recognize, enter, and reconcile documents automatically, without manual retyping.
+
+### G — Data and Processes
+We help create the foundation on which analytics, automation, and AI can work: a unified data base, information quality and availability, reporting, knowledge search, office AI tools, process reengineering, and agentic solutions. The focus is one version of the truth, less manual work, and the ability to scale AI systemically rather than point by point.
+
+**G1.1 · One truth instead of different numbers in every department** — Sales, inventory, finance, and customer figures are calculated the same way by all departments
+- A Data Foundation You Can Trust *(Essential Solutions)* [prerequisite] — One truth instead of different numbers across departments; data in one place and suitable for decisions.
+- Build BI on top of a unified foundation *(Essential Solutions)* [prerequisite] — Unified dashboards across the network instead of exports and separate Excel files for everyone.
+
+**G2.1 · Find answers in company knowledge** — A policy, instruction, or past decision is found by meaning, not by calling the person who remembers.
+- Company Knowledge Search *(Essential Solutions)* — A policy, instruction, or past decision found by meaning, not by calling the person who remembers.
+
+**G2.3 · Take routine work off the team** — Meetings, tasks, correspondence, calendar, reports: AI takes over the mechanical part.
+- Take Mechanical Routine Work Off the Team *(Essential Solutions)* — Meetings, tasks, correspondence, calendar, reports go to AI so people can focus on the actual work.
+- Ask the Data in Plain Language and Get an Answer *(Advanced Solutions)* [prerequisite] — Any employee can reach the numbers without an analyst as intermediary.
+- Data Update Agent for Business Systems *(Agentic and System-Level Solutions)* [prerequisite] — It enters and updates records from emails, calls, and documents by itself; the operator keeps control.
 
 ## About KKT
 
