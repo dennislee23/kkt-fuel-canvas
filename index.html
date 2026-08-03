@@ -349,8 +349,18 @@ const getEnData = () => ({
   CARDS:          window.FUEL_CARDS_EN   || window.FUEL_CARDS,
   DRAWER_CONTENT: window.FUEL_DRAWER_CONTENT_EN || window.FUEL_DRAWER_CONTENT || {},
 });
+const getThData = () => ({
+  BLOCKS:         window.FUEL_BLOCKS_TH    || window.FUEL_BLOCKS_EN    || window.FUEL_BLOCKS,
+  SUBBLOCKS:      window.FUEL_SUBBLOCKS_TH  || window.FUEL_SUBBLOCKS_EN  || window.FUEL_SUBBLOCKS || [],
+  PROBLEMS:       window.FUEL_PROBLEMS_TH  || window.FUEL_PROBLEMS_EN  || window.FUEL_PROBLEMS,
+  STAGES:         window.FUEL_STAGES_TH    || window.FUEL_STAGES_EN    || window.FUEL_STAGES,
+  CARDS:          window.FUEL_CARDS_TH     || window.FUEL_CARDS_EN     || window.FUEL_CARDS,
+  DRAWER_CONTENT: window.FUEL_DRAWER_CONTENT_TH || window.FUEL_DRAWER_CONTENT_EN || window.FUEL_DRAWER_CONTENT || {},
+});
+// Three-language chrome helper: EN default, RU, TH (falls back to EN if th omitted).
+const L3 = (lang, en, ru, th) => lang === 'RU' ? ru : (lang === 'TH' ? (th ?? en) : en);
 const getData = (lang) => {
-  const base = lang === 'EN' ? getEnData() : getRuData();
+  const base = lang === 'EN' ? getEnData() : lang === 'TH' ? getThData() : getRuData();
   return {
     ...base,
     BLOCK_BY_ID:    Object.fromEntries(base.BLOCKS.map(b   => [b.id, b])),
@@ -501,7 +511,7 @@ const CardTile = ({ card, onClick }) => {
           <TagRow card={card} />
         </div>
         {card.lock && (
-          <div title={dct?.lang==='EN' ? 'Prerequisite' : 'Предусловие'}
+          <div title={L3(dct?.lang,'Prerequisite','Предусловие','ข้อกำหนดเบื้องต้น')}
             style={{ display:'flex', gap:'5px', alignItems:'flex-start', marginTop:'8px', cursor:'help' }}>
             <span style={{ fontSize:'10px', color:C.textMuted, lineHeight:1.55, flexShrink:0 }}>🔒</span>
             <span style={{ fontSize:'10.5px', color:C.textMuted, lineHeight:1.55, fontWeight:400, textWrap:'pretty' }}>{card.lock}</span>
@@ -509,7 +519,7 @@ const CardTile = ({ card, onClick }) => {
         )}
         {card.crossRef && !card.lock && (
           <div style={{ marginTop:'7px' }}>
-            <span style={{ fontSize:'10.5px', color:C.textMuted, fontWeight:400 }}>{dct?.lang==='EN' ? '→ see domain: ' : '→ см. дом: '}{card.crossRef.targetLabel}</span>
+            <span style={{ fontSize:'10.5px', color:C.textMuted, fontWeight:400 }}>{L3(dct?.lang,'→ see domain: ','→ см. дом: ','→ ดูโดเมน: ')}{card.crossRef.targetLabel}</span>
           </div>
         )}
       </div>
@@ -545,7 +555,7 @@ const StageHeader = ({ stage }) => {
 /* ── TASKS HEADER ── */
 const TasksHeader = () => {
   const ctx = React.useContext(DataCtx);
-  const isEn = ctx?.lang === 'EN';
+  const isEn = ctx?.lang === 'EN'; const tr = (en,ru,th)=>L3(ctx?.lang,en,ru,th);
   return (
   <div style={{
     padding:'20px 20px 22px',
@@ -557,9 +567,9 @@ const TasksHeader = () => {
       fontFamily:'DM Sans, system-ui, sans-serif',
       fontSize:'15px', fontWeight:500, color:C.text,
       lineHeight:1.28, letterSpacing:'-.005em', textWrap:'pretty',
-    }}>{isEn ? 'Key challenges' : 'Типовые задачи,'}<br/>{isEn ? 'we work on' : 'с которыми мы работаем'}</h3>
+    }}>{tr('Key challenges','Типовые задачи,','โจทย์หลัก')}<br/>{tr('we work on','с которыми мы работаем','ที่เราทำงานด้วย')}</h3>
     <p style={{ fontSize:'10.5px', color:C.textMuted, lineHeight:1.5, fontWeight:400 }}>
-      {isEn ? 'Click a challenge → expand solutions' : 'Нажмите задачу → раскрыть решения'}
+      {tr('Click a challenge → expand solutions','Нажмите задачу → раскрыть решения','คลิกที่โจทย์ → ขยายโซลูชัน')}
     </p>
   </div>
 );};
@@ -703,7 +713,7 @@ const BlockRail = ({ block, allOpen, onToggleAll }) => {
           onMouseEnter={e => { e.currentTarget.style.borderColor=C.borderHov; e.currentTarget.style.color=C.text; }}
           onMouseLeave={e => { e.currentTarget.style.borderColor=C.border; e.currentTarget.style.color=C.textSec; }}
         >
-          <span>{allOpen ? (dc2?.lang==='EN' ? 'Collapse all' : 'Свернуть всё') : (dc2?.lang==='EN' ? 'Expand all' : 'Показать всё')}</span>
+          <span>{allOpen ? (L3(dc2?.lang,'Collapse all','Свернуть всё','ย่อทั้งหมด')) : (L3(dc2?.lang,'Expand all','Показать всё','แสดงทั้งหมด'))}</span>
           <span style={{ fontSize:'8px', opacity:.6 }}>{allOpen ? '▲' : '▼'}</span>
         </button>
       </div>
@@ -826,7 +836,7 @@ const Drawer = ({ card, onClose, onJump }) => {
           }}>
             <span style={{ fontSize:'13px', flexShrink:0, marginTop:'1px' }}>🔒</span>
             <div>
-              <div style={{ fontSize:'9px', color:C.accentText, fontWeight:700, letterSpacing:'.16em', textTransform:'uppercase', marginBottom:'4px' }}>{dc?.lang==='EN' ? 'Prerequisite' : 'Предусловие'}</div>
+              <div style={{ fontSize:'9px', color:C.accentText, fontWeight:700, letterSpacing:'.16em', textTransform:'uppercase', marginBottom:'4px' }}>{L3(dc?.lang,'Prerequisite','Предусловие','ข้อกำหนดเบื้องต้น')}</div>
               <div style={{ fontSize:'12.5px', color:C.textSec, lineHeight:1.65, fontWeight:400 }}>{card.lock}</div>
             </div>
           </div>
@@ -838,14 +848,14 @@ const Drawer = ({ card, onClose, onJump }) => {
             background:'rgba(30,24,16,0.03)', borderRadius:'8px',
             border:`1px solid ${C.border}`,
           }}>
-            <div style={{ fontSize:'9px', color:C.textMuted, fontWeight:700, letterSpacing:'.16em', textTransform:'uppercase', marginBottom:'6px' }}>{dc?.lang==='EN' ? 'Cross-cutting card' : 'Сквозная карточка'}</div>
+            <div style={{ fontSize:'9px', color:C.textMuted, fontWeight:700, letterSpacing:'.16em', textTransform:'uppercase', marginBottom:'6px' }}>{L3(dc?.lang,'Cross-cutting card','Сквозная карточка','การ์ดข้ามสายงาน')}</div>
             {crossTarget ? (
               <button onClick={() => onJump(crossTarget.id)}
                 style={{ background:'none', border:0, padding:0, color:C.accent, fontSize:'13px', fontWeight:600, cursor:'pointer', textAlign:'left' }}>
-                {dc?.lang==='EN' ? '→ see domain: ' : '→ см. дом: '}{card.crossRef.targetLabel}
+                {L3(dc?.lang,'→ see domain: ','→ см. дом: ','→ ดูโดเมน: ')}{card.crossRef.targetLabel}
               </button>
             ) : (
-              <span style={{ color:C.accent, fontSize:'13px', fontWeight:600 }}>{dc?.lang==='EN' ? '→ see domain: ' : '→ см. дом: '}{card.crossRef.targetLabel}</span>
+              <span style={{ color:C.accent, fontSize:'13px', fontWeight:600 }}>{L3(dc?.lang,'→ see domain: ','→ см. дом: ','→ ดูโดเมน: ')}{card.crossRef.targetLabel}</span>
             )}
           </div>
         )}
@@ -854,14 +864,14 @@ const Drawer = ({ card, onClose, onJump }) => {
 
         {d_ctx && (
           <>
-            <DField label={dc?.lang==='EN' ? 'Challenge' : 'Проблематика'}>{d_ctx.businessPressure}</DField>
-            <DField label={dc?.lang==='EN' ? 'What we do' : 'Что делаем'}>{d_ctx.whatWePutInPlace}</DField>
-            <DField label={dc?.lang==='EN' ? 'What it gives' : 'Что это даёт'}>{d_ctx.whatImproves}</DField>
-            <DField label={dc?.lang==='EN' ? 'How it works' : 'За счёт чего работает'}>{d_ctx.dataAiBehind}</DField>
+            <DField label={L3(dc?.lang,'Challenge','Проблематика','โจทย์')}>{d_ctx.businessPressure}</DField>
+            <DField label={L3(dc?.lang,'What we do','Что делаем','เราทำอะไร')}>{d_ctx.whatWePutInPlace}</DField>
+            <DField label={L3(dc?.lang,'What it gives','Что это даёт','ได้อะไร')}>{d_ctx.whatImproves}</DField>
+            <DField label={L3(dc?.lang,'How it works','За счёт чего работает','ทำงานได้อย่างไร')}>{d_ctx.dataAiBehind}</DField>
             {Array.isArray(d_ctx.conversationQuestions) && d_ctx.conversationQuestions.length > 0 && (
               <div style={{ marginBottom:'24px' }}>
                 <div style={{ fontSize:'11px', color:C.accentText, fontWeight:700, letterSpacing:'.14em', textTransform:'uppercase', marginBottom:'16px' }}>
-                  {dc?.lang==='EN' ? 'Ask yourself' : 'Задайте себе вопрос'}
+                  {L3(dc?.lang,'Ask yourself','Задайте себе вопрос','ลองถามตัวเอง')}
                 </div>
                 <ol style={{ paddingLeft:'18px', display:'flex', flexDirection:'column', gap:'14px' }}>
                 {d_ctx.conversationQuestions.map((q, i) => (
@@ -877,7 +887,7 @@ const Drawer = ({ card, onClose, onJump }) => {
           <div style={{ marginTop:'8px', paddingTop:'26px', borderTop:`1px solid ${C.border}` }}>
             {requires.length > 0 && (
               <div style={{ marginBottom:'18px' }}>
-                <div style={{ fontSize:'11px', color:C.accentText, fontWeight:700, letterSpacing:'.14em', textTransform:'uppercase', marginBottom:'11px' }}>{dc?.lang==='EN' ? 'Requires first' : 'Предусловие'}</div>
+                <div style={{ fontSize:'11px', color:C.accentText, fontWeight:700, letterSpacing:'.14em', textTransform:'uppercase', marginBottom:'11px' }}>{L3(dc?.lang,'Requires first','Предусловие','ต้องมีก่อน')}</div>
                 <div style={{ display:'flex', flexDirection:'column', gap:'6px' }}>
                   {requires.map(c => <JumpBtn key={c.id} c={c} />)}
                 </div>
@@ -885,7 +895,7 @@ const Drawer = ({ card, onClose, onJump }) => {
             )}
             {opens.length > 0 && (
               <div>
-                <div style={{ fontSize:'11px', color:C.accentText, fontWeight:700, letterSpacing:'.14em', textTransform:'uppercase', marginBottom:'11px' }}>{dc?.lang==='EN' ? 'Opens / unlocks' : 'Открывает'}</div>
+                <div style={{ fontSize:'11px', color:C.accentText, fontWeight:700, letterSpacing:'.14em', textTransform:'uppercase', marginBottom:'11px' }}>{L3(dc?.lang,'Opens / unlocks','Открывает','ปลดล็อก')}</div>
                 <div style={{ display:'flex', flexDirection:'column', gap:'6px' }}>
                   {opens.map(c => <JumpBtn key={c.id} c={c} />)}
                 </div>
@@ -1051,8 +1061,15 @@ const IconCustomer = () => (
 
 /* ── HERO SCREEN ── */
 const HeroScreen = ({ onScrollToCatalog, onScrollToBlock, lang }) => {
-  const isEn = lang === 'EN';
-  const VALUE_CHAIN = isEn ? [
+  const isEn = lang === 'EN'; const tr = (en,ru,th)=>L3(lang,en,ru,th);
+  const VALUE_CHAIN = lang==='TH' ? [
+    { id: 'suppliers',     label: 'ผู้จำหน่าย',          blockCode: 'A', Icon: IconRefinery  },
+    { id: 'ext-logistics', label: 'โลจิสติกส์\nภายนอก',  blockCode: 'B', Icon: IconLogistics },
+    { id: 'depot',         label: 'คลัง\nน้ำมัน',        blockCode: 'B', Icon: IconDepot     },
+    { id: 'delivery',      label: 'ส่งถึง\nสถานี',       blockCode: 'B', Icon: IconTruck     },
+    { id: 'station',       label: 'สถานีและ\nร้านค้า',   blockCode: 'C', Icon: IconStation   },
+    { id: 'customer',      label: 'ลูกค้า\n/ B2B',       blockCode: 'D', Icon: IconCustomer  },
+  ] : isEn ? [
     { id: 'suppliers',     label: 'Suppliers',           blockCode: 'A', Icon: IconRefinery  },
     { id: 'ext-logistics', label: 'External\nlogistics', blockCode: 'B', Icon: IconLogistics },
     { id: 'depot',         label: 'Fuel\nterminal',      blockCode: 'B', Icon: IconDepot     },
@@ -1067,7 +1084,11 @@ const HeroScreen = ({ onScrollToCatalog, onScrollToBlock, lang }) => {
     { id: 'station',       label: 'АЗС и\nмагазин',     blockCode: 'C', Icon: IconStation   },
     { id: 'customer',      label: 'Клиент\n/ B2B',      blockCode: 'D', Icon: IconCustomer  },
   ];
-  const MGMT_LAYERS = isEn ? [
+  const MGMT_LAYERS = lang==='TH' ? [
+    { blockCode: 'E', label: 'การเงิน เงินสด และการควบคุม', desc: 'มาร์จิน การควบคุมการชำระเงิน การกระทบยอด ลูกหนี้ การเฝ้าติดตามการเงิน' },
+    { blockCode: 'F', label: 'ฟังก์ชันสนับสนุน',            desc: 'งานเอกสาร HR การจัดซื้อ กฎหมาย และกระบวนการบริหาร' },
+    { blockCode: 'G', label: 'ข้อมูลและกระบวนการ',           desc: 'คุณภาพข้อมูล การรื้อออกแบบกระบวนการ AI และโซลูชันเชิงเอเจนต์' },
+  ] : isEn ? [
     { blockCode: 'E', label: 'Finance, cash & control',    desc: 'Margin, payment control, reconciliations, receivables, financial monitoring' },
     { blockCode: 'F', label: 'Supporting functions',        desc: 'Document flow, HR, procurement, legal and administrative processes' },
     { blockCode: 'G', label: 'Data & processes',            desc: 'Data quality, process reengineering, AI and agentic solutions' },
@@ -1076,7 +1097,12 @@ const HeroScreen = ({ onScrollToCatalog, onScrollToBlock, lang }) => {
     { blockCode: 'F', label: 'Поддерживающие функции',      desc: 'Документооборот, HR, закупки, юридические и административные процессы' },
     { blockCode: 'G', label: 'Данные и процессы',            desc: 'Качество данных, реинжиниринг процессов, AI и агентские решения' },
   ];
-  const VALUE_PROPS = isEn ? [
+  const VALUE_PROPS = lang==='TH' ? [
+    { title: 'AI ผูกกับเศรษฐศาสตร์ธุรกิจ',       desc: 'ทุกโครงการผูกกับมาร์จิน การสูญเสีย เงินทุนหมุนเวียน รายได้ บริการ หรือประสิทธิภาพของทีม — ไม่ใช่ตามกระแสเทคโนโลยี' },
+    { title: 'ชนะเร็วก่อน แล้วค่อยสร้างระบบ',      desc: 'เราเริ่มจากเคสการใช้งานที่ชัดเจน แล้วสร้างข้อมูล กระบวนการ โมเดล และเอเจนต์ต่อยอดขึ้นไป' },
+    { title: 'ประสบการณ์ระดับโลก บริบทของคุณ',    desc: 'เรานำแนวปฏิบัติสากลมาใช้ แต่คำนึงถึงความพร้อมของข้อมูล ความพร้อมของระบบ ข้อจำกัดการดำเนินงาน และสภาพจริงในพื้นที่' },
+    { title: 'จากไอเดียสู่การลงมือทำ',            desc: 'เรากำหนดลำดับความสำคัญ ข้อมูล สิ่งที่เกี่ยวเนื่อง โครงการนำร่อง และก้าวถัดไปที่เป็นจริงได้สำหรับเครือข่ายของคุณ' },
+  ] : isEn ? [
     { title: 'AI tied to business economics',    desc: 'Every initiative is tied to margin, losses, working capital, revenue, service, or team efficiency — not the fashion of technology.' },
     { title: 'Quick wins, then the system',        desc: 'We start from clear use cases and build the data, processes, models, and agents up from there.' },
     { title: 'World experience, your context',    desc: 'We bring international practice but account for data maturity, system availability, operating constraints, and local reality.' },
@@ -1168,7 +1194,7 @@ const HeroScreen = ({ onScrollToCatalog, onScrollToBlock, lang }) => {
         <p style={{
           fontSize: '13px', fontWeight: 600, letterSpacing: '0.14em',
           textTransform: 'uppercase', color: C.accentText, margin: '0 0 22px',
-        }}>{isEn ? 'Data & AI for fuel retail' : 'Данные и ИИ для топливного ритейла'}</p>
+        }}>{tr('Data & AI for fuel retail','Данные и ИИ для топливного ритейла','ข้อมูลและ AI สำหรับค้าปลีกน้ำมัน')}</p>
         <h1 style={{
           fontFamily: 'DM Sans, system-ui, sans-serif',
           fontSize: 'clamp(30px,4.2vw,52px)',
@@ -1177,9 +1203,9 @@ const HeroScreen = ({ onScrollToCatalog, onScrollToBlock, lang }) => {
           textWrap: 'balance', maxWidth: '30ch', margin: '0 auto',
           textAlign: 'center',
         }}>
-          {isEn ? 'We help fuel retailers improve ' : 'Мы помогаем топливным ритейлерам улучшать '}
-          <span style={{ background:'linear-gradient(118deg,#FF9D2E 0%,#FF6A00 52%,#F5481F 100%)', WebkitBackgroundClip:'text', backgroundClip:'text', WebkitTextFillColor:'transparent', color:'transparent' }}>{isEn ? 'revenue, margins and productivity' : 'выручку, маржу и производительность'}</span>
-          {isEn ? ' by solving specific business problems with data, processes enhancement and AI.' : ', решая конкретные бизнес-задачи с помощью данных, улучшения процессов и ИИ.'}
+          {tr('We help fuel retailers improve ','Мы помогаем топливным ритейлерам улучшать ','เราช่วยผู้ค้าปลีกน้ำมันยกระดับ ')}
+          <span style={{ background:'linear-gradient(118deg,#FF9D2E 0%,#FF6A00 52%,#F5481F 100%)', WebkitBackgroundClip:'text', backgroundClip:'text', WebkitTextFillColor:'transparent', color:'transparent' }}>{tr('revenue, margins and productivity','выручку, маржу и производительность','รายได้ มาร์จิน และประสิทธิภาพ')}</span>
+          {tr(' by solving specific business problems with data, processes enhancement and AI.', ', решая конкретные бизнес-задачи с помощью данных, улучшения процессов и ИИ.', ' โดยแก้โจทย์ธุรกิจที่เจาะจงด้วยข้อมูล การปรับปรุงกระบวนการ และ AI')}
         </h1>
       </div>
 
@@ -1193,7 +1219,7 @@ const HeroScreen = ({ onScrollToCatalog, onScrollToBlock, lang }) => {
       }}>
         {/* Chain label */}
         <div style={{ padding: '11px 20px 0', fontSize: '9px', color: C.textMuted, fontWeight: 700, letterSpacing: '.18em', textTransform: 'uppercase' }}>
-          {isEn ? 'Value chain' : 'Цепочка создания ценности'}
+          {tr('Value chain','Цепочка создания ценности','ห่วงโซ่คุณค่า')}
         </div>
         {/* Chain nodes — full width */}
         <div style={{ display: 'grid', gridTemplateColumns: 'minmax(0,1fr) 28px minmax(0,1fr) 28px minmax(0,1fr) 28px minmax(0,1fr) 28px minmax(0,1fr) 28px minmax(0,1fr)', alignItems: 'end', padding: '14px 20px 18px' }}>
@@ -1206,7 +1232,7 @@ const HeroScreen = ({ onScrollToCatalog, onScrollToBlock, lang }) => {
         </div>
         {/* Cross-cutting layers — compact pills */}
         <div style={{ borderTop: `1px solid rgba(30,24,16,0.07)`, padding: '13px 14px 15px' }}>
-          <div style={{ fontSize: '10px', color: C.textMuted, fontWeight: 700, letterSpacing: '.16em', textTransform: 'uppercase', marginBottom: '10px', opacity: 0.8 }}>{isEn ? '+ cross-cutting layers' : '+ сквозные контуры'}</div>
+          <div style={{ fontSize: '10px', color: C.textMuted, fontWeight: 700, letterSpacing: '.16em', textTransform: 'uppercase', marginBottom: '10px', opacity: 0.8 }}>{tr('+ cross-cutting layers','+ сквозные контуры','+ ชั้นข้ามสายงาน')}</div>
           <div style={{ display: 'flex', alignItems: 'stretch', gap: '0' }}>
             <MgmtPill layer={MGMT_LAYERS[0]} />
             <div style={{ width: '1px', background: 'rgba(30,24,16,0.10)', margin: '4px 0', flexShrink: 0 }} />
@@ -1233,11 +1259,11 @@ const HeroScreen = ({ onScrollToCatalog, onScrollToBlock, lang }) => {
           onMouseEnter={e => { e.currentTarget.style.opacity='0.92'; e.currentTarget.style.boxShadow='0 4px 16px rgba(255,106,0,0.34)'; }}
           onMouseLeave={e => { e.currentTarget.style.opacity='1'; e.currentTarget.style.boxShadow='0 2px 10px rgba(255,106,0,0.28)'; }}
         >
-          {isEn ? 'Explore the catalog' : 'Смотреть каталог решений'}
+          {tr('Explore the catalog','Смотреть каталог решений','ดูแคตตาล็อกโซลูชัน')}
           <span style={{ fontSize: '15px', lineHeight: 1 }}>↓</span>
         </button>
         <span style={{ fontSize: '11.5px', color: C.textMuted, fontStyle: 'italic' }}>
-          {CARDS.length} {isEn ? 'initiatives' : 'инициатив'} · {BLOCKS.length} {isEn ? 'domains' : 'направлений'}
+          {CARDS.length} {tr('initiatives','инициатив','โครงการ')} · {BLOCKS.length} {tr('domains','направлений','โดเมน')}
         </span>
       </div>
 
@@ -1247,12 +1273,12 @@ const HeroScreen = ({ onScrollToCatalog, onScrollToBlock, lang }) => {
     <section style={{ background: C.surfaceHov, borderBottom: `1px solid ${C.border}`, padding: 'clamp(56px,9vh,100px) 0' }}>
       <div style={{ maxWidth: 'none', width: '100%', padding: '0 clamp(24px,5vw,64px)', boxSizing: 'border-box' }}>
         <header style={{ marginBottom: 'clamp(36px,5vh,60px)' }}>
-          <p style={{ fontSize: '13px', fontWeight: 600, letterSpacing: '.14em', textTransform: 'uppercase', color: C.accentText, margin: 0 }}>{isEn ? 'Why us' : 'Почему мы'}</p>
+          <p style={{ fontSize: '13px', fontWeight: 600, letterSpacing: '.14em', textTransform: 'uppercase', color: C.accentText, margin: 0 }}>{tr('Why us','Почему мы','ทำไมต้องเรา')}</p>
           <h2 style={{
             fontFamily: 'DM Sans, system-ui, sans-serif',
             fontSize: 'clamp(28px,3.4vw,40px)', fontWeight: 600, color: C.text,
             lineHeight: 1.12, letterSpacing: '-.02em', margin: '12px 0 16px', textWrap: 'balance',
-          }}>{isEn ? 'Why this works for your business' : 'Почему это работает для бизнеса'}</h2>
+          }}>{tr('Why this works for your business','Почему это работает для бизнеса','ทำไมสิ่งนี้ได้ผลกับธุรกิจของคุณ')}</h2>
           <p style={{ fontSize: 'clamp(16px,1.6vw,19px)', lineHeight: 1.6, color: C.textSec, margin: 0, textWrap: 'pretty' }}>
             {isEn
               ? 'Domain expertise and technical delivery in one team — every initiative tied to the economics of your business.'
@@ -1300,8 +1326,8 @@ const ProfileChip = ({ label }) => (
 
 /* ── KKTECH PROFILE SCREEN ── */
 const KKProfileScreen = ({ section, onBack, onNav, lang }) => {
-  const isEn = lang === 'EN';
-  const P = (isEn ? window.KKTECH_PROFILE_EN : window.KKTECH_PROFILE) || {};
+  const isEn = lang === 'EN'; const tr = (en,ru,th)=>L3(lang,en,ru,th);
+  const P = (lang==='TH' ? (window.KKTECH_PROFILE_TH || window.KKTECH_PROFILE_EN) : isEn ? window.KKTECH_PROFILE_EN : window.KKTECH_PROFILE) || {};
   const company = P.company || {};
   const how = P.howWeWork || {};
   const team = P.team || {};
@@ -1346,10 +1372,10 @@ const KKProfileScreen = ({ section, onBack, onNav, lang }) => {
                 <h3 style={{ fontSize:'16px', color:C.text, fontWeight:600, lineHeight:1.28, margin:0 }}>{item.focus}</h3>
                 <p style={{ fontSize:'13px', color:C.textSec, lineHeight:1.55, fontWeight:300, display:'-webkit-box', WebkitLineClamp:4, WebkitBoxOrient:'vertical', overflow:'hidden' }}>{item.whatWeDid}</p>
                 <div style={{ borderTop:`1px solid ${C.border}`, paddingTop:'9px', marginTop:'auto' }}>
-                  <div style={{ fontSize:'10px', color:C.textMuted, fontWeight:700, letterSpacing:'.14em', textTransform:'uppercase', marginBottom:'6px' }}>{isEn ? 'Business outcome' : 'Бизнес-результат'}</div>
+                  <div style={{ fontSize:'10px', color:C.textMuted, fontWeight:700, letterSpacing:'.14em', textTransform:'uppercase', marginBottom:'6px' }}>{tr('Business outcome','Бизнес-результат','ผลลัพธ์ทางธุรกิจ')}</div>
                   <p style={{ fontSize:'12px', color:C.textSec, lineHeight:1.5 }}>{item.result}</p>
                 </div>
-                <div className="tr-more" style={{ fontSize:'12px', color:C.textMuted, fontWeight:600 }}>{isEn ? 'Read more →' : 'Подробнее →'}</div>
+                <div className="tr-more" style={{ fontSize:'12px', color:C.textMuted, fontWeight:600 }}>{tr('Read more →','Подробнее →','อ่านเพิ่มเติม →')}</div>
               </button>
             ))}
           </div>
@@ -1371,7 +1397,7 @@ const KKProfileScreen = ({ section, onBack, onNav, lang }) => {
             <div style={{ fontSize:'11px', color:C.accentText, fontWeight:700, letterSpacing:'.09em', textTransform:'uppercase' }}>{i+1}. {step.title}</div>
             <p style={{ fontSize:'13px', color:C.textSec, lineHeight:1.62, fontWeight:300 }}>{step.summary}</p>
             <div style={{ borderTop:`1px solid ${C.border}`, paddingTop:'11px', marginTop:'8px' }}>
-              <SectionLabelP>{isEn ? 'Outputs' : 'На выходе'}</SectionLabelP>
+              <SectionLabelP>{tr('Outputs','На выходе','ผลลัพธ์')}</SectionLabelP>
               <ul style={{ margin:'6px 0 0 0', padding:'0 0 0 16px', display:'grid', gap:'5px' }}>
                 {(step.outputs || []).map(o => <li key={o} style={{ fontSize:'12px', color:C.textSec, lineHeight:1.5 }}>{o}</li>)}
               </ul>
@@ -1386,7 +1412,7 @@ const KKProfileScreen = ({ section, onBack, onNav, lang }) => {
     <div>
       <div style={{ maxWidth:'820px', marginBottom:'28px' }}>
         <p style={{ fontSize:'11px', color:C.textMuted, textTransform:'uppercase', letterSpacing:'.1em', fontWeight:500, marginBottom:'10px' }}>{team.title}</p>
-        <h2 style={{ fontFamily:'DM Sans, system-ui, sans-serif', fontSize:'clamp(28px,3.5vw,44px)', fontWeight:400, color:C.text, marginBottom:'14px', lineHeight:1.14 }}>{isEn ? "We sit on the owner's side of the table." : '\u041e\u0442\u0440\u0430\u0441\u043b\u0435\u0432\u0430\u044f \u044d\u043a\u0441\u043f\u0435\u0440\u0442\u0438\u0437\u0430 \u0438 \u0442\u0435\u0445\u043d\u0438\u0447\u0435\u0441\u043a\u0430\u044f \u043f\u043e\u0441\u0442\u0430\u0432\u043a\u0430 \u2014 \u0432 \u043e\u0434\u043d\u043e\u0439 \u043a\u043e\u043c\u0430\u043d\u0434\u0435'}</h2>
+        <h2 style={{ fontFamily:'DM Sans, system-ui, sans-serif', fontSize:'clamp(28px,3.5vw,44px)', fontWeight:400, color:C.text, marginBottom:'14px', lineHeight:1.14 }}>{tr("We sit on the owner's side of the table.", '\u041e\u0442\u0440\u0430\u0441\u043b\u0435\u0432\u0430\u044f \u044d\u043a\u0441\u043f\u0435\u0440\u0442\u0438\u0437\u0430 \u0438 \u0442\u0435\u0445\u043d\u0438\u0447\u0435\u0441\u043a\u0430\u044f \u043f\u043e\u0441\u0442\u0430\u0432\u043a\u0430 \u2014 \u0432 \u043e\u0434\u043d\u043e\u0439 \u043a\u043e\u043c\u0430\u043d\u0434\u0435', '\u0e40\u0e23\u0e32\u0e2d\u0e22\u0e39\u0e48\u0e02\u0e49\u0e32\u0e07\u0e40\u0e14\u0e35\u0e22\u0e27\u0e01\u0e31\u0e1a\u0e40\u0e08\u0e49\u0e32\u0e02\u0e2d\u0e07\u0e18\u0e38\u0e23\u0e01\u0e34\u0e08')}</h2>
         <p style={{ fontSize:'16px', color:C.textSec, lineHeight:1.72, fontWeight:300, marginBottom:'8px' }}>{team.lead}</p>
         {team.sublead && <p style={{ fontSize:'14px', color:C.textMuted, lineHeight:1.65, fontWeight:300 }}>{team.sublead}</p>}
       </div>
@@ -1423,8 +1449,8 @@ const KKProfileScreen = ({ section, onBack, onNav, lang }) => {
       <h2 style={{ fontFamily:'DM Sans, system-ui, sans-serif', fontSize:'clamp(22px,2.4vw,38px)', fontWeight:400, color:C.text, marginBottom:'28px', lineHeight:1.22, textWrap:'pretty' }}>{contact.lead}</h2>
       <div style={{ padding:'22px', background:C.surface, border:`1px solid ${C.border}`, borderRadius:'8px', display:'grid', gap:'16px' }}>
         <div><SectionLabelP>Email</SectionLabelP><a href={`mailto:${contact.email}`} style={{ color:C.text, fontSize:'16px', textDecoration:'none' }}>{contact.email}</a></div>
-        <div><SectionLabelP>{isEn ? 'Website' : 'Сайт'}</SectionLabelP><a href={`https://${contact.website}`} style={{ color:C.text, fontSize:'16px', textDecoration:'none' }}>{contact.website}</a></div>
-        <div><SectionLabelP>{isEn ? 'Company' : 'Компания'}</SectionLabelP><p style={{ color:C.textSec, fontSize:'14px', lineHeight:1.6, margin:0 }}>{contact.company}<br/>{contact.location}</p></div>
+        <div><SectionLabelP>{tr('Website','Сайт','เว็บไซต์')}</SectionLabelP><a href={`https://${contact.website}`} style={{ color:C.text, fontSize:'16px', textDecoration:'none' }}>{contact.website}</a></div>
+        <div><SectionLabelP>{tr('Company','Компания','บริษัท')}</SectionLabelP><p style={{ color:C.textSec, fontSize:'14px', lineHeight:1.6, margin:0 }}>{contact.company}<br/>{contact.location}</p></div>
       </div>
     </div>
   );
@@ -1449,10 +1475,10 @@ const KKProfileScreen = ({ section, onBack, onNav, lang }) => {
               <button onClick={() => setActiveCase(null)} style={{ background:'none', border:`1px solid ${C.border}`, width:'30px', height:'30px', borderRadius:'50%', cursor:'pointer', color:C.textSec, flexShrink:0 }}>×</button>
             </div>
             <div style={{ padding:'22px 20px', display:'grid', gap:'16px' }}>
-              {activeCase.detail?.context && <div><SectionLabelP>{isEn ? 'Business context' : 'Бизнес-контекст'}</SectionLabelP><p style={{ fontSize:'14px', color:C.textSec, lineHeight:1.65, fontWeight:300, marginTop:'6px' }}>{activeCase.detail.context}</p></div>}
-              {activeCase.detail?.role && <div><SectionLabelP>{isEn ? 'Our role' : 'Наша роль'}</SectionLabelP><p style={{ fontSize:'14px', color:C.textSec, lineHeight:1.65, fontWeight:300, marginTop:'6px' }}>{activeCase.detail.role}</p></div>}
-              {!!(activeCase.detail?.scope?.length) && <div><SectionLabelP>{isEn ? 'What we did' : 'Что делали'}</SectionLabelP><ul style={{ margin:'6px 0 0 0', padding:'0 0 0 18px', display:'grid', gap:'6px' }}>{activeCase.detail.scope.map(p => <li key={p} style={{ fontSize:'13px', color:C.textSec, lineHeight:1.55 }}>{p}</li>)}</ul></div>}
-              {!!(activeCase.detail?.outcome?.length) && <div><SectionLabelP>{isEn ? 'Business outcome' : 'Бизнес-результат'}</SectionLabelP><ul style={{ margin:'6px 0 0 0', padding:'0 0 0 18px', display:'grid', gap:'6px' }}>{activeCase.detail.outcome.map(p => <li key={p} style={{ fontSize:'13px', color:C.textSec, lineHeight:1.55 }}>{p}</li>)}</ul></div>}
+              {activeCase.detail?.context && <div><SectionLabelP>{tr('Business context','Бизнес-контекст','บริบทธุรกิจ')}</SectionLabelP><p style={{ fontSize:'14px', color:C.textSec, lineHeight:1.65, fontWeight:300, marginTop:'6px' }}>{activeCase.detail.context}</p></div>}
+              {activeCase.detail?.role && <div><SectionLabelP>{tr('Our role','Наша роль','บทบาทของเรา')}</SectionLabelP><p style={{ fontSize:'14px', color:C.textSec, lineHeight:1.65, fontWeight:300, marginTop:'6px' }}>{activeCase.detail.role}</p></div>}
+              {!!(activeCase.detail?.scope?.length) && <div><SectionLabelP>{tr('What we did','Что делали','สิ่งที่เราทำ')}</SectionLabelP><ul style={{ margin:'6px 0 0 0', padding:'0 0 0 18px', display:'grid', gap:'6px' }}>{activeCase.detail.scope.map(p => <li key={p} style={{ fontSize:'13px', color:C.textSec, lineHeight:1.55 }}>{p}</li>)}</ul></div>}
+              {!!(activeCase.detail?.outcome?.length) && <div><SectionLabelP>{tr('Business outcome','Бизнес-результат','ผลลัพธ์ทางธุรกิจ')}</SectionLabelP><ul style={{ margin:'6px 0 0 0', padding:'0 0 0 18px', display:'grid', gap:'6px' }}>{activeCase.detail.outcome.map(p => <li key={p} style={{ fontSize:'13px', color:C.textSec, lineHeight:1.55 }}>{p}</li>)}</ul></div>}
             </div>
           </div>
         </div>
@@ -1475,6 +1501,7 @@ const App = () => {
   const LANGS = [
     { code:'EN', available:true  },
     { code:'RU', available:true  },
+    { code:'TH', available:true  },
     { code:'ES', available:false },
     { code:'DE', available:false },
     { code:'FR', available:false },
@@ -1496,6 +1523,8 @@ const App = () => {
       >
         {lang==='EN'
           ? <svg width="18" height="13" viewBox="0 0 60 30" preserveAspectRatio="none" style={{display:'block',borderRadius:'2px',border:`1px solid ${C.border}`}}><rect width="60" height="30" fill="#012169"/><path d="M0,0 60,30 M60,0 0,30" stroke="#fff" strokeWidth="6"/><path d="M0,0 60,30 M60,0 0,30" stroke="#C8102E" strokeWidth="4"/><rect x="25" width="10" height="30" fill="#fff"/><rect y="10" width="60" height="10" fill="#fff"/><rect x="27" width="6" height="30" fill="#C8102E"/><rect y="12" width="60" height="6" fill="#C8102E"/></svg>
+          : lang==='TH'
+          ? <svg width="18" height="13" viewBox="0 0 9 6" preserveAspectRatio="none" style={{display:'block',borderRadius:'2px',border:`1px solid ${C.border}`}}><rect width="9" height="6" fill="#A51931"/><rect y="1" width="9" height="4" fill="#F4F5F8"/><rect y="2" width="9" height="2" fill="#2D2A4A"/></svg>
           : <svg width="18" height="13" viewBox="0 0 9 6" preserveAspectRatio="none" style={{display:'block',borderRadius:'2px',border:`1px solid ${C.border}`}}><rect width="9" height="2" fill="#fff"/><rect y="2" width="9" height="2" fill="#0039A6"/><rect y="4" width="9" height="2" fill="#D52B1E"/></svg>}
         {lang}
         <svg width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1l4 4 4-4" stroke={C.textMuted} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
@@ -1519,7 +1548,7 @@ const App = () => {
                 textAlign:'left',
               }}>
                 <span>{l.code}</span>
-                {!l.available && <span style={{ fontSize:'9px', color:C.textMuted, fontStyle:'italic' }}>{lang==='EN' ? 'soon' : 'скоро'}</span>}
+                {!l.available && <span style={{ fontSize:'9px', color:C.textMuted, fontStyle:'italic' }}>{L3(lang,'soon','скоро','เร็ว ๆ นี้')}</span>}
                 {lang===l.code && <span style={{ color:C.accent, fontSize:'11px' }}>✓</span>}
               </button>
             ))}
@@ -1541,7 +1570,7 @@ const App = () => {
     onMouseLeave={e=>e.currentTarget.style.opacity='1'}
     >
       <span aria-hidden="true" style={{ fontSize:'13px' }}>✦</span>
-      <span>{lang === 'EN' ? 'Ask AI Advisor' : 'Спросить AI Советника'}</span>
+      <span>{L3(lang,'Ask AI Advisor','Спросить AI Советника','ถาม AI Advisor')}</span>
       <span style={{ display:'inline-flex', gap:'2px' }}>
         <kbd style={{ fontFamily:'inherit', fontSize:'10px', lineHeight:1, background:'rgba(255,255,255,0.22)', border:'1px solid rgba(255,255,255,0.34)', borderRadius:'2px', padding:'2px 4px', color:'#fff' }}>⌘</kbd>
         <kbd style={{ fontFamily:'inherit', fontSize:'10px', lineHeight:1, background:'rgba(255,255,255,0.22)', border:'1px solid rgba(255,255,255,0.34)', borderRadius:'2px', padding:'2px 4px', color:'#fff' }}>K</kbd>
@@ -1593,9 +1622,9 @@ const App = () => {
         <Wordmark lang={lang} />
         <nav style={{ display:'flex', alignItems:'center', gap:'28px' }}>
           {screen === 'profile' && (
-            <button onClick={goHome} style={{ background:'none', border:'none', cursor:'pointer', color:C.textSec, fontSize:'13px', padding:'4px 0', display:'flex', alignItems:'center', gap:'4px', letterSpacing:'.02em' }}>{lang==='EN' ? '← Catalog' : '← Каталог'}</button>
+            <button onClick={goHome} style={{ background:'none', border:'none', cursor:'pointer', color:C.textSec, fontSize:'13px', padding:'4px 0', display:'flex', alignItems:'center', gap:'4px', letterSpacing:'.02em' }}>{L3(lang,'← Catalog','← Каталог','← แคตตาล็อก')}</button>
           )}
-          {[{id:'company',label: lang==='EN'?'About':'О нас'},{id:'how-we-work',label:lang==='EN'?'How we work':'Как работаем'},{id:'team',label:lang==='EN'?'Team':'Команда'},{id:'contact',label:lang==='EN'?'Contact':'Контакты'}].map(item => {
+          {[{id:'company',label: L3(lang,'About','О нас','เกี่ยวกับเรา')},{id:'how-we-work',label:L3(lang,'How we work','Как работаем','วิธีการทำงาน')},{id:'team',label:L3(lang,'Team','Команда','ทีมงาน')},{id:'contact',label:L3(lang,'Contact','Контакты','ติดต่อ')}].map(item => {
             const isAct = screen==='profile' && profileSection===item.id;
             return (
             <button key={item.id} onClick={() => goProfile(item.id)}
