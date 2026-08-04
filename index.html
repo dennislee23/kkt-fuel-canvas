@@ -330,7 +330,7 @@ ol, ul { list-style-position: outside; }
 <!-- SEO-FALLBACK:END -->
 <script src="kktechnologies-profile-data.js?v=6"></script>
 <script src="existing/roadmap-data.js?v=5"></script>
-<script src="existing/roadmap-data-th.js?v=4"></script>
+<script src="existing/roadmap-data-th.js?v=5"></script>
 <script type="text/babel">
 const { useState, useEffect, useMemo, useCallback } = React;
 
@@ -797,7 +797,7 @@ const Drawer = ({ card, onClose, onJump }) => {
       }}>
 
         <div style={{ display:'flex', justifyContent:'flex-end', marginBottom:'24px' }}>
-          <button onClick={onClose} aria-label="Закрыть"
+          <button onClick={onClose} aria-label={tr('Close','Закрыть','ปิด')}
             style={{
               background:'none', border:`1px solid ${C.borderMid}`,
               width:'30px', height:'30px', borderRadius:'50%',
@@ -1281,9 +1281,10 @@ const HeroScreen = ({ onScrollToCatalog, onScrollToBlock, lang }) => {
             lineHeight: 1.12, letterSpacing: '-.02em', margin: '12px 0 16px', textWrap: 'balance',
           }}>{tr('Why this works for your business','Почему это работает для бизнеса','ทำไมสิ่งนี้ได้ผลกับธุรกิจของคุณ')}</h2>
           <p style={{ fontSize: 'clamp(16px,1.6vw,19px)', lineHeight: 1.6, color: C.textSec, margin: 0, textWrap: 'pretty' }}>
-            {isEn
-              ? 'Domain expertise and technical delivery in one team — every initiative tied to the economics of your business.'
-              : 'Глубокое понимание топливной отрасли и экспертиза в Data/AI в одной команде: каждая инициатива привязана к экономике вашего бизнеса.'}
+            {tr(
+              'Domain expertise and technical delivery in one team — every initiative tied to the economics of your business.',
+              'Глубокое понимание топливной отрасли и экспертиза в Data/AI в одной команде: каждая инициатива привязана к экономике вашего бизнеса.',
+              'ความเชี่ยวชาญในอุตสาหกรรมน้ำมันและการส่งมอบเชิงเทคนิคในทีมเดียว — ทุกโครงการผูกกับเศรษฐศาสตร์ของธุรกิจคุณ')}
           </p>
         </header>
 
@@ -1668,7 +1669,7 @@ const App = () => {
           boxShadow:'0 4px 20px rgba(0,0,0,0.18)',
           pointerEvents:'none', whiteSpace:'nowrap',
         }}>
-          {langToast} — перевод пока не добавлен
+          {langToast} — {tr('translation coming soon','перевод пока не добавлен','ยังไม่มีการแปล')}
         </div>
       )}
 
@@ -1718,6 +1719,6 @@ ReactDOM.createRoot(document.getElementById('root')).render(<App />);
 </script>
 
 
-  <script src="/device-hint.js?v=2" defer></script>
+  <script src="/device-hint.js?v=3" defer></script>
   <script src="/advisor.js?v=11" defer></script>
 </body></html>
