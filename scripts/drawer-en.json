@@ -1,0 +1,1107 @@
+{
+ "g1-1-trusted-data-foundation": {
+  "businessPressure": "In a typical network, data is scattered: ERP, POS, loyalty, telematics, terminals, BI, Excel — each with its own version of the truth. Departments arrive at a meeting with different numbers for the same margin, and time goes into arguing whose number is right instead of deciding. And any forecast, model, or AI built on unconsolidated, dirty data inherits those errors — and lies convincingly.",
+  "whatWePutInPlace": "We build the foundation everything else rests on: we bring scattered systems into one place, align key metrics to a single methodology (one truth for every department), and raise data to a quality fit for decisions. This is not 'another system' but the foundation that forecasts, analytics, and AI across all blocks stand on. (Three aspects in scope: one truth / one foundation / data quality.)",
+  "whatImproves": "Departments work from one number instead of arguing whose is right; forecasts and AI you can trust can be built on the foundation; decisions rest on data, not on whose Excel is freshest.",
+  "dataAiBehind": "Consolidating sources into a single foundation, aligning metric methodology, and controlling data quality. A Major Program — a real foundation, hence the highest cost and the dependency most of the catalog has on it. For a client with an existing DWH, part of the step is marked as done — included earlier in the stage.",
+  "conversationQuestions": [
+   "Do departments arrive at meetings with different numbers for the same metric?",
+   "How many systems hold their own version of the truth for sales, margin, and customers?",
+   "Can the data be trusted enough to build forecasts and AI on it?"
+  ]
+ },
+ "g1-2-bi-foundation": {
+  "businessPressure": "Even once data is consolidated, without unified reporting each department builds its own exports and Excel — and the picture diverges again, while analytics and AI hit the lack of a reliable visualization layer. Text-to-SQL, forecasts, and analytics in any block rely on this layer; without it they work at half strength.",
+  "whatWePutInPlace": "We stand up a unified reporting system (BI) on top of the consolidated foundation: network-wide dashboards and reports that all analytics and AI rely on. One layer of truth in visualization instead of scattered exports.",
+  "whatImproves": "A single picture in dashboards instead of everyone's own Excel; analytics and AI rest on a reliable layer; decisions come from one report, not from someone's export.",
+  "dataAiBehind": "BI on top of the single data foundation (G1.1). Scoped — it needs the consolidated foundation. Many networks already have BI — then the step is marked as done and the catalog moves on to the cards that rely on it.",
+  "conversationQuestions": [
+   "Do all departments look at one report, or each at their own export?",
+   "Do your forecasts and analytics rest on a reliable reporting layer?",
+   "How many Excel exports live alongside the official reporting?"
+  ]
+ },
+ "g2-1-knowledge-search": {
+  "businessPressure": "Company knowledge is scattered across policies, instructions, contracts, past decisions, and correspondence — and lives in the heads of long-tenured staff. An employee spends time finding an answer, or calls 'the person who remembers.' When that person leaves, the knowledge leaves with them.",
+  "whatWePutInPlace": "We set up company knowledge search that finds an answer by the meaning of the question, not by an exact word match: a policy, a contract clause, a past decision, an instruction. A cross-cutting tool — it works for legal, operations, finance, HR, any unit.",
+  "whatImproves": "An answer in seconds instead of searching and calling around; knowledge isn't lost when an employee leaves; one access point to policies and experience for every unit.",
+  "dataAiBehind": "Semantic search (RAG, AI) over approved documents and the company knowledge base, with access control. A ready tool — Quick Win. It is the home of a cross-cutting capability: the legal entry point comes from F2.3, but the engine is one for the whole company.",
+  "conversationQuestions": [
+   "How much time do staff spend searching policies and contracts for an answer?",
+   "What happens to knowledge when 'the person who remembers' leaves?",
+   "How many questions are resolved by a phone call instead of a search?"
+  ]
+ },
+ "g2-3-team-routine": {
+  "businessPressure": "The team — especially a small head office — spends a lot of time on mechanical work: writing up and summarizing meetings, setting and tracking tasks, sorting correspondence, aligning calendars, compiling routine reports. That time doesn't go to the decisions people were hired for.",
+  "whatWePutInPlace": "We put working AI tools in place that take the mechanical part on themselves: meeting transcripts and summaries with action items, help with tasks and correspondence, and preparation of routine reports. A cross-cutting set — useful to any unit. We start with low-risk routine and clear access control.",
+  "whatImproves": "Less time on mechanics and more on the actual work; meetings and tasks aren't lost; one baseline productivity set for all teams.",
+  "dataAiBehind": "Ready-made AI productivity tools (meetings, tasks, correspondence, reports) with access control. Quick Win — the fastest, clearest wins in the catalog, available from day one.",
+  "conversationQuestions": [
+   "How much team time goes to mechanical routine?",
+   "Do agreements and tasks get lost after meetings?",
+   "Which routine tasks could be taken off people right now?"
+  ]
+ },
+ "g2-4-ask-data-words": {
+  "businessPressure": "To get a number, an employee goes to an analyst and waits for an export. Analysts are the bottleneck: simple questions queue behind complex ones, and a manager can't quickly test a hypothesis against the data themselves. The data exists, but access to it runs through an intermediary.",
+  "whatWePutInPlace": "We give every employee the ability to ask the data in business language and get an answer — with no analyst as intermediary. A cross-cutting tool: finance asks about margin, operations about stations, commercial about customers — one engine, different views. It works on top of a reliable foundation and reporting.",
+  "whatImproves": "An answer to a data question in seconds rather than a day; analysts freed from simple requests; a manager tests a hypothesis themselves, in any unit.",
+  "dataAiBehind": "Natural-language querying (Text-to-SQL, AI) on top of the single foundation and BI. Advanced — hence the lock on G1.1–G1.2: without a reliable foundation the assistant would lie convincingly. The home of a cross-cutting capability: the finance entry point comes from E1, but the engine is one for the whole company.",
+  "conversationQuestions": [
+   "How long does it take to get a number through an analyst?",
+   "Can a manager test a hypothesis against the data themselves?",
+   "How many simple requests are queued with the analysts?"
+  ]
+ },
+ "g2-5-system-data-agent": {
+  "businessPressure": "A huge share of working time goes to moving data between systems by hand: entering a customer into CRM after a call, updating a status in the task manager, posting a document in ERP, retyping data from an email into a form. It's slow, creates errors and divergence between systems, and doesn't scale as the company grows.",
+  "whatWePutInPlace": "We put in place an agent that enters and updates records in CRM, ERP, and task managers itself — from emails, calls, scans, and chats. A human sets the rules and reviews the edge cases; the system takes on the routine data transfer. A cross-cutting tool: sales, procurement, back office, HR — anywhere data is moved by hand.",
+  "whatImproves": "Less manual entry and fewer transfer errors; systems stay in sync instead of diverging; the team does the work instead of retyping data between windows.",
+  "dataAiBehind": "An agent on top of system access (CRM/ERP/task managers) and incoming-document processing, acting by rules and under human control. Frontier — an automation layer on top of data and tools; edge cases escalate to a human, the agent doesn't act blindly.",
+  "conversationQuestions": [
+   "How much working time goes to moving data between systems by hand?",
+   "Does data diverge between CRM, ERP, and task managers because of manual entry?",
+   "Which data-transfer operations could be handed to an agent while keeping control?"
+  ]
+ },
+ "a1-stock-need-view": {
+  "businessPressure": "Procurement decisions are often made under time pressure and with an incomplete picture: inventory in one system, demand in the buyer's head, station requests in email. As a result, orders follow habit and the previous period rather than what is actually needed now, leading to excess stock at one terminal and shortages at another.",
+  "whatWePutInPlace": "We bring into one view what is needed for a procurement decision: current inventory by terminal and station, demand, and open requests. The buyer sees the full situation in one place instead of manually collecting it from three sources before every order.",
+  "whatImproves": "Procurement is based on the real picture, not memory and habit; there are fewer reactive top-up purchases; mismatches between inventory and demand are visible early.",
+  "dataAiBehind": "Consolidation of inventory, demand, and requests from existing systems into a single data view. Works on available data, without models. This is the foundation for forecasting and smart procurement.",
+  "conversationQuestions": [
+   "How many systems does the buyer open to decide what to order?",
+   "Are orders based on real demand or on the previous period?",
+   "Do you see inventory diverging from demand before a shortage or surplus appears?"
+  ]
+ },
+ "a1-demand-forecast": {
+  "businessPressure": "Procurement volumes often follow the previous period or supplier availability. But demand changes by season, region, station role, B2B contracts, holidays, and competitor behavior. When the plan is rough or late, the result is surplus in one place, shortage risk in another, and emergency top-up purchases that could have been avoided.",
+  "whatWePutInPlace": "We build a fuel demand forecast for each station and terminal, taking seasonality, weather, events, and known network changes into account. This is the basis for what follows: how much to buy, how much to deliver, and where to hold stock.",
+  "whatImproves": "Procurement and allocation are based on expected demand, not last month; there are fewer emergency purchases and better readiness for seasonal peaks.",
+  "dataAiBehind": "Forecasting ML models on sales history by station and fuel grade, with external factors such as season, weather, and events. Advanced: requires accumulated history and consolidated data. Dispatching in block B relies on this forecast; it is a shared asset, not a duplicate.",
+  "conversationQuestions": [
+   "Are volumes planned from a demand forecast or adjusted from recent orders?",
+   "How often do you need emergency top-up purchases because the plan was wrong?",
+   "Are commercial changes, such as promotions and new contracts, visible in the plan in advance?"
+  ]
+ },
+ "a1-smart-buying": {
+  "businessPressure": "Even with a demand forecast, the procurement decision remains a bundle of trade-offs: supplier offer, market price movement, current inventory, available cash, terminal capacity, and logistics all pull in different directions. An attractive price can turn into surplus, cash pressure, or supply imbalance.",
+  "whatWePutInPlace": "We turn this into a ready decision: how much to buy, when, from which supplier, in what volume, and where to send it, with the commercial and cash consequences included. We show what happens if the company buys now, waits, splits the order, or reallocates volume between terminals. The tool supports the buyer's decision; it does not replace their responsibility.",
+  "whatImproves": "Procurement happens on time and in the right volume; less capital is frozen; the cost of each option is visible before the order is placed.",
+  "dataAiBehind": "Procurement optimization on top of demand forecast, inventory, prices, and constraints such as capacity, logistics, and cash. This is the level of a full procurement optimization system. A real implementation of this type of system is our Optimus product.",
+  "conversationQuestions": [
+   "Do procurement decisions account for demand, inventory, logistics, and cash together or separately?",
+   "Can you compare the options \"buy now / wait / split the order\" in financial terms?",
+   "Which procurement decisions would benefit from scenario calculation before the deal?"
+  ]
+ },
+ "a1-buying-agent": {
+  "businessPressure": "Once demand can be forecast and optimal procurement can be calculated, the bottleneck becomes manual work: every day someone has to assemble the picture, run the calculation, and prepare the request. In a large network with dozens of terminals and fuel grades, this routine consumes the buyer's time and does not scale.",
+  "whatWePutInPlace": "We connect the forecast and procurement calculation into a system that prepares the request according to company rules, while a human reviews and approves it. The buyer sets the boundaries and controls the process; the system takes over data collection and calculation.",
+  "whatImproves": "The buyer focuses on decisions and negotiations, not collecting numbers; requests are prepared quickly and consistently; control remains with the human.",
+  "dataAiBehind": "A managed loop connecting forecast, optimization, and procurement rules. This is the top of the block, hence the dependency on forecast, inventory, and foundation. AI executes rules set by humans; it does not make the commercial decision on its own.",
+  "conversationQuestions": [
+   "How much of the buyer's time goes into collecting data and preparing requests?",
+   "What prevents you from automating request preparation while keeping approval with yourself?",
+   "Are the forecast and data ready for automated procurement request preparation?"
+  ]
+ },
+ "a2-compare-suppliers": {
+  "businessPressure": "A supplier is not just the quoted price. Availability, delivery timing, document quality, delivery accuracy, payment deferral, behavior in disputes, customs paperwork, and responsiveness all affect the real value of the relationship. Without a structured picture, selection depends on memory and relationship history rather than facts.",
+  "whatWePutInPlace": "We assemble a supplier view: offers, contract terms, actual prices, delivery reliability, document quality, claims, disputes, and payment behavior. It becomes clear who creates hidden costs and friction despite an attractive price. Negotiations are based on facts, not anecdotes.",
+  "whatImproves": "A stronger negotiating position; the full cost of the relationship is visible, not only price; disputes are resolved faster; supplier choice is transparent.",
+  "dataAiBehind": "Consolidation of supplier data, including contracts, deliveries, invoices, and claims, into one view using existing data. Quick Win: no models required.",
+  "conversationQuestions": [
+   "Can you compare suppliers by full cost, not just price?",
+   "Which supplier issues repeat but are not captured anywhere?",
+   "Are claims and disputes connected back to procurement decisions?"
+  ]
+ },
+ "a2-buy-timing": {
+  "businessPressure": "The fuel purchase price moves, and the buying moment strongly affects cost. But the decision to buy now or wait is more often driven by necessity, because stock is running out, than by the market moment. Procurement happens when it becomes urgent, not when it is favorable.",
+  "whatWePutInPlace": "We show the dynamics and expected movement of the purchase price, so the timing decision is based on the market, not only on tank balance. The company can buy earlier or hold back while seeing where the price is moving.",
+  "whatImproves": "Procurement at a more favorable moment; lower average batch cost; fewer forced purchases at an unfavorable price.",
+  "dataAiBehind": "Analysis of price dynamics and market indices on procurement history, with ML price movement forecasting where applicable. Advanced: requires market data and history.",
+  "conversationQuestions": [
+   "Do you buy based on the market moment or when stock runs out?",
+   "Do you see where the purchase price is moving before the buying decision?",
+   "How much do you lose on forced purchases at an unfavorable moment?"
+  ]
+ },
+ "a3-landed-cost": {
+  "businessPressure": "Batch cost is not the supplier's price. Logistics, demurrage, railcar downtime, customs delays, and penalties are added on top. These costs surface separately and after the fact, so the real cost of the batch becomes clear only after the money has been spent, and often is not consolidated at all.",
+  "whatWePutInPlace": "We collect the full batch cost into one number: procurement, logistics, demurrage, downtime, customs, and penalties. It becomes clear what the batch really cost and where money leaks in the chain.",
+  "whatImproves": "The real cost is visible instead of being guessed; the cost drivers are clear; supplier and carrier decisions are based on the full number.",
+  "dataAiBehind": "Consolidation of all batch costs from existing documents and accounting data into a single calculation. Quick Win: based on available data, without models.",
+  "conversationQuestions": [
+   "Do you know the full batch cost, not only the purchase price?",
+   "Which cost items, such as demurrage, downtime, and penalties, surface after the fact?",
+   "Is the real batch cost consolidated at all, or estimated by eye?"
+  ]
+ },
+ "a3-cost-risk-early": {
+  "businessPressure": "Demurrage and downtime are costs that could have been avoided if the risk had been seen in time. But they are often discovered after the fact, when the penalty has already been charged. There is no early warning, only the invoice afterward.",
+  "whatWePutInPlace": "We flag the risk of batch cost increase in advance: where downtime, customs delay, or a penalty is developing, while there is still time to intervene. The problem appears as a signal, not as a line in an invoice after the fact.",
+  "whatImproves": "Part of demurrage and penalties is prevented; it is visible where the batch is becoming more expensive while action is still possible; there are fewer unpleasant surprises in cost.",
+  "dataAiBehind": "Early detection of risks in the supply chain using batch movement data and delay history. Advanced: requires history and linked logistics data.",
+  "conversationQuestions": [
+   "Do you learn about downtime or penalty risk before it is charged?",
+   "How much demurrage per year could have been prevented by an early signal?",
+   "Is there a warning about batch delay, or only an invoice afterward?"
+  ]
+ },
+ "a4-price-vs-competitors": {
+  "businessPressure": "Pump price is highly local, and a nearby competitor's move directly affects station volume and margin. Competitor prices are learned late and in fragments, while the network does not see its full market position and reacts blindly.",
+  "whatWePutInPlace": "We collect market prices next to the company's own prices for each station: where the network is higher, lower, or lagging behind a competitor's move. The network sees its price position as a whole, not through separate complaints from the field.",
+  "whatImproves": "Price position is visible immediately, not in fragments; response to competitor moves is faster; pricing decisions are based on the full market picture.",
+  "dataAiBehind": "Collection of competitor prices, via feeds or manual observations, alongside own prices by station. Quick Win if price collection is already in place; if not, the first step is to establish it.",
+  "conversationQuestions": [
+   "Do you see your price against competitors for each station?",
+   "How quickly do you learn about price moves by nearby competitors?",
+   "Is the response to a competitor based on data or on a call from the station?"
+  ]
+ },
+ "a4-price-headroom": {
+  "businessPressure": "Pump pricing is local: a move that protects margin at one station can kill volume at another. Companies often respond to a competitor without understanding the station's role, local price sensitivity, and expected margin-versus-volume balance, effectively giving away margin or volume blindly.",
+  "whatWePutInPlace": "We build an understanding of price position by station clusters: how volume responds to price, where there is room to raise price without losing customers, and where price is already pushing them to competitors. We recommend response options with margin and volume boundaries for the pricing team to decide.",
+  "whatImproves": "It is clear where price can be raised safely and where it cannot; there are fewer blanket price changes across the network; margin and volume are better balanced by cluster.",
+  "dataAiBehind": "ML analysis of local price sensitivity, or elasticity, by station cluster using price, volume, and behavior history. Advanced: requires history and station clustering.",
+  "conversationQuestions": [
+   "Is price decided by station cluster or uniformly across the network?",
+   "Do you know where there is room to raise price and where there is not?",
+   "Do you see the expected impact on margin and volume before changing the price?"
+  ]
+ },
+ "a4-dynamic-pricing": {
+  "businessPressure": "When local sensitivity is understood and competitors are visible, manual pricing still lags: prices are changed once a day or two, manually by cluster, and every reaction window costs margin or volume. The market moves faster than the pricing team can keep up.",
+  "whatWePutInPlace": "We connect sensitivity, competitor monitoring, and station role into a system that recommends or adjusts price based on demand, competitors, and time, under strict company rules and controls. A human sets the margin boundaries and strategy; the system keeps price sharp within those boundaries.",
+  "whatImproves": "Price responds to the market quickly, not late; margin and volume are continuously optimized within defined boundaries; the pricing team manages strategy instead of manual recalculation.",
+  "dataAiBehind": "A pricing engine on top of the sensitivity model, competitor monitoring, and data foundation. This is the top layer, hence the dependency and highest cost. It works strictly within company rules, including legal pricing constraints; decisions on boundaries remain with humans.",
+  "conversationQuestions": [
+   "How quickly does price currently change in response to the market?",
+   "What prevents you from keeping price sharp automatically within the boundaries you set?",
+   "Are sensitivity and competitor data ready for such an engine?"
+  ]
+ },
+ "d1-1-client-profit": {
+  "businessPressure": "Fuel is a commodity, and customer knowledge is one of the few things that can distinguish a company from the station next door. It is visible how much each loyalty card spent, but not which customers bring profit and which fuel only during promotions. Retention and promotion budgets are allocated by turnover, which often means to the wrong customers.",
+  "whatWePutInPlace": "We build a clear customer picture: who they are, how often they visit, how much and on what they spend, and who actually brings profit after discounts and bonuses, not just who fuels a lot. We show the customer base structure in a way marketing, loyalty, and commercial teams can use, not only reporting.",
+  "whatImproves": "It becomes clear which customers the company earns on; wasted discounts are visible; loyalty budget goes where it returns, instead of being spread across everyone.",
+  "dataAiBehind": "Works on data that already exists: loyalty transactions, receipts, and pump sales. Descriptive analytics consolidates them into a picture of behavior and profit contribution using available data, without complex models.",
+  "conversationQuestions": [
+   "Do you know what share of profit, not turnover, comes from the top 10% of customers?",
+   "How much do you give away in discounts to customers who would have fueled anyway?",
+   "Is the customer's purchase history consolidated into one picture, or does it live in separate systems?"
+  ]
+ },
+ "d1-1-basic-segmentation": {
+  "businessPressure": "Until customers are divided into groups, they can only be managed the same way: one promotion for everyone, one communication logic, one price of attention. This leads to blanket discounts, irrelevant messages, and budgets spent equally on profitable customers and those who visit once every six months. To work differently, customers must first be divided into clear groups.",
+  "whatWePutInPlace": "We divide customers into simple working groups by recency, frequency, and purchase amount, which marketing and loyalty teams can use immediately. This is the first cut for targeted work: each group gets its own offer, channel, and frequency.",
+  "whatImproves": "Promotions and communications reach the right group instead of everyone at once; less money is spent on those who would buy anyway; the foundation for further personalization appears.",
+  "dataAiBehind": "Built on existing loyalty transactions. Classic RFM logic, recency / frequency / monetary value, is transparent and fast on available data. This is the foundation on which ML behavioral segmentation is built.",
+  "conversationQuestions": [
+   "Are customers divided into groups beyond simple spend tiers?",
+   "Can you address one customer group separately from the others?",
+   "What share of promotions currently goes to all customers at once?"
+  ]
+ },
+ "d1-1-profile-360": {
+  "businessPressure": "Customer data is often scattered: loyalty in one system, store receipts in another, pump fuelings in a third, call-center interactions nowhere. As a result, fragments are known separately: a fueling customer, a coffee buyer, a complainant, without seeing that this is one person. Any personal work runs into the absence of a complete customer profile.",
+  "whatWePutInPlace": "We create a single customer profile from all sources: fuel, store, cafe, loyalty, interactions, and payments. One person means one profile, with all behavior visible. Segmentation, retention, and personal offers then work on this profile.",
+  "whatImproves": "The customer is visible as a whole, not in fragments; personal work becomes possible in principle; data stops duplicating and contradicting itself.",
+  "dataAiBehind": "Consolidation of sources into a single profile on top of the data foundation. System integration is required, so this card depends on the unified data foundation (G1). Without Customer 360, advanced cards in this block work at half strength.",
+  "conversationQuestions": [
+   "Do you see fuel, store, and service touchpoints as one customer?",
+   "How many systems must be opened to assemble the full customer picture?",
+   "What prevents linking the loyalty card, store receipt, and customer request into one profile?"
+  ]
+ },
+ "d1-1-behavioral-segmentation-ml": {
+  "businessPressure": "Simple groups by amount and frequency are a good start, but they miss a lot: a customer who fuels rarely but always fills the tank and buys coffee; one who comes only for promotions; one who is about to switch to a competitor. Rules such as \"spent more than X\" do not distinguish these patterns; they see only what was coded into them.",
+  "whatWePutInPlace": "ML models find natural customer groups by real behavior, not by invented thresholds, but by how people actually behave. We connect these groups to offer logic, channel, and timing: whom to protect, grow, reactivate, or exclude from expensive campaigns.",
+  "whatImproves": "Better targeting of each group; segments become visible that rules cannot find; less budget is spent on customers whom promotions do not move.",
+  "dataAiBehind": "Behavioral clustering with ML on top of the customer profile and transaction history. Requires consolidated data and basic segmentation, so it follows them rather than replacing them.",
+  "conversationQuestions": [
+   "Are your segments built on rules or on real behavior?",
+   "Are there customer groups you suspect exist but cannot isolate?",
+   "How differently do you work with different segments today?"
+  ]
+ },
+ "d1-1-clv": {
+  "businessPressure": "Customers are evaluated by how much they have already brought. But a valuable customer today may be fading, while a modest newcomer may become the most profitable in a year. Decisions about whom to spend retention and attention on are made from the past, although they should be made from the future.",
+  "whatWePutInPlace": "An ML model estimates not only current but also future customer value: whether the customer is growing or fading. This allows marketing investment to be prioritized by real potential, not yesterday's turnover.",
+  "whatImproves": "Investment goes to those who will be valuable, not only those who were; growing customers and quietly fading customers are visible earlier; the budget works for the future.",
+  "dataAiBehind": "Customer lifetime value (CLV) model on behavior history and Customer 360 profile. Requires accumulated history and consolidated data.",
+  "conversationQuestions": [
+   "Do you prioritize customers by how much they have brought or how much they will bring?",
+   "Do you see a growing customer before they become large?",
+   "What currently determines whom retention spend is directed to?"
+  ]
+ },
+ "d1-2-early-churn-signal": {
+  "businessPressure": "At a fuel station, a customer rarely leaves formally; they simply visit less often and give part of the tank to a competitor. By the time the decline is visible in total sales, the relationship has already cooled, and bringing the person back is expensive and often too late. The company learns about the loss last.",
+  "whatWePutInPlace": "We build an early cooling signal: identify a customer whose frequency and ticket are falling relative to their own norm, not the overall average. This gives time to respond while the customer is still active and open.",
+  "whatImproves": "A leaving customer is visible in advance, not after the fact; retention is cheaper because it starts earlier; quiet leakage of valuable customers decreases.",
+  "dataAiBehind": "Comparison of current behavior with the customer's own normal pattern using loyalty data. A simple indicator by frequency and ticket, on available data, without a heavy model.",
+  "conversationQuestions": [
+   "Do you see that a valuable customer has started visiting less often before it appears in overall numbers?",
+   "Do you compare a customer with their own norm or with the average across everyone?",
+   "How quickly do you learn that a regular customer has started to leave?"
+  ]
+ },
+ "d1-2-churn-prediction": {
+  "businessPressure": "A drop in frequency means churn has already begun. By the time the signal is obvious, some customers are already lost. To retain proactively, the company needs to see not those already leaving, but those about to leave, through subtle behavior changes.",
+  "whatWePutInPlace": "An ML churn model based on behavioral features estimates churn risk before it becomes obvious. Each valuable customer receives a risk score, and the company works with the risk zone in a targeted way.",
+  "whatImproves": "Retention acts before the point of no return; resources go to customers truly at risk; overall customer retention improves.",
+  "dataAiBehind": "ML churn model on behavioral features on top of profile and history. Requires consolidated data and accumulated history.",
+  "conversationQuestions": [
+   "Do you react to customers who have left or those who are about to?",
+   "Do you have a churn risk score for each valuable customer?",
+   "How many customers do you lose between \"started leaving\" and \"left\"?"
+  ]
+ },
+ "d1-2-retention-action": {
+  "businessPressure": "Seeing that a customer is leaving is only half the job. The other half is what exactly to offer them. A universal discount will restore one customer's loyalty, simply give money away to another, and not affect a third. Without understanding what moves a specific customer, retention becomes the same blanket discount under another name.",
+  "whatWePutInPlace": "We select the retention action for each at-risk customer: who gets a discount, who gets a store bonus, who only needs a reminder, and whom to let go because retention costs more than the customer is worth. We connect the risk signal to a specific response.",
+  "whatImproves": "Retention is targeted, not blanket; less money is spent on those who cannot be brought back or would return anyway; retention campaigns deliver higher return.",
+  "dataAiBehind": "Action selection based on customer segment, value, and response history. Relies on segmentation and churn forecast.",
+  "conversationQuestions": [
+   "Do you offer leaving customers the same thing or different actions by customer?",
+   "Do you know which customer will respond to a discount and which will not?",
+   "Do you check whether retention costs more than the customer is worth?"
+  ]
+ },
+ "d1-2-retention-autopilot": {
+  "businessPressure": "Even when the company can predict churn and knows how to retain, the process still depends on manual work: someone must review the risk zone every day, choose an action, and launch it. Across hundreds of thousands of customers, this does not scale; large customers get attention, while the rest leak away.",
+  "whatWePutInPlace": "We connect churn forecast and action selection into a system that tracks risk and launches retention under human-defined rules and control. The operator sets the boundaries and approves the logic; the system takes over the routine.",
+  "whatImproves": "Retention works across all customers, not only large ones; reaction is immediate, without a manual cycle; the human manages strategy instead of going through lists.",
+  "dataAiBehind": "A managed loop connecting the ML churn model, action selection, and campaign mechanics. This is the top of the block and requires forecast, selection, and data foundation to already work. AI executes rules set by humans; it does not replace their decision.",
+  "conversationQuestions": [
+   "How many at-risk customers can you realistically process manually?",
+   "What prevents launching retention automatically while keeping control with yourself?",
+   "Are the data and models ready for an automated loop?"
+  ]
+ },
+ "d1-3-basket-bundles": {
+  "businessPressure": "A customer fuels and leaves, although they could have bought coffee, and with coffee, a pastry. It is visible that these products are often bought together, but this is not used: merchandising, cashier prompts, and app offers live separately from what is actually bought as a bundle.",
+  "whatWePutInPlace": "We find stable purchase bundles and turn them into action: what to place nearby, what to prompt at checkout, and what to offer in the app so the customer adds to the main purchase. We work from what already sells together, not from guesses.",
+  "whatImproves": "Average ticket grows without new customers; bundles that previously went unused start working; merchandising and prompts rely on data, not merchandiser intuition.",
+  "dataAiBehind": "Basket affinity analysis on existing receipts. If the company has a strong BI team, part of this may already be calculated; the value is then in turning analysis into specific action at the site.",
+  "conversationQuestions": [
+   "Do you know what is most often bought together with fuel and with coffee?",
+   "Are merchandising and prompts based on bundle data or on habit?",
+   "How many tickets stop at one item although they could grow?"
+  ]
+ },
+ "d1-3-personal-offer": {
+  "businessPressure": "The same offer to everyone works poorly: one customer needs coffee, another a car wash, a third nothing, and a generic message irritates all three. The company knows enough about the customer to offer precisely, but offers are made blindly.",
+  "whatWePutInPlace": "We determine what to offer a specific customer so they visit, enter the store, or buy a service, based on behavior and segment. The next best offer for each customer, not one offer for all.",
+  "whatImproves": "Higher response and store conversion; less irritation from irrelevant messages; fuel traffic converts into non-fuel revenue.",
+  "dataAiBehind": "Recommendation model on customer profile, purchase history, and segments. Requires consolidated data and segmentation.",
+  "conversationQuestions": [
+   "Are your offers personal or the same for everyone?",
+   "Do you know which customer should receive which offer to make them enter the store?",
+   "How is response to an offer measured by customer?"
+  ]
+ },
+ "d1-3-best-offer-moment": {
+  "businessPressure": "The right offer at the wrong moment does not work: a coffee promotion when the person is rushing to the highway, or a car wash in the rain. Offers are sent by campaign schedule, not by customer readiness, and the best offers are wasted.",
+  "whatWePutInPlace": "We identify the moment when the customer is receptive to an offer, based on their usual rhythm and context, and offer then, not when it is convenient for marketing.",
+  "whatImproves": "Higher response to the same offer; less customer fatigue from poorly timed messages; the best offers are not wasted.",
+  "dataAiBehind": "A model of contact timing and triggers based on behavior history, on top of profile and segmentation.",
+  "conversationQuestions": [
+   "Do you send offers by campaign schedule or by customer readiness?",
+   "Do you know when a specific customer is more likely to respond?",
+   "How many good offers are sent at a bad moment?"
+  ]
+ },
+ "d1-4-promo-effect": {
+  "businessPressure": "A promotion \"worked\" because sales grew, but part of those sales would have happened without the discount, so the company simply gave money away. Without honest measurement, a promotion looks successful by bonus redemptions but weak by profit, and unprofitable mechanics are repeated.",
+  "whatWePutInPlace": "We measure the real promotion effect: compare behavior of those who received the promotion with a control group, and calculate incremental visits, liters, and ticket, not just redemption. It becomes clear which promotion creates behavior and which subsidizes behavior that already exists.",
+  "whatImproves": "An honest view of which promotions bring profit and which only create turnover; fewer repeats of unprofitable promotions; marketing and finance speak the same language.",
+  "dataAiBehind": "Effect measurement through control groups using transaction and campaign data. On available data, without a heavy model.",
+  "conversationQuestions": [
+   "Do you measure a promotion by redemptions or by incremental profit?",
+   "Which of your promotions would the customer have used even without the discount?",
+   "Do you have a control group to understand the real effect?"
+  ]
+ },
+ "d1-4-uplift-discount": {
+  "businessPressure": "Even an honestly measured promotion is still distributed too broadly: within one campaign there are customers whom the discount truly moves, and those who would have bought anyway. Money goes to the second group because targeting is rough.",
+  "whatWePutInPlace": "An uplift ML model identifies exactly whom the discount changes and sends the promotion only to them. Within a campaign, we separate customers who are moved by the incentive from those who will buy without it, and do not spend on the latter.",
+  "whatImproves": "The same campaign effect is achieved cheaper; profit is protected from unnecessary discounts; promotion budget is concentrated where it works.",
+  "dataAiBehind": "Uplift response model using ML on campaign and behavior history. Requires accumulated response history and segmentation.",
+  "conversationQuestions": [
+   "Within a promotion, do you separate customers moved by the discount from those who will buy anyway?",
+   "How much promotion budget goes to guaranteed buyers?",
+   "Can you give a discount selectively, not to the whole group?"
+  ]
+ },
+ "d1-4-promo-engine": {
+  "businessPressure": "When the company can segment, target, and measure effect, the bottleneck again becomes manual work: every personal campaign must be assembled, launched, and tracked. Targeted work does not scale manually, and everything slides back to blanket promotions because that is easier.",
+  "whatWePutInPlace": "We connect segments, offer rules, and measurement into an engine that launches targeted campaigns at scale and under control: selects the offer by segment, runs A/B tests, and optimizes on the fly. A human sets the rules and margin boundaries; the system runs the mechanics.",
+  "whatImproves": "Personalization works across all customers, not only in selected campaigns; campaigns are launched and optimized quickly; marketing manages strategy, not mailing assembly.",
+  "dataAiBehind": "Campaign engine on top of segmentation, promotion measurement, and data foundation. This is the top of the block, hence the dependency on all of the above. AI optimizes within human-defined rules and does not replace strategy decisions.",
+  "conversationQuestions": [
+   "How many personal campaigns can you realistically manage manually?",
+   "What prevents launching targeted campaigns at scale while keeping control?",
+   "Are segments, measurement, and data ready for such an engine?"
+  ]
+ },
+ "d1-5-feedback-themes": {
+  "businessPressure": "Feedback comes from everywhere: app reviews, station complaints, social media, call center, and fuel quality incidents. It is processed slowly as a stream of requests and rarely connected to those who can fix the cause. Recurring issues, such as slow service at a specific station, loyalty disputes, or terminal problems, persist because the pattern is not visible in the mass of messages.",
+  "whatWePutInPlace": "We consolidate reviews and requests from different channels into one picture and automatically classify them by topic, sentiment, and likely cause. Recurring issues are routed to those who can fix them: station operations, support, loyalty, or supply. The view shows substance, not just message volume.",
+  "whatImproves": "Real causes of dissatisfaction become visible, not just isolated complaints; recurring problems surface early; the team works on substance instead of clearing volume.",
+  "dataAiBehind": "Text processing for feedback, including topics, sentiment, and routing, on existing feedback channels. Ready tool, quick to deploy.",
+  "conversationQuestions": [
+   "Are reviews from different channels consolidated or kept separately?",
+   "Do you see a recurring problem at a specific station before it becomes a stream of complaints?",
+   "Is feedback a signal for operations or only workload for support?"
+  ]
+ },
+ "d1-5-station-problem-early": {
+  "businessPressure": "One complaint may be noise; ten complaints about one station in a day are a signal that something broke: service, equipment, or quality. But while complaints are read one by one, the spike at a specific site is missed, and the problem hits station revenue before it is noticed.",
+  "whatWePutInPlace": "We track the feedback stream by station and flag an abnormal spike in negativity immediately, linked to the site and likely cause. The problem is visible as an event, not as statistics accumulated by month-end.",
+  "whatImproves": "A service or quality breakdown at a site is visible within a day, not a month; less revenue is lost while the issue is fixed; response is targeted to the specific station.",
+  "dataAiBehind": "Anomaly detection in station-level feedback streams. Requires established feedback collection from the previous card as the foundation.",
+  "conversationQuestions": [
+   "Would you notice a spike in complaints about one station on the same day?",
+   "Is feedback linked to a specific site?",
+   "How much revenue does a station lose before the issue appears in a report?"
+  ]
+ },
+ "d1-5-ai-support-line": {
+  "businessPressure": "Most customer requests are standard: where the nearest station is, what happened to points, how the program works, or card status. They consume support time that could go to complex and conflict cases. During peaks and outside working hours, the customer waits for an answer that is not available.",
+  "whatWePutInPlace": "We deploy first-line AI: it answers standard customer questions in chat and the app immediately and around the clock, and passes complex or emotional cases to a human with context. Support handles what requires a human, instead of repeating the same answers.",
+  "whatImproves": "The customer gets an answer immediately and at any time; support is relieved of standard questions; complex requests reach a human with ready context.",
+  "dataAiBehind": "Conversational AI on the company's knowledge base and policies, with rule-based handoff to a human. This is the top of D1.5, hence the dependency on the knowledge base. AI handles standard cases and escalates; it does not resolve conflicts on its own.",
+  "conversationQuestions": [
+   "What share of support requests are standard recurring questions?",
+   "Does the customer get an answer outside working hours and during peaks?",
+   "Does a complex request reach a human with context, or does it start from zero?"
+  ]
+ },
+ "d1-7-partner-data-platform": {
+  "businessPressure": "There is something suppliers and partners are ready to pay for: anonymized understanding of what is bought, where, and by whom. But this asset lies unused because there is no product, no safe way to share it, and no sales model.",
+  "whatWePutInPlace": "We build a data product: anonymized analytics and controlled access for partners and suppliers in a protected environment, without exposing personal data. The company starts earning from knowledge, not only from fuel and products.",
+  "whatImproves": "A new revenue stream outside sales; data turns from a cost into an asset; partners receive value without receiving personal data.",
+  "dataAiBehind": "An analytics product and protected access environment on top of a mature data foundation. This is the top layer and depends on data and access management.",
+  "conversationQuestions": [
+   "Do you have data that suppliers and partners are willing to pay for?",
+   "Can you share analytics without exposing personal data?",
+   "Who internally owns data as a product?"
+  ]
+ },
+ "d2-1-b2b-profitability": {
+  "businessPressure": "B2B brings volume, and volume hides the truth: a large contract may be unprofitable after discounts, payment deferral, and service cost, but looks important because of liters. The corporate account manager sees turnover, not margin, and holds onto customers that quietly consume profit.",
+  "whatWePutInPlace": "We calculate the real profitability of each corporate account: margin after discounts, deferrals, and terms. It becomes clear which B2B customers earn money and which live at the company's expense.",
+  "whatImproves": "It is clear which contracts are profitable and which are unprofitable under the volume; candidates for term revision are visible; B2B decisions are made by margin, not liters.",
+  "dataAiBehind": "Margin analysis of the portfolio using existing sales, discount, and terms data. On available data.",
+  "conversationQuestions": [
+   "Do you know the margin for each B2B account after all terms?",
+   "Which large contracts are unprofitable beneath the volume?",
+   "Do managers see account turnover or account profit?"
+  ]
+ },
+ "d2-1-b2b-value-forecast": {
+  "businessPressure": "Not every account profitable today deserves investment, and not every small account lacks prospects. Decisions about which accounts to develop and retain are made by current volume, not potential.",
+  "whatWePutInPlace": "We assess the potential and direction of each corporate account: where there is growth, where services can be cross-sold such as wash, maintenance, or tires, and where the account is stagnating. Development is prioritized by potential, not today's volume.",
+  "whatImproves": "Development goes to accounts with real potential; cross-sell opportunities are visible; corporate account managers' time is focused on promising customers.",
+  "dataAiBehind": "ML model of account value and growth using account history, behavior, and terms. Requires consolidated account data.",
+  "conversationQuestions": [
+   "Do you develop accounts by volume or by potential?",
+   "Where do current B2B customers have growth or cross-sell potential?",
+   "Which accounts are stagnating despite investment?"
+  ]
+ },
+ "d2-2-b2b-cooling-signal": {
+  "businessPressure": "A corporate customer does not leave by announcement, but through decline: fewer card fuelings, less volume, quieter contact. By the time this surfaces at renewal, the customer is already halfway to a competitor, and negotiations start from a weak position.",
+  "whatWePutInPlace": "We catch account cooling early: a drop in volume and frequency relative to its norm while the contract is still active and there is time to respond. The corporate account manager sees risk in advance, not one month before contract end.",
+  "whatImproves": "A leaving B2B customer is visible in advance; renewal negotiations start from a stronger position; quiet losses of large accounts decrease.",
+  "dataAiBehind": "Account activity decline indicator based on fleet card transactions. Separate from B2C because corporate customer economics are different.",
+  "conversationQuestions": [
+   "Do you see that a corporate customer has started fueling less before renewal?",
+   "How early does the corporate account manager learn about account cooling?",
+   "How many B2B customers leave \"unexpectedly\"?"
+  ]
+ },
+ "d2-2-renewal-risk": {
+  "businessPressure": "A volume decline means departure has already begun. To retain a corporate customer, non-renewal risk must be visible in advance through a combination of signals, not only a drop in liters right before contract end.",
+  "whatWePutInPlace": "An ML non-renewal risk model based on account behavior: volume, frequency, payments, contact, and service use. At-risk accounts are visible in advance, and retention starts before negotiations, not during them.",
+  "whatImproves": "Departure risk is visible before the renewal window; retention is targeted and timely; the share of renewed contracts increases.",
+  "dataAiBehind": "ML churn model for corporate customers, separate from B2C because features and economics differ. Built on account history.",
+  "conversationQuestions": [
+   "Do you see non-renewal risk a quarter before contract end?",
+   "What signals B2B customer departure besides volume decline?",
+   "When does retention start: before negotiations or during them?"
+  ]
+ },
+ "d2-3-risk-value-terms": {
+  "businessPressure": "B2B discounts, limits, and deferrals are often given by inertia and negotiation pressure, not by the customer's real value and risk. As a result, strong customers receive too much, risky customers receive overly good terms, and portfolio margin is diluted.",
+  "whatWePutInPlace": "We tie terms to the customer: discount and limit based on real value and risk, not habit or negotiation pressure. The manager receives a justified negotiation frame.",
+  "whatImproves": "Terms reflect value and risk; portfolio margin is under control; negotiations rely on data, not customer pressure.",
+  "dataAiBehind": "Scoring for differentiated terms based on portfolio data such as margin, history, and payments. Requires a consolidated account view.",
+  "conversationQuestions": [
+   "Do your B2B terms reflect customer value or the strength of the negotiator?",
+   "Which customers receive better terms than justified?",
+   "Does the manager have a justified frame for negotiation?"
+  ]
+ },
+ "b1-1-delivery-status-view": {
+  "businessPressure": "Inbound supply passes through third-party hands: supplier, carrier, railway, customs, and terminal acceptance. Each party has its own data, and it is reconciled through phone calls and emails. The network learns about a disruption after it has already happened and reacts in firefighting mode.",
+  "whatWePutInPlace": "We consolidate inbound supply status into one view: from supplier confirmation to terminal acceptance, showing where the batch is, which stage it is at, and whether it will arrive on time. Logistics sees the full situation instead of collecting it by calling around.",
+  "whatImproves": "Supply status is visible in one place; there is less manual calling; the issue is visible before it disrupts acceptance or station supply.",
+  "dataAiBehind": "Consolidation of batch movement data from existing sources such as supplier, carrier, and acceptance into a single data view. On available data: Quick Win.",
+  "conversationQuestions": [
+   "Can you see the status of an inbound batch without calling the supplier and carrier?",
+   "How quickly do you learn that a supply is delayed?",
+   "Do logistics, the terminal, and finance work from the same picture, or does each have its own?"
+  ]
+ },
+ "b1-1-delay-warning": {
+  "businessPressure": "Seeing where the batch is now is only half the job. A supply disruption hits station replenishment and creates emergency top-up purchases; the later it is discovered, the more expensive the response. The network needs a warning, not just status after the fact, while there is still time to adjust.",
+  "whatWePutInPlace": "We forecast arrival and flag delay risk in advance: where disruption is developing by carrier, route, or stage. Logistics receives a signal while it can still reallocate or cover the risk, not after the fact.",
+  "whatImproves": "Disruption is visible in advance, not after the fact; there are fewer emergency purchases and station downtimes caused by late supply; teams get time to respond instead of firefighting.",
+  "dataAiBehind": "Arrival forecasting and early risk detection using ML on supply history and movement data. Advanced: requires history and linked data.",
+  "conversationQuestions": [
+   "Do you learn about supply disruption risk before it happens?",
+   "How many emergency top-up purchases are caused by delays noticed too late?",
+   "Do you have a warning, or only the fact of disruption?"
+  ]
+ },
+ "b1-2-acceptance-shortage": {
+  "businessPressure": "Discrepancies arise between ordered, shipped, and accepted: volume shortages, missing documents, quality disputes, customs questions. If this surfaces only when finance catches a mismatch during invoice reconciliation, both time and negotiating position with the supplier are lost.",
+  "whatWePutInPlace": "We reconcile ordered, shipped, and accepted quantities for each batch and flag discrepancies immediately: where there is shortage, document mismatch, or dispute. The discrepancy is visible at acceptance, not during invoice reconciliation weeks later.",
+  "whatImproves": "Shortages and discrepancies are visible early; the position in supplier disputes is stronger; the document trail is cleaner; there are fewer surprises during reconciliation.",
+  "dataAiBehind": "Matching order, shipment, and acceptance using existing documents and accounting data. Quick Win: no models required.",
+  "conversationQuestions": [
+   "Do you reconcile ordered / shipped / accepted for every batch?",
+   "Are discrepancies visible at acceptance or only later during invoice reconciliation?",
+   "Which acceptance issues repeat by supplier, route, or terminal?"
+  ]
+ },
+ "b1-2-systemic-loss": {
+  "businessPressure": "One discrepancy may be an error. Recurring discrepancies by a specific supplier, route, or stage are a system that costs money. But while discrepancies are reviewed one by one, the pattern is not visible, and regular leakage is treated as chance.",
+  "whatWePutInPlace": "We analyze supply discrepancies in aggregate: where shortages repeat by supplier, route, terminal, or period. We separate one-off noise from systemic leakage and show where to investigate first.",
+  "whatImproves": "Recurring leakage hidden in noise becomes visible; supplier claims are supported by a pattern, not a single case; investigation effort goes where the money is.",
+  "dataAiBehind": "Pattern analysis of discrepancies using ML on supply history separates systemic issues from noise. Advanced: requires accumulated acceptance history.",
+  "conversationQuestions": [
+   "Do you see recurring shortages by a specific supplier or route?",
+   "Can you distinguish a one-off discrepancy from systemic leakage?",
+   "How much is lost on discrepancies that pass as random?"
+  ]
+ },
+ "b1-3-demurrage-control": {
+  "businessPressure": "Rail logistics involves an external operator, terminal unloading capacity, documents, and customs procedures. Each stage has its own delay risk, and railcars standing beyond the norm generate demurrage that can add up to a significant annual amount. The picture is fragmented: the operator has one data set, the terminal another, and finance sees the demurrage invoice weeks later, when the cause is already hard to reconstruct.",
+  "whatWePutInPlace": "We bring railcar movement, terminal unloading windows, document status, and demurrage risk into one operational picture. We show which railcars are approaching the penalty threshold, where unloading bottlenecks repeat, and which terminals, routes, or shifts generate disproportionate cost. Logistics, the terminal, and finance act on demurrage risk before it becomes an invoice.",
+  "whatImproves": "Less demurrage; faster railcar turnaround; better unloading discipline at terminals; finance sees the risk in advance, not the invoice after the fact.",
+  "dataAiBehind": "Consolidation of railcar tracking, unloading schedules, document status, and demurrage history into one view; identification of at-risk railcars and recurring bottlenecks. Advanced: requires linked railway and terminal data.",
+  "conversationQuestions": [
+   "How much demurrage does the company pay per year, and does the operations team see it regularly?",
+   "When demurrage is charged, is the cause investigated and removed, or is it simply paid?",
+   "Do the terminal, logistics, and finance work from one railcar status picture?"
+  ]
+ },
+ "b2-1-drain-fill-reconciliation": {
+  "businessPressure": "During loading and unloading at the terminal, discrepancies arise: the act says one thing, the tank reading another. Temperature, density, measurement error, and incomplete unloading are all losses that are often written off as normal without checking whether they really are. Real losses hide inside allowed shrinkage.",
+  "whatWePutInPlace": "We reconcile actual fuel movement during loading/unloading with loading/unloading acts and tank readings, and flag discrepancies immediately at the operation, not at the quarterly inventory count. It is clear where actuals do not match the act.",
+  "whatImproves": "Discrepancies are visible at the moment of operation; fewer losses are written off as normal; fuel movement accounting at the terminal is cleaner.",
+  "dataAiBehind": "Matching loading/unloading acts, tank readings, and operation data with temperature and density corrections. Scoped: requires integration of acceptance and tank data.",
+  "conversationQuestions": [
+   "Is the loading/unloading act reconciled with actual volume at the moment of operation?",
+   "What share of loss is written off as normal without review?",
+   "Do you see discrepancies before inventory count?"
+  ]
+ },
+ "b2-1-normal-vs-loss": {
+  "businessPressure": "Fuel losses are hard to control because part of the loss is normal, while part is theft, leakage, measurement error, short delivery, calibration issue, or process problem. Without tolerance discipline, teams either ignore real losses or investigate noise.",
+  "whatWePutInPlace": "We compare expected and actual fuel movement at tank, terminal, and period level, separate normal tolerance from abnormal deviation, and prioritize investigations by materiality, recurrence, and risk. Where data allows, we connect the anomaly to a likely cause.",
+  "whatImproves": "Real losses become visible earlier; there are fewer false investigations; tolerance discipline improves; protection against theft and fuel leakage strengthens.",
+  "dataAiBehind": "Detection of abnormal deviations and clustering of patterns by terminal, tank, supplier, supply, and period. Advanced: requires history and temperature/density corrections.",
+  "conversationQuestions": [
+   "Are losses compared against explicit tolerance rules?",
+   "Which terminals or tanks show recurring abnormal deviation?",
+   "Can investigators distinguish theft risk from measurement or process error?"
+  ]
+ },
+ "b2-2-quality-tank-control": {
+  "businessPressure": "At the terminal, fuel is stored, mixed, and transferred between tanks. An error in tank allocation or a missed quality deviation reaches the station and the customer, leading to claims, reputation damage, and in the worst case withdrawal of fuel from sale. Control is often manual and reactive.",
+  "whatWePutInPlace": "We bring quality control and tank condition into one view: where there is a quality deviation, where there is a risk of unacceptable mixing, and where capacity is idle or overfilled. The problem is visible at the terminal before it reaches stations.",
+  "whatImproves": "Quality deviation is caught before it reaches the customer; capacity is used without idle time; the risk of withdrawing fuel from sale is lower.",
+  "dataAiBehind": "Consolidation of tank, quality, and fuel movement data at the terminal. Scoped: requires integration of tank data.",
+  "conversationQuestions": [
+   "Do you see a quality deviation before the fuel is sent to stations?",
+   "Is capacity sitting idle or being overfilled because allocation is manual?",
+   "How is the risk of unacceptable mixing controlled?"
+  ]
+ },
+ "b3-1-station-fuel-need-view": {
+  "businessPressure": "A station running dry hits revenue, customer trust, B2B service, and the brand. Overfilling or poorly planned delivery creates acceptance problems. Many networks see the risk late because tank readings, sales pace, and delivery schedule are not brought together; the dispatcher reacts to a call saying \"we are running out\" instead of seeing the risk in advance.",
+  "whatWePutInPlace": "We build a tank-level risk picture: current balance, safe limits, sales pace, and planned deliveries. We flag stations moving toward depletion or overfill. The dispatcher receives an exception list of who needs delivery first, not a static inventory report.",
+  "whatImproves": "Fewer run-dry events and emergency deliveries; the dispatcher prioritizes by real risk; intervention happens early, before the risk turns into pump downtime.",
+  "dataAiBehind": "Consolidation of tank readings, sales pace, delivery plans, and capacity limits; estimation of time to runout. On available data, if automatic tank gauges exist: Quick Win; if readings are manual, collection must be established first.",
+  "conversationQuestions": [
+   "Can you see which tanks will run dry before the next planned delivery?",
+   "Is dispatching driven by real risk or by a list of planned requests?",
+   "How often do stations require emergency delivery because the risk was noticed too late?"
+  ]
+ },
+ "b3-1-auto-dispatch": {
+  "businessPressure": "Even when depletion risk is visible, turning it into an executable delivery plan is difficult: the plan must account for tank capacity, delivery windows, tanker compartment sizes, vehicle and driver availability, terminal inventory, and route reality. A theoretically correct dispatch plan may be operationally impossible, and the dispatcher has to rework it manually.",
+  "whatWePutInPlace": "We turn the demand forecast into executable dispatch recommendations: what to deliver, from where, in what volume, and when to each station, accounting for capacity limits, minimum batch, compartments, terminal availability, vehicles, and drivers. We start with decision support for the dispatcher, not full automation.",
+  "whatImproves": "The dispatch plan is executable, not theoretical; there is less manual rework by the dispatcher; fewer emergency deliveries; better vehicle utilization; planning and logistics are aligned.",
+  "dataAiBehind": "Dispatch optimization, meaning a planning algorithm, on top of the A1 demand forecast, inventory, and constraints. Major Program: system-level capability. Dependency on demand forecast.",
+  "conversationQuestions": [
+   "Does the dispatch plan reflect real delivery constraints?",
+   "How often does the dispatcher rework the plan because it is not executable?",
+   "Which constraints most often break the dispatch plan?"
+  ]
+ },
+ "b3-1-dispatcher-agent": {
+  "businessPressure": "Once an executable dispatch plan can be calculated, manual work remains: every day the dispatcher assembles the picture, calculates, documents, and adjusts. In a large network with dozens of terminals and hundreds of stations, this routine does not scale and depends on the experience of a specific dispatcher.",
+  "whatWePutInPlace": "We connect risk, forecast, and dispatch calculation into a system that builds the delivery plan according to company rules, while a human reviews and approves it. The dispatcher sets priorities and controls the process; the system takes over the routine of building the plan.",
+  "whatImproves": "The dispatcher manages priorities instead of building the plan manually; dispatch plans are prepared quickly and consistently; there is less dependence on one person's experience.",
+  "dataAiBehind": "A managed loop connecting forecast, dispatch optimization, and rules. This is the top of the block, hence the dependency. AI executes human rules; it does not decide priorities on its own.",
+  "conversationQuestions": [
+   "How much dispatcher time goes into building the daily dispatch plan?",
+   "What prevents automating plan creation while keeping approval with yourself?",
+   "Are the forecast and data ready for automatic dispatch planning?"
+  ]
+ },
+ "b3-2-fleet-status-view": {
+  "businessPressure": "While a trip is in progress, the dispatcher often cannot see where the vehicle is or what the delivery status is; they learn on arrival or by phone. This is a blind spot: the plan cannot be adjusted, the station cannot be warned, and deviations cannot be caught in time.",
+  "whatWePutInPlace": "We provide a real-time trip picture: where vehicles are, which delivery stage they are at, and whether there are deviations. The dispatcher sees execution instead of reconstructing it after the fact.",
+  "whatImproves": "Trip execution is visible in real time; plans can be adjusted on the move; stations receive more accurate delivery warnings.",
+  "dataAiBehind": "Consolidation of GPS/telematics data and delivery confirmations into a trip view. Scoped: requires telematics integration.",
+  "conversationQuestions": [
+   "Can you see where vehicles are now and what is in transit?",
+   "Do you learn about trip deviations while they happen or after the fact?",
+   "Can you warn a station about the exact delivery time?"
+  ]
+ },
+ "b3-2-route-truck-driver": {
+  "businessPressure": "Fuel delivery is constrained by tanker compartments, fuel grades, delivery windows, driver hours, road restrictions, station receiving capacity, and terminal availability. Manual planning works at small scale but becomes unstable as the network, distances, number of grades, and urgency grow, increasing empty mileage, downtime, and delivery cost.",
+  "whatWePutInPlace": "We build route and trip planning that prioritizes stations by real risk and creates executable delivery sequences, accounting for compartments, grade compatibility, distance, windows, driver shifts, station access, terminal availability, and emergency priorities. We start with recommendations and dispatcher override rights before deeper automation.",
+  "whatImproves": "Delivery becomes more reliable; planning effort falls; there are fewer emergency trips; vehicle utilization improves; empty mileage decreases.",
+  "dataAiBehind": "Route optimization, meaning a routing algorithm, on top of demand, transport constraints, and geodata. Major Program: system-level capability, the core of a TMS.",
+  "conversationQuestions": [
+   "Are routes built by real station urgency or by a static schedule?",
+   "Which constraints most often force manual trip rework?",
+   "Can the dispatcher see why the recommended route is executable?"
+  ]
+ },
+ "b3-3-trip-plan-fact": {
+  "businessPressure": "Delivery cost quietly grows through low vehicle utilization, extra trips, empty mileage, downtime at the terminal and station, and driver shortages. The network sees total logistics cost, but not the operational causes behind it, and cannot manage what it cannot see by component.",
+  "whatWePutInPlace": "We build a trip execution picture: plan versus actual, vehicle loading, empty mileage, waiting time, route cost, and delivery reliability. It becomes clear where cost is structural, where planning is weak, and where management decisions are needed.",
+  "whatImproves": "Logistics cost is explainable by route, vehicle, terminal, and driver; chronically underloaded trips are visible; the balance between reliability and cost is transparent.",
+  "dataAiBehind": "Consolidation of trip plans, delivery confirmations, timestamps, and vehicle data into an execution picture. On available data: Quick Win.",
+  "conversationQuestions": [
+   "Can logistics cost be explained by route, vehicle, and terminal?",
+   "Which vehicles or routes are chronically underloaded?",
+   "Are driver and vehicle constraints visible before the plan fails?"
+  ]
+ },
+ "b3-3-driver-safety": {
+  "businessPressure": "Tanker drivers carry high-risk cargo on public roads, and one serious accident means injuries, environmental impact, regulatory consequences, insurance costs, and years of reputational damage. Dangerous behavior, such as speeding, harsh braking, fatigue, and unauthorized stops, is the largest controllable risk factor. Tankers often already have telematics, but the data is used reactively after incidents, not as an early signal.",
+  "whatWePutInPlace": "We turn existing telematics into a continuous picture of driver behavior: speeding, harsh braking and acceleration, route compliance, and hours behind the wheel. We score drivers and flag risky behavior for targeted training, not post-accident review.",
+  "whatImproves": "Risk is visible in advance, not after an accident; accidents and their severity decrease; insurance costs are lower; there is an evidence base for working with drivers.",
+  "dataAiBehind": "Works on telematics that is usually already installed in tankers. Where onboard cameras exist, AI detection of fatigue and distraction adds an early signal; this is more expensive and not available everywhere, so it is an option on top of baseline control.",
+  "conversationQuestions": [
+   "Is telematics used as an early risk signal or only to review incidents?",
+   "Can you show from data which drivers operate safely and which behave riskily?",
+   "Are driver behavior, training, and accident rates connected, or is this judged by eye?"
+  ]
+ },
+ "b3-3-fuel-theft-in-transit": {
+  "businessPressure": "A trip is also a direct leakage risk: unauthorized fuel draining, unofficial stops, route deviations, and manipulation of delivery volume. In the normal flow of trips this gets lost, and drained fuel is paid for as delivered.",
+  "whatWePutInPlace": "We detect anomalies in trip execution: unauthorized drains and stops, route deviations, and volume discrepancies between loaded at terminal and accepted at station. Suspicious cases are flagged for review instead of surfacing as shortages.",
+  "whatImproves": "Fuel diversion and manipulation are visible early; losses on the loaded-versus-delivered difference decrease; trip control is based on data, not trust.",
+  "dataAiBehind": "Anomaly detection using ML on telematics, route data, and reconciliation of loaded and accepted volumes. Advanced: requires telematics and linkage to station acceptance.",
+  "conversationQuestions": [
+   "Do you catch unauthorized draining and route deviation while the trip is in progress?",
+   "Does the volume loaded at the terminal match the volume accepted at the station for every trip?",
+   "How much is lost in the difference between loaded and delivered volume?"
+  ]
+ },
+ "c1-1-station-benchmark": {
+  "businessPressure": "Stations differ by traffic, location, format, customer mix, and competition. Comparing them by raw volume or revenue rewards location and punishes execution, so management cannot see which station truly underperforms and which simply sits in a weak location. Without a fair comparison, attention goes to the largest stations rather than the most fixable ones, and underperformance drags on for months before it becomes visible.",
+  "whatWePutInPlace": "We compare stations with comparable peers: similar traffic, format, location type, competitive density, and customer mix, using metrics that reflect operating quality: volume capture, margin realization, throughput, non-fuel attachment, and customer feedback. We flag stations lagging behind comparable peers and the likely causes: execution, staff, equipment, or flow.",
+  "whatImproves": "Fair station comparison; an early and accurate signal of underperformance; regional managers focus where return is faster; the station conversation starts from a ready picture, not from zero.",
+  "dataAiBehind": "Consolidation of sales, margin, traffic, location characteristics, and customer mix into one view; grouping stations into comparable clusters and normalizing structural differences. Works on existing data, but the data is often spread across several systems, so this is not the cheapest starting point.",
+  "conversationQuestions": [
+   "When you say a station is underperforming, is the comparison fair to its location and format?",
+   "Do regional managers see stations lagging behind comparable stations, not behind the network average?",
+   "When a station underperforms, is there an initial diagnostic picture or does the investigation start from zero?"
+  ]
+ },
+ "c1-1-plan-control": {
+  "businessPressure": "Station underperformance is often seen after the fact, in a report when the month is already lost. A station needs today's plan and a signal right now: are we on plan or behind, for fuel and for the store. Without operational control, reaction comes late, when there is nothing left to adjust.",
+  "whatWePutInPlace": "We show plan execution for each station in the moment: where the station is on target and where it is behind, for fuel and non-fuel. We flag gaps immediately, while the shift and day can still be corrected, instead of stating the result at period-end.",
+  "whatImproves": "The gap is visible during the day, not in a report; the shift and region respond while there is still something to correct; the plan becomes a working tool, not a post-mortem.",
+  "dataAiBehind": "Consolidation of station plan and actuals into an operational view using real-time sales data. On available data: Quick Win.",
+  "conversationQuestions": [
+   "Do you see a station falling behind plan during the day or only in the month-end report?",
+   "Can the shift respond before the day is closed?",
+   "Is the plan real-time control or a number for after-the-fact review?"
+  ]
+ },
+ "c1-1-cause-analysis": {
+  "businessPressure": "Seeing that a station is behind is only half the job. The second half is why. The cause may be traffic, price, service, assortment, equipment, or staff, and manually analyzing every lagging station takes too long. Without this, station decisions are based on guesses.",
+  "whatWePutInPlace": "We analyze the cause of a specific station's underperformance: connect its metrics with traffic, price, execution, assortment, and equipment, and highlight the likely driver. The regional manager gets not \"the station is bad\", but \"this is what is pulling it down and where to start\".",
+  "whatImproves": "The cause of underperformance is visible, not only the fact; actions are targeted instead of \"improve everything\"; the path from problem to action is faster.",
+  "dataAiBehind": "ML analysis of underperformance drivers on top of station comparison and site data. Advanced: requires consolidated data and history. This is a demanding card: automatic cause explanation is ambitious, so the start is highlighting likely drivers, not issuing a final verdict.",
+  "conversationQuestions": [
+   "When a station underperforms, do you see the likely cause or search manually?",
+   "Are decisions for a lagging station based on data or on the regional manager's intuition?",
+   "How much time passes from \"the station dropped\" to \"we know what to fix\"?"
+  ]
+ },
+ "c1-1-station-analysis-agent": {
+  "businessPressure": "When station comparison, cause analysis, and operational plan control all exist, a person still ties them together: looks at dashboards, compares, formulates hypotheses, and decides where to go. In a network of hundreds of stations, this becomes a bottleneck; large stations get analyzed, while the rest wait.",
+  "whatWePutInPlace": "We connect comparison, cause analysis, and operational control into an analyst that works continuously: analyzes stations, finds underperformance, forms hypotheses about causes, and highlights for the regional manager where to look and what to check first. A human decides and acts; the agent performs the routine consolidation and analysis previously done manually.",
+  "whatImproves": "All stations are analyzed, not only the large ones; hypotheses are ready by morning instead of being assembled manually; the manager works on decisions and stations, not on consolidating numbers.",
+  "dataAiBehind": "A connection of benchmarking, driver analysis, and operational data into an analytical loop. This is the top of the block, hence the dependency. The agent analyzes and recommends; the decision and action remain with the human.",
+  "conversationQuestions": [
+   "How many stations can a regional manager realistically analyze manually?",
+   "What prevents the analysis and hypotheses from being prepared automatically, while the human only decides?",
+   "Are the data and analytics ready for automatic station analysis?"
+  ]
+ },
+ "c1-2-lost-traffic": {
+  "businessPressure": "A station loses part of its revenue invisibly: a customer sees the queue and drives past, or enters but leaves without fueling. This is not in the report, which shows only what was sold, not what was missed. The network does not know the cost of its own queues.",
+  "whatWePutInPlace": "We calculate lost traffic: how many customers turn away because of a queue, how many entered but did not fuel, at which hours and stations. Lost revenue becomes a number, not a feeling.",
+  "whatImproves": "The cost of queues and lost traffic is visible; it is clear at which stations and hours losses occur; there is a basis for decisions on throughput and staffing.",
+  "dataAiBehind": "Analysis of entrance traffic and behavior using video stream and station data against actual fueling. Scoped: requires traffic data, not only sales data.",
+  "conversationQuestions": [
+   "Do you know how many customers leave because of a queue?",
+   "How many visitors enter but do not fuel, and why?",
+   "At which hours and stations is the most traffic lost?"
+  ]
+ },
+ "c1-2-queue-peak": {
+  "businessPressure": "A queue is not a constant station problem, but a set of peaks: an hour, a day, an event. If peaks are detected after the fact through revenue, the reaction is late. The network needs to see when a station is about to overload, so staff can be reinforced or flow redirected in advance.",
+  "whatWePutInPlace": "We flag when and where queues form based on traffic and time patterns, so the shift can be reinforced, dispensers adjusted, or flow redistributed in advance. The peak is visible as a forecast, not as a lost hour.",
+  "whatImproves": "Queues are reduced before the customer leaves; staff is placed at peak times instead of spread evenly; throughput is higher during demand hours.",
+  "dataAiBehind": "ML analysis of station traffic and time patterns to forecast peaks. Advanced: requires traffic history and flow data.",
+  "conversationQuestions": [
+   "Do you know in advance when a station will be overwhelmed by a queue?",
+   "Is staffing aligned to demand peaks or spread evenly?",
+   "How much revenue is lost during predictable peak hours?"
+  ]
+ },
+ "c1-3-fuel-cash-losses": {
+  "businessPressure": "Money is lost at fuel dispensing and POS: virtual fuelings, underdelivery, manual corrections and receipt cancellations, and operator collusion with a \"customer\". In the mass of normal transactions this is not visible, and losses are written off as error or surface during inventory.",
+  "whatWePutInPlace": "We catch anomalies at dispensing and POS: suspicious corrections and cancellations, differences between dispensed and paid volumes, and patterns resembling collusion. Where cameras exist, we link the signal to video. Suspicious activity is flagged for review instead of being lost in the flow.",
+  "whatImproves": "Losses at dispensers and POS are visible instead of being written off as error; collusion and underdelivery are caught; control is based on data, not trust in the shift.",
+  "dataAiBehind": "Anomaly detection using ML in dispenser and POS transactions, with video linkage through computer vision where available. Scoped: requires integration of dispenser and POS data.",
+  "conversationQuestions": [
+   "Do you see abnormal receipt corrections and cancellations?",
+   "Does dispensed fuel match paid fuel for every shift?",
+   "How much is lost at dispensers that is currently written off as measurement error?"
+  ]
+ },
+ "c1-4-shift-control": {
+  "businessPressure": "Station problems often remain local until they reach a customer, regulator, or senior manager. Field teams collect observations, photos, and checklists, but follow-up actions settle in messengers and spreadsheets. Standards differ by region, and recurring network problems are not visible.",
+  "whatWePutInPlace": "We build a control layer for execution and open issues at stations: standardize checks, capture evidence, route the issue to the responsible person, track overdue actions, and show patterns by station, region, and issue type. The focus is correction, not inspection paperwork.",
+  "whatImproves": "Station execution is under control; issues are closed with an accountable owner; escalation is cleaner; customer-visible problems are fixed faster; recurring weak spots in the network become visible.",
+  "dataAiBehind": "Consolidation of checklists, field visits, photos, service requests, and responsible roles into a workflow. Where useful, photos and notes are classified. Scoped: requires established field data collection.",
+  "conversationQuestions": [
+   "Are station issues driven to closure with an assigned owner?",
+   "Which issue types repeat by region and format?",
+   "How much station control lives outside a managed process, in messengers and spreadsheets?"
+  ]
+ },
+ "c1-4-camera-standard-violation": {
+  "businessPressure": "Standards compliance is checked by walkthrough: a regional manager comes and looks. This is infrequent, selective, and does not scale. Between visits, the station operates as usual, and violations of layout, uniform, cleanliness, and safety are visible only when someone arrives.",
+  "whatWePutInPlace": "We automatically monitor standards compliance through video streams where cameras exist: layout, staff uniform, cleanliness, and basic safety requirements. A violation is flagged without an inspector visit, so walkthroughs go where they are actually needed.",
+  "whatImproves": "Standards are under control between visits, not only during them; walkthroughs are targeted; fewer customer-visible violations occur.",
+  "dataAiBehind": "Computer vision on video streams to recognize standards violations. Major Program: requires cameras and video processing. CV is a shared engine with C1.3, but the task is different: standards versus money.",
+  "conversationQuestions": [
+   "Are standards checked only during walkthroughs or continuously?",
+   "How long does the station operate without control between visits?",
+   "Which violations are visible to the customer before the inspector sees them?"
+  ]
+ },
+ "c1-5-maintenance-priority": {
+  "businessPressure": "Equipment failure means lost sales, dissatisfied customers, service downtime, and safety risk. Maintenance is managed through spreadsheet schedules, while management does not see the business picture: which equipment hurts revenue and service most if it stops.",
+  "whatWePutInPlace": "We consolidate maintenance of critical station equipment into one view: what has been serviced, what is coming due, what is overdue, and where parts are needed, prioritized by impact on revenue and service. It becomes clear what to fix first.",
+  "whatImproves": "Deadlines are not lost; maintenance is prioritized by business impact, not request age; downtime that hits revenue decreases.",
+  "dataAiBehind": "Consolidation of maintenance requests, failure history, equipment status, and sales impact into one view. On available data: Quick Win.",
+  "conversationQuestions": [
+   "Can you see critical equipment maintenance status in one place?",
+   "Is maintenance priority based on business impact or request age?",
+   "Which equipment most often hits revenue when it fails?"
+  ]
+ },
+ "c1-5-predictive-maintenance": {
+  "businessPressure": "Equipment is repaired after it has already stopped, and it tends to stop at peak time, causing direct sales loss and customer dissatisfaction. Many failures give early signals, but those signals are not used.",
+  "whatWePutInPlace": "We catch early signs of wear from equipment data and failure history to prevent downtime before a dispenser, refrigerator, or coffee machine stops. Maintenance is based on condition, not only on schedule and not after failure.",
+  "whatImproves": "Less downtime during peak hours; lower sales losses from failed equipment; repairs are planned, not emergency.",
+  "dataAiBehind": "Predictive maintenance using ML on equipment data and failure history. Advanced: requires condition data and history.",
+  "conversationQuestions": [
+   "Do you learn about wear before equipment fails?",
+   "How many sales are lost when a dispenser goes down during peak hours?",
+   "Is maintenance based on condition or on failure after the fact?"
+  ]
+ },
+ "c2-1-fuel-to-store-conversion": {
+  "businessPressure": "Fuel traffic does not become store sales by itself. A customer pays at the pump and leaves, enters but buys only cigarettes or water, or walks past margin categories. The network sees many cars and an empty store, but does not know what share of fueling customers even comes inside or where the transition is lost.",
+  "whatWePutInPlace": "We calculate fueling-to-store conversion by station, time, and segment: what share of fueling customers enters the store, where the transition fails, and at which hours and sites. The view is not just total store revenue; it shows the lost transition from the pump.",
+  "whatImproves": "It is visible where fuel traffic does not reach the store; it is clear which stations lose the transition; there is a basis for decisions on merchandising, offers, and store operations.",
+  "dataAiBehind": "Linking fuel transactions, store receipts, and loyalty IDs where available by station and time. Works on existing data that usually sits nearby.",
+  "conversationQuestions": [
+   "What share of fueling customers enters the store by station and time?",
+   "At which stations is there traffic but the store is empty?",
+   "Where is the transition from pump to store lost, and why?"
+  ]
+ },
+ "c2-1-nonfuel-moment-offer": {
+  "businessPressure": "Even when the customer enters the store, the ticket often stops at one item. The network knows what is bought together and what sells at which time, but does not use this to offer the right item at the right moment; merchandising, prompts, and app offers live separately from real behavior.",
+  "whatWePutInPlace": "We determine what to offer a fueling customer so they enter and add to the purchase: reason, moment, and relevant category based on behavior, time, and basket composition. We connect fuel, store, and cafe into one offer.",
+  "whatImproves": "Higher non-fuel ticket and store conversion; the offer is relevant, not blanket; fuel traffic converts into margin-rich non-fuel revenue.",
+  "dataAiBehind": "Recommendation model using ML on behavior, basket, and customer segment. Advanced: requires consolidated data. Overlaps with D1.3, personal offer; here the focus is the pump-to-store transition, using the same recommendation engine.",
+  "conversationQuestions": [
+   "Do you give fueling customers a reason to enter and add a store purchase?",
+   "Are merchandising and prompts based on real behavior or on habit?",
+   "How many tickets stop at one item although they could have grown?"
+  ]
+ },
+ "c2-2-local-assortment-sales": {
+  "businessPressure": "A station store assortment is limited by space, traffic mission, delivery frequency, staff, shelf life, and local demand. A broad assortment or one copied from all stations freezes cash, creates write-offs, and misses products that fit this specific site.",
+  "whatWePutInPlace": "We analyze assortment sales by station profile and category: where there are gaps, dead stock, local hits, margin opportunities, and operational constraints. We recommend assortment changes that match the station role and delivery reality.",
+  "whatImproves": "Categories perform better; dead stock decreases; gross margin improves; the assortment becomes relevant to local demand.",
+  "dataAiBehind": "Comparison of sales, margin, stock, and write-offs across similar stations. On available POS data: Quick Win.",
+  "conversationQuestions": [
+   "Is the assortment tailored to the station profile or one-size-fits-all?",
+   "Which products take space without enough margin and turnover?",
+   "Where is local demand not reflected in the current assortment?"
+  ]
+ },
+ "c2-2-product-demand-forecast": {
+  "businessPressure": "Fresh goods, coffee, and baked goods have demand that changes by hour, day, and station. Delivering by template means either empty shelves at peak or write-offs at the end of the day. Without a product-and-time forecast, the store balances between shortages and losses.",
+  "whatWePutInPlace": "We forecast demand by product and time at each station, including fresh items, coffee, and baked goods by hour, so deliveries match real demand rather than a template. Ordering is based on forecast, not habit.",
+  "whatImproves": "Fewer empty shelves at peak and fewer write-offs at day-end; more accurate ordering of fresh goods and baked items; higher margin on perishables.",
+  "dataAiBehind": "ML demand forecast by product, station, and time using sales history. Advanced: requires history and consolidated data.",
+  "conversationQuestions": [
+   "Is ordering of fresh goods and baked items based on an hourly forecast or a template?",
+   "How much is lost to empty shelves at peak and write-offs at day-end?",
+   "Does ordering account for demand differences between stations and time periods?"
+  ]
+ },
+ "c2-3-stock-waste-oos": {
+  "businessPressure": "Store stock follows different rules than fuel. A product missing from the shelf loses impulse sales, excess stock freezes cash, weak expiry control creates write-offs, and theft hides in small receipts and turnover. Many networks under-control the store because all attention is on fuel.",
+  "whatWePutInPlace": "We build store stock, write-off, and loss control: availability, excess stock, expiry risk, negative stock, unexplained shortage, and category losses. The focus is on the few categories and stations where the amount is material.",
+  "whatImproves": "Lower write-offs and losses; better product availability; less frozen cash; clearer station accountability for the store; higher non-fuel margin.",
+  "dataAiBehind": "Consolidation of POS, inventory, acceptance, write-offs, and inventory counts by station profile. On available data: Quick Win.",
+  "conversationQuestions": [
+   "Which store categories lose the most through write-offs and shortages?",
+   "Are empty shelves visible before the customer sees them?",
+   "Which stations need different stock control rules?"
+  ]
+ },
+ "c2-3-markdown-reorder": {
+  "businessPressure": "Perishables lose from both ends: mark down too late and the product is written off; too early and margin is lost. Order too little and the shelf is empty; too much and product spoils. Manual control cannot keep up with expiry timing for every product at every station.",
+  "whatWePutInPlace": "We suggest the markdown moment and reorder point for perishables by product and station: when to reduce price to sell before expiry, and when to reorder to avoid an empty shelf. The balance between write-off and shortage is data-driven.",
+  "whatImproves": "Fewer write-offs and fewer empty shelves at the same time; higher margin on perishables; less manual expiry control.",
+  "dataAiBehind": "Markdown and reorder logic based on shelf life, sales, and inventory. Advanced: requires history and expiry data.",
+  "conversationQuestions": [
+   "Are perishables marked down on time or only after expiry?",
+   "How much is lost to write-offs and how much to empty shelves?",
+   "Is this managed by data or manually product by product?"
+  ]
+ },
+ "c2-4-retail-media": {
+  "businessPressure": "A large flow of buyers passes through stations, and the network knows what is bought and by whom. Supplier brands pay for access to that audience, but there is no product or mechanism to sell it. The traffic and data asset lies unused.",
+  "whatWePutInPlace": "We build a retail media product: targeted placements and offers sold to brands at the station, in the store, and in the app, based on traffic and anonymized customer behavior. The network earns from its traffic and data, not only from selling products.",
+  "whatImproves": "A new revenue stream beyond fuel and product sales; traffic and data become an asset; brands get a targeted audience.",
+  "dataAiBehind": "Advertising mechanics on segments and station traffic, built on loyalty and store data. This is the top layer, hence Frontier and the highest cost. Shared capability with D1.7: the home is here, physical traffic; input from D is customer data.",
+  "conversationQuestions": [
+   "Do you have traffic and data that brands are ready to pay for?",
+   "Can you sell targeted placement without exposing personal data?",
+   "Who inside the company would own retail media as a product?"
+  ]
+ },
+ "e1-live-finance-picture": {
+  "businessPressure": "The executive's financial picture is usually assembled manually and arrives late: answering a question like \"what is happening with margin in the region\" requires an export and a day of analyst work. ERP stores the figures but does not provide a live view in the cut needed for a decision now.",
+  "whatWePutInPlace": "We consolidate network finance into a live view: margin and cash by station, region, product, and period, updated instead of a report for yesterday. The executive sees the state immediately, in the needed cut, without exports or waiting for an analyst.",
+  "whatImproves": "The financial picture is available immediately, not by morning; decisions rely on fresh figures; dependence on manual exports decreases.",
+  "dataAiBehind": "Consolidation of financial data from ERP and operational systems into a live data view on top of the unified foundation (G1). Works on existing data, but it is often spread across several systems, so this is not the cheapest start. This is not \"another dashboard\", but a live decision view; its full power appears with the next card, asking in plain language.",
+  "conversationQuestions": [
+   "How long does it take to get margin in the required cut?",
+   "Is the financial picture live, or is it a report for yesterday?",
+   "How many decisions wait for an analyst's export?"
+  ]
+ },
+ "e2-plan-deviation": {
+  "businessPressure": "A plan deviation, such as margin decline or cost growth, surfaces during manual plan-versus-actual reconciliation done once per period. By the time the deviation is noticed, the cause is old and response is late.",
+  "whatWePutInPlace": "We flag deviations from plan immediately: where margin, revenue, or costs moved away from expectation by station, region, or line item. The deviation appears as a signal, not as a line in the monthly plan-versus-actual.",
+  "whatImproves": "The deviation is visible early, not at period-end; manual reconciliation decreases; attention goes where figures diverged from plan.",
+  "dataAiBehind": "Automatic comparison of actuals with plan using financial data. On available data: Quick Win.",
+  "conversationQuestions": [
+   "When do you learn about a plan deviation: immediately or during reconciliation at period-end?",
+   "How much time goes into manual plan-versus-actual reconciliation?",
+   "Is the deviation visible by station and line item, or only in the total?"
+  ]
+ },
+ "e2-deviation-drivers": {
+  "businessPressure": "Seeing that margin fell is not enough. The company needs to understand why: price, volume, cost, mix, discounts, costs, and which of these can actually be influenced. Breaking this down manually takes too long, and the executive gets \"here are the numbers\", not \"here is the cause and what to do\".",
+  "whatWePutInPlace": "We break the deviation into drivers: what exactly moved margin or costs, and highlight what can be influenced. The executive receives not a table, but the cause and the point of action.",
+  "whatImproves": "The cause of the deviation is visible, not only the fact; decisions are targeted; the path from \"it dropped\" to \"we know what to do\" is faster.",
+  "dataAiBehind": "Driver decomposition of deviations, such as price / volume / cost / mix / expenses, using analytics and ML where applicable on financial and operational data. Advanced: requires consolidated data.",
+  "conversationQuestions": [
+   "When margin falls, do you see the cause or only the fact?",
+   "How long does it take to break a deviation into drivers?",
+   "Does the executive receive \"here are the numbers\" or \"here is the cause and what to do\"?"
+  ]
+ },
+ "e3-cash-position": {
+  "businessPressure": "Fuel retail is a cash-intensive business: procurement obligations, fuel inventory, payables, B2B receivables, card settlement timing, station cash, and operating expenses move quickly. Treasury often sees the consolidated picture only after decisions have already created cash pressure.",
+  "whatWePutInPlace": "We consolidate the full cash picture: inventory value, procurement obligations, payables, customer and fleet receivables, card settlements, station cash, and operating obligations. It becomes visible where money is frozen and where pressure is building.",
+  "whatImproves": "It is visible where money sits now; frozen capital is seen earlier; procurement and settlement decisions account for cash.",
+  "dataAiBehind": "Consolidation of inventory, obligations, receivables, and cash data into a cash picture. On available data: Quick Win.",
+  "conversationQuestions": [
+   "Can you see where money is currently frozen in one picture?",
+   "Does treasury learn about cash pressure before or after the decision?",
+   "How much capital is frozen in inventory and receivables right now?"
+  ]
+ },
+ "e3-cash-gap-forecast": {
+  "businessPressure": "A cash gap in a cash-intensive business hits suddenly: procurement obligation, receivables delay, and settlement timing coincide, and cash is short. ERP shows this after the fact; it does not forecast the gap.",
+  "whatWePutInPlace": "We forecast cash movement and flag gaps in advance: where and when cash will be short considering procurement, inventory, receivables, and settlements. Treasury sees the risk while there is still time to adjust: hold procurement, work receivables, or reallocate.",
+  "whatImproves": "The gap is visible in advance, not after the fact; there is time to respond instead of rushing; procurement and settlement decisions account for future cash.",
+  "dataAiBehind": "ML cashflow forecast using obligations, inventory, receivables, and history. Advanced: the kind of forecasting ERP does not do by definition; requires linked data.",
+  "conversationQuestions": [
+   "Do you see a cash gap in advance or learn after the fact?",
+   "Do procurement decisions account for future cash?",
+   "How many times per year does cash come under pressure unexpectedly?"
+  ]
+ },
+ "e3-payment-risk": {
+  "businessPressure": "B2B and fleet bring volume, but create credit risk, deferred cash, and overdue receivables. Sales looks at volume, finance sees overdue receivables too late, and credit limits are often not linked to current customer behavior and risk.",
+  "whatWePutInPlace": "We build a credit risk and receivables picture: exposure, overdue amounts, payment behavior, terms, and limit utilization. We flag accounts where cash is at risk and prioritize debt work by risk and payment probability, not by overdue list. Actions are routed to account owners.",
+  "whatImproves": "Overdue receivables decrease; debt work is risk-based, not list-based; response to deteriorating payment behavior comes earlier; credit limits are linked to current risk.",
+  "dataAiBehind": "ML payment risk scoring using receivables, payments, terms, and behavior data. Advanced: predictive logic on top of data. This is the home of the cross-cutting capability; input from D2.3 is the B2B manager view of credit for a specific account.",
+  "conversationQuestions": [
+   "Do you know which accounts put cash at real risk before they become overdue?",
+   "Are credit limits linked to current customer behavior?",
+   "Who acts when an important account becomes overdue?"
+  ]
+ },
+ "e5-duplicate-fake-payments": {
+  "businessPressure": "Losses hide in the flow of payments and invoices: duplicate invoices, fictitious counterparties, payments that should not exist, and policy deviations. ERP records them but does not search for them, and they surface during audit after the money has already left.",
+  "whatWePutInPlace": "We catch anomalies in financial operations: duplicate invoices, fictitious or suspicious counterparties, and payments outside the pattern. Suspicious items are flagged before or immediately after the operation, not during the annual audit.",
+  "whatImproves": "Duplicate and fictitious payments are visible early; fewer losses go unnoticed; the counterparty base is cleaner.",
+  "dataAiBehind": "Anomaly detection using ML in payments and invoices on accounting data. On available data: Quick Win. ERP stores but does not search; this is our territory.",
+  "conversationQuestions": [
+   "Do you see duplicate invoices and fictitious counterparties before audit?",
+   "How many unnecessary payments go unnoticed?",
+   "Are payments checked for anomalies or only processed?"
+  ]
+ },
+ "e5-policy-before-payment": {
+  "businessPressure": "Many losses are not explicit fraud, but quiet deviation from internal rules: procurement outside policy, discount above limit, posting outside procedure. Catching this after payment means the money can no longer be recovered.",
+  "whatWePutInPlace": "We flag policy deviations at the moment of posting or procurement, before the money leaves: violations of limits, terms, and procedures. Control works before payment, not during after-the-fact review.",
+  "whatImproves": "Policy violations are caught before payment; fewer losses become unrecoverable; rule discipline improves.",
+  "dataAiBehind": "Checking operations against policies using accounting data and rules. Advanced: requires policy formalization and linkage to the operations flow.",
+  "conversationQuestions": [
+   "Do you catch policy violations before payment or after?",
+   "How many procurements and postings happen outside procedure?",
+   "Is policy control preventive or post-mortem?"
+  ]
+ },
+ "e-frontier-finops-agent": {
+  "businessPressure": "Even when the network has a live picture, deviation control, and cash forecast, a person still ties it together: the CFO and analysts look at dashboards, compare, and search for leakage and risk. One person cannot cover the depth of links between procurement, logistics, price, receivables, and costs, so some opportunities and risks remain unnoticed.",
+  "whatWePutInPlace": "We put in place an analyst that works continuously and sees the whole business in numbers: analyzes connected processes, finds leakage and overpayment points, suggests where and how to reduce costs, and highlights emerging risks and anomalies before a human notices them. This is a very strong financial-operational analyst that does not sleep and keeps the whole network economics in view. It analyzes and recommends; the decision and action remain with the CFO.",
+  "whatImproves": "Cost reduction points and risks that people miss become visible; analysis runs continuously, not only for a report; the CFO receives ready findings and recommendations instead of consolidating numbers manually.",
+  "dataAiBehind": "Analytical agent on top of the live picture, deviation control, cash forecast, and unified data foundation. This is the top of the block, hence the dependency on all of the above. Important: the agent analyzes and recommends; it does not manage cash or execute operations. The decision remains with the human.",
+  "conversationQuestions": [
+   "How many links between procurement, price, logistics, and costs does your analysis actually cover?",
+   "Which cost reduction points and risks surface too late?",
+   "What if your strongest analyst worked on your numbers continuously and surfaced findings automatically?"
+  ]
+ },
+ "f1-1-hr-operations-assistant": {
+  "businessPressure": "In a station network, HR constantly answers the same questions: schedules, vacations, sick leave, paperwork, policies, training, and onboarding. With a large field workforce, this becomes constant manual support instead of work on staff quality.",
+  "whatWePutInPlace": "We deploy an HR assistant on approved policies, procedures, templates, and the knowledge base. It answers standard employee questions, finds required documents, suggests the process, prepares application templates, and passes complex cases to HR.",
+  "whatImproves": "HR spends less time on routine; employees receive answers faster; communication becomes consistent; there are fewer errors in standard procedures.",
+  "dataAiBehind": "HR policies, document templates, knowledge base, org structure, schedules, personnel policies, and integration with HR/task systems where available.",
+  "conversationQuestions": [
+   "How much time does HR spend on repeated questions that could be answered automatically?",
+   "Which HR documents and templates do employees look for through people rather than through a system?",
+   "Is there a single source of approved HR answers, or does everyone answer from memory?"
+  ]
+ },
+ "f1-2-linear-staff-screening": {
+  "businessPressure": "Station operators, cashiers, sellers, drivers, and line staff are often hired under turnover pressure. HR manually processes a stream of resumes and questionnaires, good candidates are lost, and vacancy closure drags out.",
+  "whatWePutInPlace": "We automate initial application review: extract experience, availability, location, shift requirements, basic risks, and fit to the role. HR receives a candidate short-list and ranking reasons.",
+  "whatImproves": "Line vacancies close faster; HR works with relevant candidates; losses from slow screening decrease.",
+  "dataAiBehind": "Resumes, questionnaires, vacancy requirements, hiring history, rejection reasons, and data by location and shift.",
+  "conversationQuestions": [
+   "Can you see which stations and roles systematically slow down network operations because of hiring?",
+   "How much time passes from application to first contact with the candidate?",
+   "Do you lose candidates because of slow manual screening?"
+  ]
+ },
+ "f1-3-field-staff-digital-loop": {
+  "businessPressure": "A field employee's workday often exists in someone's head, in chats, or on paper. The manager sees the result late: checklist not completed, photo not sent, standard violated, task forgotten, station issue discovered only after inspection.",
+  "whatWePutInPlace": "We digitize the workday: shift tasks, checklists, rounds, photo confirmations, reminders, incidents, training, and tasks, all in a mobile loop. The manager sees execution by station, region, employee, and process type.",
+  "whatImproves": "More control in field operations; fewer blind spots; faster correction of violations; clearer discipline in following standards.",
+  "dataAiBehind": "Mobile checklists, task management, photo reports, schedules, SOPs, roles, site geography, execution history, and network dashboards.",
+  "conversationQuestions": [
+   "Can you see today which required actions at stations were actually completed and which were only supposed to be completed?",
+   "Which standards are controlled only by a manager or auditor visit?",
+   "How many violations become visible only after inspection, not at the moment of execution?"
+  ]
+ },
+ "f1-4-turnover-early-signals": {
+  "businessPressure": "Turnover and weak onboarding become visible late: the employee has already left, the station is understaffed again, and the manager is firefighting an operating problem.",
+  "whatWePutInPlace": "We collect signals by employee and station: absences, frequent shift replacements, incomplete tasks, training results, complaints, standards violations, and onboarding speed. The model shows where departure or onboarding failure risk is growing.",
+  "whatImproves": "Intervention can happen earlier; turnover can decrease; onboarding can improve; problem stations and managers become visible.",
+  "dataAiBehind": "HRIS, schedules, task manager, training, checklists, incidents, shift results, and data by managers and stations.",
+  "conversationQuestions": [
+   "Do you know in advance where an employee is dropping out of the process before they resign?",
+   "At which stations does onboarding consistently fail?",
+   "Can you see the link between manager, shifts, violations, and turnover?"
+  ]
+ },
+ "f2-1-legal-assistant": {
+  "businessPressure": "Lawyers and business teams spend time searching for terms in contracts, policies, templates, and past decisions. Answers depend on who remembers the document and where it is stored.",
+  "whatWePutInPlace": "We deploy an assistant that searches contracts, policies, templates, letters, and internal opinions, answers with a source reference, and helps quickly find the required term or wording.",
+  "whatImproves": "Faster answers to the business; less manual search; less dependence on individual employees' memory.",
+  "dataAiBehind": "Contracts, addenda, templates, policies, claims, letters, and legal knowledge base.",
+  "conversationQuestions": [
+   "How much time goes into finding an existing legal answer?",
+   "Where are contracts, templates, and past decisions stored today?",
+   "Can the business get a verified answer without manual lawyer search?"
+  ]
+ },
+ "f2-2-legal-doc-draft": {
+  "businessPressure": "Much legal work repeats: letters, claims, responses to counterparties, addenda, internal opinions. The lawyer spends time on the first draft although the logic and templates already exist.",
+  "whatWePutInPlace": "We generate drafts from approved templates and case context. The lawyer reviews, edits, and approves, but does not start from a blank page.",
+  "whatImproves": "Documents are prepared faster; mechanical work decreases; wording is more consistent.",
+  "dataAiBehind": "Document templates, history of similar cases, contracts, correspondence, and legal policies.",
+  "conversationQuestions": [
+   "How many standard documents does a lawyer prepare from scratch?",
+   "Does the structure of contracts, letters, and claims repeat from case to case?",
+   "How much time goes into a draft that could prepare itself?"
+  ]
+ },
+ "f2-3-contract-obligations-control": {
+  "businessPressure": "Deadlines, penalties, renewals, and supplier and contractor terms are often hidden in contracts. Risks surface late: a deadline is missed, an obligation is not fulfilled, a claim is not prepared.",
+  "whatWePutInPlace": "We extract key obligations from contracts and manage them as a controlled loop: deadlines, owners, terms, risks, control events, and reminders.",
+  "whatImproves": "Fewer missed deadlines; faster response to violations; clearer legal risk by supplier and contractor.",
+  "dataAiBehind": "Contracts, addenda, obligation calendar, counterparty registry, correspondence, and task manager.",
+  "conversationQuestions": [
+   "Can you see in advance which contractual obligations may become a problem in the next 30-60 days?",
+   "Which deadlines and terms are currently controlled manually?",
+   "For which suppliers and contractors do risks repeat but remain invisible systemically?"
+  ]
+ },
+ "f2-4-legal-process-agent": {
+  "businessPressure": "In a mature company, legal work splits into many parallel tasks: documents, deadlines, approvals, claims, checks, and business requests. Even with assistants, a management loop is needed.",
+  "whatWePutInPlace": "The agent runs legal processes under lawyer control: assembles document packages, checks deadlines, suggests the next step, prepares drafts, reminds owners, and escalates risk.",
+  "whatImproves": "The legal function becomes more manageable; the risk of forgotten actions decreases; lawyers spend less time on coordination.",
+  "dataAiBehind": "Legal knowledge base, contract registry, task manager, email, document templates, and escalation rules.",
+  "conversationQuestions": [
+   "Which legal processes today rely not on a system but on the personal discipline of individual employees?",
+   "Where do lawyers spend time not on judgment, but on coordination?",
+   "Which deadlines cannot be allowed to slip?"
+  ]
+ },
+ "f3-1-mto-visibility": {
+  "businessPressure": "Spare parts, equipment, repairs, consumables, and contractor services are often purchased in small streams. Overpayment and inefficiency are not visible at CEO level because each purchase looks insignificant.",
+  "whatWePutInPlace": "We build a single picture by category, supplier, price, station, request, and contractor. We show where spending is higher than it should be and where transparency is missing.",
+  "whatImproves": "MRO spending becomes manageable; overpayment categories are visible; areas for term renegotiation can be selected quickly.",
+  "dataAiBehind": "ERP, requests, invoices, acts, item master, supplier directory, procurement and repair history.",
+  "conversationQuestions": [
+   "Can you quickly name the top 10 MRO categories where the network overpays?",
+   "Which contractor services are growing in cost but are not visible as a separate management area?",
+   "Where does procurement follow habit rather than verified economics?"
+  ]
+ },
+ "f3-2-mto-anomalies": {
+  "businessPressure": "MRO overpayment rarely looks like one big problem. It accumulates through small deviations: price above history, unusual order frequency, purchase splitting, and repeated contractors.",
+  "whatWePutInPlace": "We compare prices, suppliers, request frequency, repair history, categories, and stations. We flag anomalies, overpayments, and suspicious patterns.",
+  "whatImproves": "Real savings and control points are visible; procurement stops being a grey zone; conversations with suppliers and contractors become specific.",
+  "dataAiBehind": "Procurement history, invoices, acts, requests, item master, prices, suppliers, repairs, and site data.",
+  "conversationQuestions": [
+   "Where has overpayment become normal because no one sees it in the flow of small purchases?",
+   "Which categories are most often purchased above historical price?",
+   "Are there signs of splitting or repeated deviations?"
+  ]
+ },
+ "f3-3-supplier-rating": {
+  "businessPressure": "Supplier or contractor choice often depends on price and habit. But real cost includes timing, quality, claims, repeat visits, failures, and operational consequences.",
+  "whatWePutInPlace": "We build a supplier and contractor rating based on actual performance: price, timing, quality, claims, recurring issues, SLA fulfillment, and dependence on region and work type.",
+  "whatImproves": "Procurement and operations choose not only \"cheaper\", but \"better by full cost and risk\".",
+  "dataAiBehind": "Requests, acts, SLA, claims, repair history, execution timing, financial data, and internal customer ratings.",
+  "conversationQuestions": [
+   "Do you know which contractors are cheap on the invoice but expensive in consequences?",
+   "Where does a low price lead to rework or downtime?",
+   "Which suppliers systematically violate timing or quality?"
+  ]
+ },
+ "f4-1-loss-exception-panel": {
+  "businessPressure": "Losses and violations spread across different systems: procurement, terminal, loading/unloading, tanker, station, POS, loyalty, and finance. Management sees separate reports, but not a unified risk picture.",
+  "whatWePutInPlace": "We build a loss and exception control panel: shortages, deviations from norms, suspicious operations, rule violations, recurring weak spots, and risk materiality.",
+  "whatImproves": "Losses and exceptions are visible systemically; control works from a risk view; management understands where total risk is material.",
+  "dataAiBehind": "Consolidation of signals from procurement, logistics, terminal, transport, stations, POS/cash register, loyalty, B2B cards, finance, and audit results.",
+  "conversationQuestions": [
+   "Do you see the overall picture of losses and exceptions across the whole chain, not in separate reports?",
+   "Where does the sum of small deviations become material?",
+   "Which exceptions repeat but do not become a control priority?"
+  ]
+ },
+ "f4-2-anomaly-detection": {
+  "businessPressure": "Many losses look like ordinary operational noise: a slightly strange shortage, discount outside pattern, return, manual correction, or loading/unloading discrepancy. Manually, such patterns are visible late and selectively.",
+  "whatWePutInPlace": "We build rules, heuristics, and anomaly models for key processes: deviations from STD/SOP, policies, loss norms, expected routes, schedules, prices, discounts, cash register, and card patterns.",
+  "whatImproves": "Control sees unusual patterns earlier; investigations start from an evidence-based signal; fewer losses pass as operational norm.",
+  "dataAiBehind": "Control rules, heuristics, anomaly detection, historical norms, investigation results, and data for specific processes.",
+  "conversationQuestions": [
+   "Which deviations are considered normal today simply because no one sees the pattern?",
+   "Where does control manually check what the system could flag itself?",
+   "Do you have unified STD/SOP/policy deviation logic across the network?"
+  ]
+ },
+ "f4-3-risk-investigations": {
+  "businessPressure": "Audits and checks are carried out in sequence, by plan or habit, not where the real pain is. Even when a signal is found, the investigation often lives in email and Excel.",
+  "whatWePutInPlace": "We prioritize checks by risk and manage investigation cases: signal, evidence, risk amount, owner, status, decision, and result.",
+  "whatImproves": "Audit resources go to the riskiest points; investigations are not lost; check results feed back into the risk model.",
+  "dataAiBehind": "Risk scoring, case management, evidence packs, check history, investigation statuses, and results of signal confirmation or rejection.",
+  "conversationQuestions": [
+   "Are checks driven by risk or carried out sequentially and by habit?",
+   "For each signal, is it visible who owns it and how the investigation ended?",
+   "Do investigation results feed into the next control cycle?"
+  ]
+ },
+ "f5-document-primary-processing": {
+  "businessPressure": "Waybills, acts, transport documents, invoices, payments, and contracts pass through the company every day as a flow of primary documents. They arrive in different formats, are entered manually, get lost, or wait for processing. Primary document errors surface late and cost a lot.",
+  "whatWePutInPlace": "We recognize incoming documents: photos, scans, PDFs, EDI, and automatically extract key fields such as counterparty, amount, date, number, and line items. We reconcile against the order, enter into the system, and mark exceptions for manual review.",
+  "whatImproves": "Less manual entry; faster period close; primary document errors are visible immediately, not during reconciliation; accounting works on control, not retyping.",
+  "dataAiBehind": "OCR/IDP, document templates, counterparty directory, order and contract history, reconciliation rules, and ERP/1C integration.",
+  "conversationQuestions": [
+   "How much working time goes into manual entry of primary documents per day?",
+   "Which document types arrive most often, and in what form: paper, scan, PDF, EDI?",
+   "Which primary document errors surface during period close, and how much time is spent correcting them?"
+  ]
+ },
+ "f4-4-control-chain-agent": {
+  "businessPressure": "After separate models and dashboards appear, control faces another problem: there are many signals, they are scattered across processes, and only an experienced person sees the links between them.",
+  "whatWePutInPlace": "We deploy an internal control agent that connects signals from domain loops: procurement, loading/unloading, transportation, stations, POS, loyalty, B2B cards, and finance. The agent assembles an evidence pack, suggests investigation priority and the next step. The decision and action remain with the controller or auditor.",
+  "whatImproves": "Control sees connected cases, not separate signals; fewer complex losses pass between departments; investigation starts with ready context.",
+  "dataAiBehind": "Unified data foundation, domain fraud/loss/anomaly models, investigation results, case management, and escalation rules.",
+  "conversationQuestions": [
+   "Which losses pass between departments because each sees only its own area?",
+   "How much time goes into collecting evidence for a complex case?",
+   "Can control quickly link procurement, transportation, station, card, and financial trace into one case?"
+  ]
+ },
+ "paragraphs": [
+  "An independent fuel retail network already has data: ERP, POS, loyalty, GPS, terminals, BI, Excel. What is usually missing is connectedness: management depends on people, calls, manual reconciliations, and the experience of individual managers, while accumulated data does not work for decisions.",
+  "This map shows where AI and data create practical impact in fuel retail across the network economics: procurement and margin, logistics, stations and stores, customers, finance, and control. Not as a list of technologies, but through business tasks and what solving them delivers.",
+  "The position is simple: AI agents are not placed on top of chaos. They become useful when data, rules, forecasts, and control loops have been built beneath them. That is why the path in each block moves from the bottom up: from visibility and control today, through forecasting and optimization, to decisions managed with AI. You can start small and use the data already available; the foundation is built out as the network moves along this path."
+ ]
+}
