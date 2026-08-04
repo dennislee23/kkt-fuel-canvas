@@ -12,12 +12,57 @@
   window.__kktFuelAdvisor = true;
 
   var ENDPOINT = '/api/advisor.php';
-  var SUGGESTED = [
-    'Where do I start the AI transformation of a fuel-station network?',
-    'Which initiatives can deliver a quick win without a big overhaul?',
-    "Data exists but it isn't connected — what do I do first?",
-    'What might a two-week diagnostic look like?'
-  ];
+
+  // Language-aware widget chrome (reads the canvas language from localStorage;
+  // the backend answers in the user's language regardless).
+  var LANG = 'EN';
+  try { LANG = localStorage.getItem('kkt-fuel-lang') || 'EN'; } catch (e) {}
+  var TX = {
+    EN: {
+      eyebrow: 'Advisor', send: 'Send', you: 'You', advisor: 'Advisor',
+      status: 'ask about the map', close: 'Close', footClose: 'to close', footOpen: 'to open',
+      placeholder: 'Ask a question. Enter to send.', inputAria: 'Question for the advisor',
+      openAria: 'Open the advisor (Cmd+K)', panelAria: 'KKT advisor',
+      emptyH: 'Where shall we start?',
+      emptyP: 'I work through fuel-retail situations the way our consulting team does — across the AI-transformation map: which initiatives fit which business pressures, where a quick win is possible, what needs a foundation first, and where it is realistic to begin.',
+      suggested: [
+        'Where do I start the AI transformation of a fuel-station network?',
+        'Which initiatives can deliver a quick win without a big overhaul?',
+        "Data exists but it isn't connected — what do I do first?",
+        'What might a two-week diagnostic look like?',
+      ],
+    },
+    RU: {
+      eyebrow: 'Advisor', send: 'Отправить', you: 'Вы', advisor: 'Advisor',
+      status: 'спросите о карте', close: 'Закрыть', footClose: 'закрыть', footOpen: 'открыть',
+      placeholder: 'Задайте вопрос. Enter — отправить.', inputAria: 'Вопрос советнику',
+      openAria: 'Открыть советника (Cmd+K)', panelAria: 'Советник KKT',
+      emptyH: 'С чего начнём?',
+      emptyP: 'Я разбираю ситуации топливного ритейла так же, как наша команда консультантов — по всей карте AI-трансформации: какие инициативы подходят под какие бизнес-задачи, где возможен быстрый эффект, что требует фундамента, и где реалистично начать.',
+      suggested: [
+        'С чего начать AI-трансформацию сети АЗС?',
+        'Какие инициативы дадут быстрый эффект без большой перестройки?',
+        'Данные есть, но не связаны — с чего начать?',
+        'Как выглядит двухнедельная диагностика?',
+      ],
+    },
+    TH: {
+      eyebrow: 'Advisor', send: 'ส่ง', you: 'คุณ', advisor: 'Advisor',
+      status: 'ถามเกี่ยวกับแผนที่', close: 'ปิด', footClose: 'เพื่อปิด', footOpen: 'เพื่อเปิด',
+      placeholder: 'พิมพ์คำถาม แล้วกด Enter เพื่อส่ง', inputAria: 'คำถามถึงที่ปรึกษา',
+      openAria: 'เปิดที่ปรึกษา (Cmd+K)', panelAria: 'ที่ปรึกษา KKT',
+      emptyH: 'เริ่มจากตรงไหนดี?',
+      emptyP: 'ผมช่วยคิดโจทย์ในธุรกิจค้าปลีกน้ำมันแบบเดียวกับทีมที่ปรึกษาของเรา — ทั่วทั้งแผนที่ AI transformation: โครงการไหนเหมาะกับแรงกดดันทางธุรกิจแบบไหน ตรงไหนได้ผลเร็ว อะไรต้องวางรากฐานก่อน และจุดไหนเริ่มได้จริง',
+      suggested: [
+        'จะเริ่ม AI transformation ของเครือข่ายสถานีบริการน้ำมันจากตรงไหน?',
+        'โครงการไหนให้ผลเร็วโดยไม่ต้องรื้อระบบใหญ่?',
+        'มีข้อมูลอยู่แล้วแต่ยังไม่เชื่อมต่อกัน — ควรเริ่มทำอะไรก่อน?',
+        'การวินิจฉัยสองสัปดาห์เป็นอย่างไร?',
+      ],
+    },
+  };
+  var T = TX[LANG] || TX.EN;
+  var SUGGESTED = T.suggested;
 
   // Panel CSS lifted verbatim from the main-site advisor, plus a launcher
   // pill and a fallback token block so it themes correctly on any host page.
@@ -174,24 +219,24 @@
 
     var trigger = el('button', 'kkt-advisor-trigger');
     trigger.type = 'button';
-    trigger.innerHTML = 'Ask AI Advisor <span class="kc"><kbd>⌘</kbd><kbd>K</kbd></span>';
-    trigger.setAttribute('aria-label', 'Open the advisor (Cmd+K)');
+    trigger.innerHTML = (LANG === 'TH' ? 'ถาม AI Advisor' : LANG === 'RU' ? 'Спросить AI Советника' : 'Ask AI Advisor') + ' <span class="kc"><kbd>⌘</kbd><kbd>K</kbd></span>';
+    trigger.setAttribute('aria-label', T.openAria);
 
     var backdrop = el('div', 'kkt-advisor-backdrop'); backdrop.style.display = 'none';
 
     var panel = el('aside', 'kkt-advisor-panel');
-    panel.setAttribute('role', 'dialog'); panel.setAttribute('aria-label', 'KKT advisor');
+    panel.setAttribute('role', 'dialog'); panel.setAttribute('aria-label', T.panelAria);
     panel.innerHTML =
       '<header class="kkt-advisor-header"><div class="kkt-advisor-title">' +
-        '<span class="kkt-advisor-eyebrow">Advisor</span>' +
-        '<span class="kkt-advisor-status"><span class="kkt-advisor-dot"></span> ask about the map</span>' +
-      '</div><button type="button" class="kkt-advisor-close" aria-label="Close">&times;</button></header>' +
+        '<span class="kkt-advisor-eyebrow">' + T.eyebrow + '</span>' +
+        '<span class="kkt-advisor-status"><span class="kkt-advisor-dot"></span> ' + T.status + '</span>' +
+      '</div><button type="button" class="kkt-advisor-close" aria-label="' + T.close + '">&times;</button></header>' +
       '<div class="kkt-advisor-body"></div>' +
       '<form class="kkt-advisor-form">' +
-        '<textarea class="kkt-advisor-input" rows="2" placeholder="Ask a question. Enter to send." aria-label="Question for the advisor"></textarea>' +
-        '<button type="submit" class="kkt-advisor-send" disabled>Send</button>' +
+        '<textarea class="kkt-advisor-input" rows="2" placeholder="' + T.placeholder + '" aria-label="' + T.inputAria + '"></textarea>' +
+        '<button type="submit" class="kkt-advisor-send" disabled>' + T.send + '</button>' +
       '</form>' +
-      '<footer class="kkt-advisor-foot"><span class="kkt-advisor-shortcut"><kbd>Esc</kbd> to close &middot; <kbd>⌘</kbd>+<kbd>K</kbd> to open</span></footer>';
+      '<footer class="kkt-advisor-foot"><span class="kkt-advisor-shortcut"><kbd>Esc</kbd> ' + T.footClose + ' &middot; <kbd>⌘</kbd>+<kbd>K</kbd> ' + T.footOpen + '</span></footer>';
 
     document.body.appendChild(backdrop);
     document.body.appendChild(panel);
@@ -202,7 +247,7 @@
     // overlaps the language switcher. Older (RU-only) canvases have no such
     // button, so we fall back to placing our trigger in the nav, then to a
     // fixed top-right pill. The canvas is React-rendered, so poll for it.
-    var NATIVE_RE = /Ask AI Advisor|Спросить AI Советника/;
+    var NATIVE_RE = /Ask AI Advisor|Спросить AI Советника|ถาม AI Advisor/;
     function nativeAdvisorBtn() {
       var bs = document.querySelectorAll('header button, nav button, button');
       for (var i = 0; i < bs.length; i++) {
@@ -215,7 +260,7 @@
       var nodes = document.querySelectorAll('nav a, nav button, header a, a, button, span');
       for (var i = 0; i < nodes.length; i++) {
         var t = (nodes[i].textContent || '').trim();
-        if (t === 'Контакты' || t === 'Контакт' || t === 'Contacts' || t === 'Contact') return nodes[i].parentNode;
+        if (t === 'Контакты' || t === 'Контакт' || t === 'Contacts' || t === 'Contact' || t === 'ติดต่อ') return nodes[i].parentNode;
       }
       return null;
     }
@@ -255,7 +300,7 @@
     function renderEmpty() {
       body.innerHTML = '';
       var e = el('div', 'kkt-advisor-empty');
-      e.innerHTML = '<h2>Where shall we start?</h2><p>I work through fuel-retail situations the way our consulting team does — across the AI-transformation map: which initiatives fit which business pressures, where a quick win is possible, what needs a foundation first, and where it is realistic to begin.</p>';
+      e.innerHTML = '<h2>' + T.emptyH + '</h2><p>' + T.emptyP + '</p>';
       var ul = el('ul', 'kkt-advisor-suggestions');
       SUGGESTED.forEach(function (s) {
         var li = el('li'); var b = el('button', 'kkt-advisor-suggest', s);
@@ -270,7 +315,7 @@
     function addMsg(role, text) {
       ensureList();
       var li = el('li', 'kkt-advisor-msg role-' + role);
-      li.innerHTML = '<div class="kkt-advisor-msg-role">' + (role === 'user' ? 'You' : 'Advisor') + '</div>';
+      li.innerHTML = '<div class="kkt-advisor-msg-role">' + (role === 'user' ? T.you : T.advisor) + '</div>';
       var c = el('div', 'kkt-advisor-msg-content'); li.appendChild(c);
       setContent(c, text);
       msgList.appendChild(li); body.scrollTop = body.scrollHeight;
