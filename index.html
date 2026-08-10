@@ -726,7 +726,7 @@ const BlockRail = ({ block, allOpen, onToggleAll }) => {
           onMouseEnter={e => { e.currentTarget.style.borderColor=C.borderHov; e.currentTarget.style.color=C.text; }}
           onMouseLeave={e => { e.currentTarget.style.borderColor=C.border; e.currentTarget.style.color=C.textSec; }}
         >
-          <span>{allOpen ? (L3(dc2?.lang,'Collapse all','Свернуть всё','ย่อทั้งหมด')) : (L3(dc2?.lang,'Expand all','Показать всё','แสดงทั้งหมด'))}</span>
+          <span>{allOpen ? (L3(dc2?.lang,'Collapse all','Свернуть всё','ย่อทั้งหมด','Alle zuklappen')) : (L3(dc2?.lang,'Expand all','Показать всё','แสดงทั้งหมด','Alle aufklappen'))}</span>
           <span style={{ fontSize:'8px', opacity:.6 }}>{allOpen ? '▲' : '▼'}</span>
         </button>
       </div>
