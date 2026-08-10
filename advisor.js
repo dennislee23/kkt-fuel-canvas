@@ -60,6 +60,20 @@
         'การวินิจฉัยสองสัปดาห์เป็นอย่างไร?',
       ],
     },
+    DE: {
+      eyebrow: 'Advisor', send: 'Senden', you: 'Sie', advisor: 'Advisor',
+      status: 'Fragen Sie zur Karte', close: 'Schließen', footClose: 'zum Schließen', footOpen: 'zum Öffnen',
+      placeholder: 'Frage eingeben und mit Enter senden', inputAria: 'Frage an den Berater',
+      openAria: 'Berater öffnen (Cmd+K)', panelAria: 'KKT Berater',
+      emptyH: 'Wo fange ich an?',
+      emptyP: 'Ich denke Fragestellungen im Tankstellengeschäft so durch wie unser Beraterteam — entlang der gesamten Karte: welche Initiative zu welchem betrieblichen Druck passt, wo es schnelle Erfolge gibt, was zuerst als Fundament nötig ist und wo ein realistischer Einstieg liegt.',
+      suggested: [
+        'Wo beginne ich die KI-Transformation meines Tankstellennetzes?',
+        'Welche Initiativen bringen schnelle Erfolge ohne großen Systemumbau?',
+        'Wir haben Daten, aber sie sind nicht verbunden — womit fangen wir an?',
+        'Wie läuft die zweiwöchige Diagnose ab?',
+      ],
+    },
   };
   var T = TX[LANG] || TX.EN;
   var SUGGESTED = T.suggested;
@@ -247,7 +261,7 @@
     // overlaps the language switcher. Older (RU-only) canvases have no such
     // button, so we fall back to placing our trigger in the nav, then to a
     // fixed top-right pill. The canvas is React-rendered, so poll for it.
-    var NATIVE_RE = /Ask AI Advisor|Спросить AI Советника|ถาม AI Advisor/;
+    var NATIVE_RE = /Ask AI Advisor|Спросить AI Советника|ถาม AI Advisor|KI-Berater fragen/;
     function nativeAdvisorBtn() {
       var bs = document.querySelectorAll('header button, nav button, button');
       for (var i = 0; i < bs.length; i++) {
