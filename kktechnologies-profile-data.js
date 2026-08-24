@@ -403,7 +403,7 @@ window.KKTECH_PROFILE = {
         title: 'Отраслевая экспертиза',
         members: [
           { name: 'Pavel Mityshkin',      line: '15+ лет в FMCG/ритейле, RGM и Commercial Excellence',        chips: ['PepsiCo', 'Philip Morris', 'Bonduelle', 'Efes'],                                         initials: 'PM', photo: 'team/pavel-mityshkin.jpg' },
-          { name: 'Yana Kujrikhina',      line: '10+ лет в нефтегазе, процессный консалтинг и цифровизация',         chips: ['EY', 'Gazprom Oil'],                                                                     initials: 'YK', photo: 'team/yana-kujrikhina.jpg' },
+          { name: 'Yana Kujrikhina',      line: '10+ лет в нефтегазе, процессный консалтинг и цифровизация',         chips: ['EY', 'Gazprom Oil'],                                                                     initials: 'YK', photo: 'team/yana-kujrikhina-v2.jpg' },
           { name: 'Nikolay Terentyev',    line: '15+ лет в банкинге, финансовых операциях и цифровой трансформации',  chips: ['Gazprombank'],                                                                           initials: 'NT', photo: 'team/nikolay-terentyev.png' },
           { name: 'Pavel Gabaidullin',    line: '19+ лет в корпоративных закупках и международных цепочках поставок', chips: ['SIBUR', 'Rosatom / NovaWind', 'United Wagon Company', 'Bombardier JV'],                 initials: 'PG', photo: 'team/pavel-gabaidullin.jpg' },
           { name: 'Levan Buachidze',      line: '5+ лет в цифровой логистике, цепочках поставок и категорийном менеджменте', chips: ['Deutsche Bahn', 'Daily Group'],                                                          initials: 'LB', photo: 'team/levan-buachidze.jpg' },
@@ -837,7 +837,7 @@ window.KKTECH_PROFILE_EN = {
         title: 'Domain Expertise',
         members: [
           { name: 'Pavel Mityshkin', photo: 'team/pavel-mityshkin.jpg',      line: '15+ years in FMCG/Retail, RGM and Commercial Excellence',              chips: ['PepsiCo', 'Philip Morris', 'Bonduelle', 'Efes'],                                         initials: 'PM' },
-          { name: 'Yana Kujrikhina', photo: 'team/yana-kujrikhina.jpg',      line: '10+ years in Oil & Gas, process consulting and digitalisation',         chips: ['EY', 'Gazprom Oil'],                                                                     initials: 'YK' },
+          { name: 'Yana Kujrikhina', photo: 'team/yana-kujrikhina-v2.jpg',      line: '10+ years in Oil & Gas, process consulting and digitalisation',         chips: ['EY', 'Gazprom Oil'],                                                                     initials: 'YK' },
           { name: 'Nikolay Terentyev', photo: 'team/nikolay-terentyev.png',    line: '15+ years in banking, finance operations and digital transformation',   chips: ['Gazprombank'],                                                                           initials: 'NT' },
           { name: 'Pavel Gabaidullin', photo: 'team/pavel-gabaidullin.jpg',    line: '19+ years in enterprise procurement and international supply chains',   chips: ['SIBUR', 'Rosatom / NovaWind', 'United Wagon Company', 'Bombardier JV'],                 initials: 'PG' },
           { name: 'Levan Buachidze', photo: 'team/levan-buachidze.jpg',      line: '5+ years in digital logistics, supply chain and retail category management', chips: ['Deutsche Bahn', 'Daily Group'],                                                   initials: 'LB' },

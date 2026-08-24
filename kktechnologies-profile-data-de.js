@@ -408,7 +408,7 @@ window.KKTECH_PROFILE_DE = {
           },
           {
             name: "Yana Kujrikhina",
-            photo: "team/yana-kujrikhina.jpg",
+            photo: "team/yana-kujrikhina-v2.jpg",
             line: "10+ Jahre in Öl & Gas, Prozessberatung und Digitalisierung",
             chips: ["EY", "Gazprom Oil"],
             initials: "YK"
